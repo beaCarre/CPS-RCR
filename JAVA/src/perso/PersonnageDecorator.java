@@ -1,5 +1,9 @@
 package perso;
 
+import exceptions.InvariantError;
+import exceptions.PostConditionError;
+import exceptions.PreconditionError;
+
 public abstract class PersonnageDecorator implements PersonnageService {
 
 	private PersonnageService delegates;

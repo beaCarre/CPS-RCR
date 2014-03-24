@@ -1,5 +1,9 @@
 package perso;
 
+import exceptions.InvariantError;
+import exceptions.PostConditionError;
+import exceptions.PreconditionError;
+
 public interface PersonnageService {
 	
 	/* Observators */
@@ -13,6 +17,11 @@ public interface PersonnageService {
 	public boolean estVaincu();
 	public boolean estEquipe();
 	public Object choseEquipee();
+	
+	/* constructor */
+	// \pre n !=""  && l%2==1 && h%2==1 && f >0 && f < p
+	// \post nom.equals(n) && largeur() == l && hauteur() == h && profondeur() == p && force() == f && pointsDeVie() ==v && argent() == a
+	public void init(String n, int l, int h, int p, int f, int v, int a);
 
 	// \pre retraitPdV(s) require !estVaincu() && s > 0
 	// \post pointsDeVie() ==  pointsDeVie@pre - s
@@ -43,8 +52,5 @@ public interface PersonnageService {
 	// \inv estVaincu() == (pointsDeVie() <= 0)
 	// \inv est_equipe() == (choseEquipee() != null)
 
-	/* constructor */
-	// \pre n !=""  && l%2==1 && h%2==1 && f >0 && f < p
-	// \post nom.equals(n) && largeur() == l && hauteur() == h && profondeur() == p && force() == f && pointsDeVie() ==v && argent() == a
-	public void init(String n, int l, int h, int p, int f, int v, int a);
+	
 }

@@ -1,4 +1,4 @@
-package perso;
+package exceptions;
 
 public class PreconditionError extends Exception {
 

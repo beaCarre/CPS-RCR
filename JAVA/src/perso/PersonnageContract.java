@@ -1,5 +1,9 @@
 package perso;
 
+import exceptions.InvariantError;
+import exceptions.PostConditionError;
+import exceptions.PreconditionError;
+
 public class PersonnageContract extends PersonnageDecorator {
 
 	protected PersonnageContract(PersonnageService delegates) {
@@ -77,11 +81,7 @@ public class PersonnageContract extends PersonnageDecorator {
 			// \post choseEquipee() == chose && est_equipe() == true
 			if(!(choseEquipee() == chose && estEquipe())) throw new PostConditionError("ramasser");	
 		}
-		
 	
-		
-		
-		
 		
 		public void jeter() throws PreconditionError, InvariantError, PostConditionError{
 			// \pre jeter() require !est_vaincu() && est_equipe()
