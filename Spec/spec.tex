@@ -41,14 +41,14 @@
 
 \begin{document}
 
-\chapter{Projet CPS : Scpécifications de River City Ransom}
+\chapter{Projet CPS : Spécifications de River City Ransom}
 
 Béatrice CARRE
 
 Steven VAROUMAS
 
 \section*{Introduction}
-Lien vers l'énnoncé du projet : 
+Lien vers l'énoncé du projet : 
 \href{http://www-master.ufr-info-p6.jussieu.fr/2013/spip.php?action=acceder_document&arg=2148&cle=11624d21d0734169986d403a88c3f6e4e1755b65&file=pdf\%2Fsujet_projet_2014.pdf}{lien}.
 
 \section{Le service Personnage}
@@ -74,21 +74,21 @@ Observators :
 Constructors : 
 
 	init : String (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Personnage]
-		pre init(nom,largeur,hauteur,profondeur,force, pdv, argent) require nom (*$\ne$*) "" && largeur(*$>$*)0 && hauteur(*$>$*)0 && profondeur(*$>$*)0 && force(*$>$*)0 && pdv(*$>$*)0 && argent(*$>$*)0 
+		pre init(nom,largeur,hauteur,profondeur,force, pdv, argent) require nom (*$\ne$*) "" (*$\land$*) largeur(*$>$*)0 (*$\land$*) hauteur(*$>$*)0 (*$\land$*) profondeur(*$>$*)0 (*$\land$*) force(*$>$*)0 (*$\land$*) pdv(*$>$*)0 (*$\land$*) argent(*$>$*)0 
 
 Operators :
 	retrait_vie :  [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
-		pre retrait_vie(P,s) require !est_vaincu(P) && s(*$>$*)0
+		pre retrait_vie(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
 	depot_vie : [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
-		pre depot_vie(P,s) require !est_vaincu(P) && s(*$>$*)0
+		pre depot_vie(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
 	retrait_argent :  [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
-		pre retrait_argent(P,s) require !est_vaincu(P) && s(*$>$*)0 && somme_d_argent(P) (*$\ge$*) s // pour ne pas avoir une somme negative
+		pre retrait_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0 (*$\land$*) somme_d_argent(P) (*$\ge$*) s // pour ne pas avoir une somme negative
 	depot_argent : [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
-		pre depot_argent(P,s) require !est_vaincu(P) && s(*$>$*)0
-	ramasser : [Personnage] (*$\times$*) [Bloc] (*$\rightarrow$*) [Personnage]
-		pre ramasser(P,chose) require !est_vaincu(P) && !est_equipe(P)
+		pre depot_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
+	ramasser : [Personnage] (*$\times$*) Object (*$\rightarrow$*) [Personnage]
+		pre ramasser(P,chose) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe(P)
 	jeter : [Personnage] (*$\rightarrow$*) [Personnage]
-		pre jeter(P) require !est_vaincu(P) && est_equipe(P)
+		pre jeter(P) require (*$\lnot$*)est_vaincu(P) (*$\land$*) est_equipe(P)
 Observations : 
 	[(*$\specB{invariants}$*)]
 		est_vaincu(P) (*$\stackrel{min}{=}$*) points_de_vie(P) (*$\le$*) 0
