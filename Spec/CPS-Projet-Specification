@@ -34,7 +34,7 @@ Operators :
 		pre retrait_argent(P,s) require !est_vaincu(P) && s>0 && somme_d_argent(P) >= s // pour ne pas avoir une somme négative
 	depot_argent : [Personnage] × int -> [Personnage]
 		pre depot_argent(P,s) require !est_vaincu(P) && s>0
-	ramasser : [Personnage] × [Bloc] -> [Personnage]
+	ramasser : [Personnage] × Object -> [Personnage]
 		pre ramasser(P,chose) require !est_vaincu(P) && !est_equipe(P)
 	jeter : [Personnage] -> [Personnage]
 		pre jeter(P) require !est_vaincu(P) && est_equipe(P)
