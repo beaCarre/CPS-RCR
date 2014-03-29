@@ -120,4 +120,45 @@ Observations :
 
 \end{Spe}
 
+\section{Bloc}
+\begin{Spe}
+service : Bloc
+types : enum type{VIDE,FOSSE, ...}, enum
+tresor{RIEN,UNDOLLAR,CINQUANTECENTIMES,CHAINEDEVELO,POUBELLEMETALLIQUE,
+  ...} // a completer 
+\end{Spe}
+ 
+\section{Objet}
+\begin{Spe}
+
+
+service : Objet 
+types : String, boolean, int 
+	const nom : [Object] (*$\rightarrow$*) String
+	est_equipable : [Objet] (*$\rightarrow$*) boolean 
+	est_de_valeur : [Objet] (*$\rightarrow$*) boolean
+	bonus_force : [Objet] (*$\rightarrow$*) int
+		pre bonus_force(O) require est_equipable(O) 
+	valeur_marchande : [Objet] (*$\rightarrow$*) int
+		pre valeur_marchande(O) require est_de_valeur(O)
+
+Constructors :
+
+	init : String (*$\times$*) int (*$\times$*) int 
+		pre(init(n,bonus,valeur) require n!="" && ( ( bonus >0 && valeur == 0) || (bonus == 0 && valeur >0) ) // comme ca on ne peut pas etre de valeur ET equipable 
+
+Invariants :
+	est_equipable(O) = bonus_force > 0
+	est_de_valeur(O) = valeur_marchande > 0
+	est_equipable(O) = !est_de_valeur(O)
+
+Observations : 
+	[(*$\specB{init}$*)]
+		nom(init(n,bonus,valeur)) = n // meh 
+		bonus_force(init(n,bonus,valeur)) = bonus 
+		valeur_marchande(init(n,bonus,valeur)) = valeur 
+
+
+\end{Spe}
+
 \end{document}
