@@ -2,7 +2,8 @@
 
 \addtolength{\hoffset}{-1cm}
 \addtolength{\textwidth}{2cm}
-
+\setlength{\oddsidemargin}{0pt} % Marge gauche sur pages impaires
+\setlength{\evensidemargin}{0pt} % Marge gauche sur pages paires
 \usepackage[utf8]{inputenc}
 \usepackage[frenchb]{babel}
 \usepackage[T1]{fontenc}
@@ -18,7 +19,7 @@
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
-
+\fontfamily{verdana}
 
   \lstdefinelanguage{spegrammar}{
   morekeywords={const,pre,Observators,Constructors,Operators,Observations,service,types,use,require},
@@ -36,7 +37,7 @@
                     }
                   }
                   {} 
-\newcommand{\specB}[1]{\footnotesize\textbf{#1}}
+\newcommand{\specB}[1]{\textbf{#1}}
 
 
 \begin{document}
@@ -77,7 +78,7 @@ Observators :
 Constructors : 
 
 	init : String (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Personnage]
-		pre init(nom,largeur,hauteur,profondeur,force, pdv, argent) require nom (*$\ne$*) "" (*$\land$*) largeur(*$>$*)0 (*$\land$*) hauteur(*$>$*)0 (*$\land$*) profondeur(*$>$*)0 (*$\land$*) force(*$>$*)0 (*$\land$*) pdv(*$>$*)0 (*$\land$*) argent(*$>$*)0 
+		pre init(nom,largeur,hauteur,profondeur,force, pdv, argent) require nom (*$\neq$*) "" (*$\land$*) largeur(*$>$*)0 (*$\land$*) hauteur(*$>$*)0 (*$\land$*) profondeur(*$>$*)0 (*$\land$*) force(*$>$*)0 (*$\land$*) pdv(*$>$*)0 (*$\land$*) argent(*$>$*)0 
 
 Operators :
 	retrait_vie :  [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
@@ -93,7 +94,7 @@ Operators :
         ramasser_perso : [Personnage] (*$\times$*) Personnage (*$\rightarrow$*) [Personnage]
 		pre ramasser(P,chose) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe_objet(P) (*$\land$*) (*$\lnot$*)est_equipe_perso(P)
 	jeter : [Personnage] (*$\rightarrow$*) [Personnage]
-		pre jeter(P) require (*$\lnot$*)est_vaincu(P) (*$\land$*) ( est_equipe_objet(P) || est_equipe_perso (P) )
+		pre jeter(P) require (*$\lnot$*)est_vaincu(P) (*$\land$*) ( est_equipe_objet(P) (*$\lor$*) est_equipe_perso (P) )
 Observations : 
 	[(*$\specB{invariants}$*)]
 		est_vaincu(P) (*$\stackrel{min}{=}$*) points_de_vie(P) (*$\le$*) 0
@@ -143,8 +144,8 @@ Constructors :
       init : TYPE (*$\times$*) TRESOR (*$\rightarrow$*) [Bloc]
 Observations :
       [(*$\specB{init}$*)]
-            type(init(ty,tr))=ty
-            tresor(init(ty,tr))=tr
+            type(init(ty,tr)) = ty
+            tresor(init(ty,tr)) = tr
 \end{Spe}
  
 \section{Objet}
@@ -164,14 +165,17 @@ Observators :
 
 Constructors :
 
-	init : String (*$\times$*) int (*$\times$*) int 
-		pre(init(n,bonus,valeur) require n!="" && ( ( bonus >0 && valeur == 0) || (bonus == 0 && valeur >0) ) // comme ca on ne peut pas etre de valeur ET equipable 
+	init : String (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Object] 
+		pre(init(n,bonus,valeur) require n(*$\ne$*)""
+                (*$\land$*) ( ( bonus (*$>$*)0 (*$\land$*) valeur = 0)
+                (*$\lor$*) (bonus = 0 (*$\land$*) valeur(*$>$*) 0) ) 
+                // comme ca on ne peut pas etre de valeur ET equipable 
 
 Observations : 
         [(*$\specB{Invariants}$*)]
-	        est_equipable(O) = bonus_force > 0
-	        est_de_valeur(O) = valeur_marchande > 0
-              	est_equipable(O) = !est_de_valeur(O)
+	        est_equipable(O) (*$\stackrel{min}{=}$*) bonus_force (*$>$*) 0
+	        est_de_valeur(O) (*$\stackrel{min}{=}$*) valeur_marchande (*$>$*) 0
+              	est_equipable(O) (*$\stackrel{min}{=}$*) (*$\lnot$*)est_de_valeur(O)
 	[(*$\specB{init}$*)]
 		nom(init(n,bonus,valeur)) = n // meh 
 		bonus_force(init(n,bonus,valeur)) = bonus 
@@ -189,20 +193,20 @@ observators :
        const hauteur : [Terrain] (*$\rightarrow$*) int
        const profondeur : [Terrain] (*$\rightarrow$*) int
        bloc : [Terrain](*$\times$*) int(*$\times$*) int (*$\times$*) int (*$\rightarrow$*) Bloc
-             pre bloc( T, i, j, k) require 0 =< i =< largeur && 0<= j =< hauteur && 0 <= k =< profondeur
+             pre bloc( T, i, j, k) require 0 (*$\leq$*) i (*$\leq$*) largeur (*$\land$*) 0 (*$\leq$*) j (*$\leq$*) hauteur (*$\land$*) 0 (*$\leq$*) k (*$\leq$*) profondeur
 Constructors :
       init : int (*$\times$*) int(*$\times$*) int (*$\rightarrow$*) [Terrain]
-             pre init(largeur, hauteur, prof) require largeur > 0 ^ hauteur > 0 ^ prof > 0
+             pre init(largeur, hauteur, prof) require largeur (*$>$*) 0 (*$\land$*) hauteur (*$>$*) 0 (*$\land$*) prof (*$>$*) 0
 Operators :        
-      modifier_bloc : [Terrain](*$\times$*)int(*$\times$*) int (*$\times$*) int (*$\times$*) Bloc (*$\rightarrow$*) -> [Terrain]
-             pre bloc( T, i, j, k, b) require 0 =< i =< largeur && 0<= j =< hauteur && 0 <= k =< profondeur && b != null
+      modifier_bloc : [Terrain](*$\times$*)int(*$\times$*)int(*$\times$*)int(*$\times$*)Bloc(*$\rightarrow$*) (*$\rightarrow$*) [Terrain]
+             pre bloc( T, i, j, k, b) require 0(*$\leq$*)i(*$\leq$*)largeur (*$\land$*) 0(*$\leq$*)j(*$\leq$*)hauteur (*$\land$*) 0(*$\leq$*)k(*$\leq$*)profondeur (*$\land$*) b (*$\neq$*) null
 Observations :
       [(*$\specB{Invariants}$*)]
       [(*$\specB{init}$*)]
             largeur(init(l, h, p)) = l
             hauteur(init(l, h, p)) = h
             profondeur(init(l, h, p)) = p
-            bloc(init(l, h, p), x, y, z) != NULL
+            bloc(init(l, h, p), x, y, z) (*$\neq$*) NULL
       [(*$\specB{modifier\_bloc}$*)]
             bloc(modifier_bloc(T, x, y, z, b), x, y, z) = b 
 \end{Spe}
@@ -215,46 +219,49 @@ use : GestionCombat
 types : boolean, int, enum RESULTAT{LESDEUXGAGNANTS, RYANGAGNANT, ALEXGAGNANT, SLICKGAGNANT, NULLE},
         enum COMMANDE{RIEN, GAUCHE, DROITE, BAS, HAUT, FRAPPE, SAUT, RAMASSER, JETER}
 Observators :
-      estFini : [MoteurJeu] -> boolean
-      resultatFinal : [MoteurJeu] -> RESULTAT
+      estFini : [MoteurJeu] (*$\rightarrow$*) boolean
+      resultatFinal : [MoteurJeu] (*$\rightarrow$*) RESULTAT
             pre resultatFinal(M) require estFini(M)
-      combat : [MoteurJeu] -> GestionCombat
+      combat : [MoteurJeu] (*$\rightarrow$*) GestionCombat
 Constructors :
-      init :  -> [MoteurJeu]
+      init : (*$\emptyset$*) (*$\rightarrow$*) [MoteurJeu]
 Operators :
-      pasJeu : [MoteurJeu] x COMMANDE x COMMANDE -> [MoteurJeu]
+      pasJeu : [MoteurJeu] (*$\times$*) COMMANDE (*$\times$*) COMMANDE (*$\rightarrow$*) [MoteurJeu]
             pre pasJeu(M,comRyan,comAlex) require :estFini(M)
 Observations :
       [(*$\specB{Invariants}$*)]
-        (*$ estFini(M) =min  \left\{\begin{array}{ll}
-         &  (Personnage:: estVaincu(GestionCombat::alex(combat(M))) $ $ \land \\
-                      &  Personnage::estVaincu(GestionCombat::ryan(combat(M)))) \\ 
-                      & \lor  Gangster::estVaincu(GestionCombat::slick(combat(M)) 
-  \end{array} \right.$*)
-      resultatFinal(M)=min
-     (* $ \left\{\begin{array}{ll}
+      (*$ estFini(M) \stackrel{min}{=} \left\{
+\begin{array}{ll}
+  &  (Personnage:: estVaincu(GestionCombat::alex(combat(M)))\\  
+  & \land Personnage::estVaincu(GestionCombat::ryan(combat(M)))) \\ 
+  & \lor  Gangster::estVaincu(GestionCombat::slick(combat(M)) 
+\end{array} \right.$ 
+*)
+(*
+$\begin{array}{ll}
+     resultatFinal(M)\stackrel{min}{=} & \left\{\begin{array}{ll}
  ALEXGAGNANT & si Personnage::!estVaincu(GestionCombat::alex(combat(M))) \\
-& et :Gangster::estVaincu(GestionCombat::slick(combat(M)))\\
-& et : Personnage::estVaincu(GestionCombat::ryan(combat(M)) \\
+& \land :Gangster::estVaincu(GestionCombat::slick(combat(M)))\\
+& \land : Personnage::estVaincu(GestionCombat::ryan(combat(M)) \\
 
  RYANGAGNANT & si Personnage::!estVaincu(GestionCombat::ryan(combat(M))) \\
-& et :Gangster::estVaincu(GestionCombat::slick(combat(M)))\\
-& et : Personnage::estVaincu(GestionCombat::alex(combat(M)) \\
+& \land :Gangster::estVaincu(GestionCombat::slick(combat(M)))\\
+& \land : Personnage::estVaincu(GestionCombat::alex(combat(M)) \\
 
  LESDEUXGAGNANTS & si Personnage::!estVaincu(GestionCombat::ryan(combat(M))) \\
-& et :Gangster::estVaincu(GestionCombat::slick(combat(M)))\\
-& et : Personnage::!estVaincu(GestionCombat::alex(combat(M)) \\
+& \land :Gangster::estVaincu(GestionCombat::slick(combat(M)))\\
+& \land : Personnage::!estVaincu(GestionCombat::alex(combat(M)) \\
 
 SLICKGAGNANT & si Personnage: estVaincu(GestionCombat::ryan(combat(M))) \\
-& et :Gangster::!estVaincu(GestionCombat::slick(combat(M)))\\
-& et : Personnage::estVaincu(GestionCombat::alex(combat(M)) \\
-
-
+& \land :Gangster::!estVaincu(GestionCombat::slick(combat(M)))\\
+& \land : Personnage::estVaincu(GestionCombat::alex(combat(M)) \\
 
 NULLE & sinon \\
- \end{array} \right.$*)
+ \end{array} \right.
+\end{array}$
+*)
       [(*$\specB{init}$*)]
-          combat(init()) = GestionCombat::init(???)
+          combat(init()) = GestionCombat::init()
       [(*$\specB{pasJeu}$*)]
           combat(pasJeu(M,cA,cR)) = GestionCombat::gerer(combat(M), cA, cR)
             
@@ -264,34 +271,35 @@ NULLE & sinon \\
 \begin{Spe}
 service : GestionCombat
 use : Terrain, Personnage, Gangster  
-types : ??? 
+types : string, boolean, COMMANDE
 
 Observators :
- terrain: [GestionCombat] -> Terrain
- alex : [GestionCombat] -> Personnage
- ryan : [GestionCombat] -> Personnage
- slick : [GestionCombat] -> Gangster 
- gangster :  [GestionCombat] -> {Gangster*} // Une liste de gangsters (les autres) 
- estGele(GestionCombat] x String -> boolean 
-     pre estGele(G, id) require id = ``alex'' ou id = ``ryan'' ou id = ``slick'' // et pour les autres gangsters ?  
- estFrappe(GestionCombat] x String -> boolean 
-     pre estFrappe(G, id) require id = ``alex'' ou id = ``ryan'' ou id = ``slick'' // idem 
-positionX : [GestionCombat] x String -> int
-      pre positionX(G, id) require id = ``alex'' ou id = ``ryan'' ou id = ``slick'' // idem 
-positionY :  [GestionCombat] x String -> int 
-      pre positionY(G, id) require id = ``alex'' ou id = ``ryan'' ou id = ``slick'' // idem 
-positionZ :   [GestionCombat] x String -> int
-      pre positionZ(G, id) require id = ``alex'' ou id = ``ryan'' ou id = ``slick'' // idem  
-collision : [GestionCombat] x String = x String -> boolean
-      pre collision(G, id1, id2) require (id = ``alex'' et id = ``ryan'')
-                                        (ou id = ``slick''et id = ``alex'') 
-                                        (ou id = ``ryan'' et id = ``slick'') // idem 
+      terrain: [GestionCombat] (*$\rightarrow$*) Terrain
+      alex : [GestionCombat] (*$\rightarrow$*) Personnage
+      ryan : [GestionCombat] (*$\rightarrow$*) Personnage
+      slick : [GestionCombat] (*$\rightarrow$*) Gangster 
+      gangster :  [GestionCombat] (*$\rightarrow$*) {Gangster*} // Une liste de gangsters (les autres) 
+      estGele(GestionCombat] (*$\times$*) String (*$\rightarrow$*) boolean 
+            pre estGele(G, id) require id = "alex" (*$\lor$*) id = "ryan" (*$\lor$*) id = "slick" // et pour les autres gangsters ?  
+      estFrappe(GestionCombat] (*$\times$*) String (*$\rightarrow$*) boolean 
+            pre estFrappe(G, id) require id = "alex" (*$\lor$*) id = "ryan" (*$\lor$*) id = "slick" // idem 
+      positionX : [GestionCombat] (*$\times$*) String (*$\rightarrow$*) int
+            pre positionX(G, id) require id = "alex" (*$\lor$*) id = "ryan" (*$\lor$*) id = "slick" // idem 
+      positionY :  [GestionCombat] (*$\times$*) String (*$\rightarrow$*) int 
+            pre positionY(G, id) require id = "alex" (*$\lor$*) id = "ryan" (*$\lor$*) id = "slick" // idem 
+      positionZ :   [GestionCombat] (*$\times$*) String (*$\rightarrow$*) int
+            pre positionZ(G, id) require id = "alex" (*$\lor$*) id = "ryan" (*$\lor$*) id = "slick" // idem  
+      collision : [GestionCombat] (*$\times$*) String = x String (*$\rightarrow$*) boolean
+            pre collision(G, id1, id2) require (id = "alex" (*$\land$*) id = "ryan")
+            ((*$\lor$*) id = "slick"(*$\land$*) id = "alex") 
+            ((*$\lor$*) id = "ryan"
+            (*$\land$*) id = "slick") // idem 
 
       Constructors:
-      init : ????? -> [GestionCombat]
+      init : (*$/emptyset$*) (*$\rightarrow$*) [GestionCombat]
       
 Operators :
-     gerer : [GestionCombat] x COMMANDE x COMMANDE -> [GestionCombat]
+      gerer : [GestionCombat] (*$\times$*) COMMANDE (*$\times$*) COMMANDE (*$\rightarrow$*) [GestionCombat]
 
 Observations : 
 
