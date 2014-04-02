@@ -67,9 +67,12 @@ Observators :
 	points_de_vie : [Personnage] (*$\rightarrow$*) int
 	somme_d_argent : [Personnage] (*$\rightarrow$*) int 
 	est_vaincu : [Personnage] (*$\rightarrow$*) boolean 
-	est_equipe : [Personnage] (*$\rightarrow$*) boolean 
-	la_chose_equipee : [Personnage] (*$\rightarrow$*) Objet
-		pre la_chose_equipee(P) require est_equipe(P)
+	est_equipe_objet : [Personnage] (*$\rightarrow$*) boolean
+        est_equipe_perso : [Personnage] (*$\rightarrow$*) boolean 
+	objet_equipe : [Personnage] (*$\rightarrow$*) Objet
+		pre objet_equipe(P) require est_equipe_objet(P)
+        perso_equipe : [Personnage] (*$\rightarrow$*) Personnage
+		pre perso_equipe(P) require est_equipe_perso(P) 
 
 Constructors : 
 
@@ -85,14 +88,16 @@ Operators :
 		pre retrait_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0 (*$\land$*) somme_d_argent(P) (*$\ge$*) s // pour ne pas avoir une somme negative
 	depot_argent : [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
 		pre depot_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
-	ramasser : [Personnage] (*$\times$*) Object (*$\rightarrow$*) [Personnage]
-		pre ramasser(P,chose) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe(P)
+	ramasser_objet : [Personnage] (*$\times$*) Object (*$\rightarrow$*) [Personnage]
+		pre ramasser(P,chose) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe_objet(P) (*$\land$*)  (*$\lnot$*)est_equipe_perso(P)
+        ramasser_perso : [Personnage] (*$\times$*) Personnage (*$\rightarrow$*) [Personnage]
+		pre ramasser(P,chose) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe_objet(P) (*$\land$*) (*$\lnot$*)est_equipe_perso(P)
 	jeter : [Personnage] (*$\rightarrow$*) [Personnage]
-		pre jeter(P) require (*$\lnot$*)est_vaincu(P) (*$\land$*) est_equipe(P)
+		pre jeter(P) require (*$\lnot$*)est_vaincu(P) (*$\land$*) ( est_equipe_objet(P)(*$\lor$*)est_equipe_perso (P) )
 Observations : 
 	[(*$\specB{invariants}$*)]
 		est_vaincu(P) (*$\stackrel{min}{=}$*) points_de_vie(P) (*$\le$*) 0
-		est_equipe(P) = la_chose_equipee(P) (*$\ne$*) null // a verifier si ca ne "boucle" pas avec la precondition de la_chose_equipee ...
+		est_equipe_objet(P) = la_chose_equipee(P) (*$\ne$*) null // a verifier si ca ne "boucle" pas avec la precondition de la_chose_equipee ...
 	[(*$\specB{init}$*)]
 		nom(init(n,l,h,p,f,v,a))=n
 		largeur(init(n,l,h,p,f,v,a))=l
@@ -109,15 +114,22 @@ Observations :
 		somme_d_argent(retrait_argent(P,s)) = argent(P) - s 
 	[(*$\specB{depot\_argent}$*)]
 		somme_d_argent(depot_argent(P,s)) = argent(P) + s 
-	[(*$\specB{ramasser}$*)]
-		la_chose_equipee(ramasser(P,chose)) = chose 
-		est_equipe(ramasser(P,chose)) = true
+	[(*$\specB{ramasser\_objet}$*)]
+		objet_equipe(ramasser_objet(P,objet)) = objet 
+		est_equipe_objet(ramasser_objet(P,objet)) = true
+	[(*$\specB{ramasser\_perso}$*)]
+		perso_equipe(ramasser_perso(P,perso)) = perso 
+		est_equipe_perso(ramasser_perso(P,perso)) = true
 	[(*$\specB{jeter}$*)]
-		est_equipe(jeter(P)) = false 
+		est_equipe_objet(jeter(P)) = false 
+                est_equipe_perso(jeter(P)) = false 
+                perso_equipe(jeter(P)) = null
+                objet_equipe(jeter(P)) = null
 \end{Spe}
 \section{Gangster}
 \begin{Spe}
-
+  
+  
 \end{Spe}
 
 \section{Bloc}
@@ -147,18 +159,43 @@ Constructors :
 	init : String (*$\times$*) int (*$\times$*) int 
 		pre(init(n,bonus,valeur) require n!="" && ( ( bonus >0 && valeur == 0) || (bonus == 0 && valeur >0) ) // comme ca on ne peut pas etre de valeur ET equipable 
 
-Invariants :
-	est_equipable(O) = bonus_force > 0
-	est_de_valeur(O) = valeur_marchande > 0
-	est_equipable(O) = !est_de_valeur(O)
-
 Observations : 
+        [(*$\specB{ Invariants}$*)]
+	        est_equipable(O) = bonus_force > 0
+	        est_de_valeur(O) = valeur_marchande > 0
+              	est_equipable(O) = !est_de_valeur(O)
 	[(*$\specB{init}$*)]
 		nom(init(n,bonus,valeur)) = n // meh 
 		bonus_force(init(n,bonus,valeur)) = bonus 
 		valeur_marchande(init(n,bonus,valeur)) = valeur 
 
-
 \end{Spe}
 
+\section{Terrain}
+\begin{Spe}
+service : Terrain
+use : Bloc
+types : int
+observators :
+       const largeur : [Terrain] (*$\rightarrow$*) int
+       const hauteur : [Terrain] (*$\rightarrow$*) int
+       const profondeur : [Terrain] (*$\rightarrow$*) int
+       bloc : [Terrain](*$\times$*) int(*$\times$*) int (*$\times$*) int (*$\rightarrow$*) Bloc
+             pre bloc( T, i, j, k) require 0 =< i =< largeur && 0<= j =< hauteur && 0 <= k =< profondeur
+       modifier_bloc : [Terrain](*$\times$*)int(*$\times$*) int (*$\times$*) int (*$\times$*) Bloc (*$\rightarrow$*) -> [Terrain]
+             pre bloc( T, i, j, k, b) require 0 =< i =< largeur && 0<= j =< hauteur && 0 <= k =< profondeur && b != null
+Constructors :
+      init : int (*$\times$*) int(*$\times$*) int (*$\rightarrow$*) [Terrain]
+             pre init(largeur, hauteur, prof) require largeur > 0 ^ hauteur > 0 ^ prof > 0
+Operators : 
+Observations :
+      [(*$\specB{ Invariants}$*)]
+      [(*$\specB{init}$*)]
+            largeur(init(l, h, p)) = l
+            hauteur(init(l, h, p)) = h
+            profondeur(init(l, h, p)) = p
+            bloc(init(l, h, p), x, y, z) != NULL
+      [(*$\specB{modifier_bloc}$*)]
+            modifier_bloc(init(l, h, p), x, y, z) = 
+      
 \end{document}
