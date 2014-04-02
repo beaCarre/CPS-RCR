@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.29)  2 APR 2014 18:37
 entering extended mode
  %&-line parsing enabled.
@@ -678,3 +679,5 @@ PDF statistics:
  215 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
+=======
+>>>>>>> b4a3536e7f61a84c4de2c42a75a3fa2514417328
