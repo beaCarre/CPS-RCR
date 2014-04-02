@@ -67,9 +67,12 @@ Observators :
 	points_de_vie : [Personnage] (*$\rightarrow$*) int
 	somme_d_argent : [Personnage] (*$\rightarrow$*) int 
 	est_vaincu : [Personnage] (*$\rightarrow$*) boolean 
-	est_equipe : [Personnage] (*$\rightarrow$*) boolean 
-	la_chose_equipee : [Personnage] (*$\rightarrow$*) Objet
-		pre la_chose_equipee(P) require est_equipe(P)
+	est_equipe_objet : [Personnage] (*$\rightarrow$*) boolean
+        est_equipe_perso : [Personnage] (*$\rightarrow$*) boolean 
+	objet_equipe : [Personnage] (*$\rightarrow$*) Objet
+		pre objet_equipe(P) require est_equipe_objet(P)
+        perso_equipe : [Personnage] (*$\rightarrow$*) Personnage
+		pre perso_equipe(P) require est_equipe_perso(P) 
 
 Constructors : 
 
@@ -80,19 +83,22 @@ Operators :
 	retrait_vie :  [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
 		pre retrait_vie(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
 	depot_vie : [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
-		pre depot_vie(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
+		pre depot_vie(P,s) require (*$\lnot$*) est_vaincu(P) (*$\land$*) s(*$>$*)0
 	retrait_argent :  [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
 		pre retrait_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0 (*$\land$*) somme_d_argent(P) (*$\ge$*) s // pour ne pas avoir une somme negative
 	depot_argent : [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
 		pre depot_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
-	ramasser : [Personnage] (*$\times$*) Object (*$\rightarrow$*) [Personnage]
-		pre ramasser(P,chose) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe(P)
+	ramasser_objet : [Personnage] (*$\times$*) Object (*$\rightarrow$*) [Personnage]
+		pre ramasser(P,chose) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe_objet(P) (*$\land$*)  (*$\lnot$*)est_equipe_perso(P)
+        ramasser_perso : [Personnage] (*$\times$*) Personnage (*$\rightarrow$*) [Personnage]
+		pre ramasser(P,chose) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe_objet(P) (*$\land$*) (*$\lnot$*)est_equipe_perso(P)
 	jeter : [Personnage] (*$\rightarrow$*) [Personnage]
-		pre jeter(P) require (*$\lnot$*)est_vaincu(P) (*$\land$*) est_equipe(P)
+		pre jeter(P) require (*$\lnot$*)est_vaincu(P) (*$\land$*) ( est_equipe_objet(P) || est_equipe_perso (P) )
 Observations : 
 	[(*$\specB{invariants}$*)]
 		est_vaincu(P) (*$\stackrel{min}{=}$*) points_de_vie(P) (*$\le$*) 0
-		est_equipe(P) = la_chose_equipee(P) (*$\ne$*) null // a verifier si ca ne "boucle" pas avec la precondition de la_chose_equipee ...
+                est_equipe_perso(P) (*$\stackrel{min}{=}$*) perso_equipee(P) (*$\ne$*) null // a verifier si ca ne "boucle" pas avec la precondition de la_chose_equipee ...
+		est_equipe_objet(P) (*$\stackrel{min}{=}$*) objet_equipee(P) (*$\ne$*) null // a verifier si ca ne "boucle" pas avec la precondition de la_chose_equipee ... // TOASK
 	[(*$\specB{init}$*)]
 		nom(init(n,l,h,p,f,v,a))=n
 		largeur(init(n,l,h,p,f,v,a))=l
@@ -101,6 +107,8 @@ Observations :
 		force(init(n,l,h,p,f,v,a))=f
 		points_de_vie(init(n,l,h,p,f,v,a))=v
 		somme_d_argent(init(n,l,h,p,f,v,a))=a
+                objet_equipe(init(n,l,h,p,f,v,a))=null
+                perso_equipe(init(n,l,h,p,f,v,a))=null
 	[(*$\specB{retrait\_vie}$*)]
 		points_de_vie(retrait_vie(P,s)) = points_de_vie(P) - s
 	[(*$\specB{depot\_vie}$*)]
@@ -109,23 +117,34 @@ Observations :
 		somme_d_argent(retrait_argent(P,s)) = argent(P) - s 
 	[(*$\specB{depot\_argent}$*)]
 		somme_d_argent(depot_argent(P,s)) = argent(P) + s 
-	[(*$\specB{ramasser}$*)]
-		la_chose_equipee(ramasser(P,chose)) = chose 
-		est_equipe(ramasser(P,chose)) = true
+	[(*$\specB{ramasser\_objet}$*)]
+		objet_equipe(ramasser_objet(P,objet)) = objet 
+	[(*$\specB{ramasser\_perso}$*)]
+		perso_equipe(ramasser_perso(P,perso)) = perso 
 	[(*$\specB{jeter}$*)]
-		est_equipe(jeter(P)) = false 
+                perso_equipe(jeter(P)) = null
+                objet_equipe(jeter(P)) = null
 \end{Spe}
 \section{Gangster}
 \begin{Spe}
-
+  
+  
 \end{Spe}
 
 \section{Bloc}
 \begin{Spe}
 service : Bloc
-types : enum type{VIDE,FOSSE, ...}, enum
-tresor{RIEN,UNDOLLAR,CINQUANTECENTIMES,CHAINEDEVELO,POUBELLEMETALLIQUE,
-  ...} // a completer 
+types : enum TYPE{VIDE,FOSSE, ...}, enum TRESOR {RIEN,UNDOLLAR,CINQUANTECENTIMES,CHAINEDEVELO,POUBELLEMETALLIQUE,
+  ...} // a completer ??
+Observators :
+      const type : [Bloc] (*$\rightarrow$*) TYPE
+      const tresor : [Bloc] (*$\rightarrow$*) TRESOR
+Constructors :
+      init : TYPE (*$\times$*) TRESOR (*$\rightarrow$*) [Bloc]
+Observations :
+      [(*$\specB{init}$*)]
+            type(init(ty,tr))=ty
+            tresor(init(ty,tr))=tr
 \end{Spe}
  
 \section{Objet}
@@ -134,6 +153,7 @@ tresor{RIEN,UNDOLLAR,CINQUANTECENTIMES,CHAINEDEVELO,POUBELLEMETALLIQUE,
 
 service : Objet 
 types : String, boolean, int 
+Observators :
 	const nom : [Object] (*$\rightarrow$*) String
 	est_equipable : [Objet] (*$\rightarrow$*) boolean 
 	est_de_valeur : [Objet] (*$\rightarrow$*) boolean
@@ -147,17 +167,137 @@ Constructors :
 	init : String (*$\times$*) int (*$\times$*) int 
 		pre(init(n,bonus,valeur) require n!="" && ( ( bonus >0 && valeur == 0) || (bonus == 0 && valeur >0) ) // comme ca on ne peut pas etre de valeur ET equipable 
 
-Invariants :
-	est_equipable(O) = bonus_force > 0
-	est_de_valeur(O) = valeur_marchande > 0
-	est_equipable(O) = !est_de_valeur(O)
-
 Observations : 
+        [(*$\specB{Invariants}$*)]
+	        est_equipable(O) = bonus_force > 0
+	        est_de_valeur(O) = valeur_marchande > 0
+              	est_equipable(O) = !est_de_valeur(O)
 	[(*$\specB{init}$*)]
 		nom(init(n,bonus,valeur)) = n // meh 
 		bonus_force(init(n,bonus,valeur)) = bonus 
 		valeur_marchande(init(n,bonus,valeur)) = valeur 
 
+\end{Spe}
+
+\section{Terrain}
+\begin{Spe}
+service : Terrain
+use : Bloc
+types : int
+observators :
+       const largeur : [Terrain] (*$\rightarrow$*) int
+       const hauteur : [Terrain] (*$\rightarrow$*) int
+       const profondeur : [Terrain] (*$\rightarrow$*) int
+       bloc : [Terrain](*$\times$*) int(*$\times$*) int (*$\times$*) int (*$\rightarrow$*) Bloc
+             pre bloc( T, i, j, k) require 0 =< i =< largeur && 0<= j =< hauteur && 0 <= k =< profondeur
+Constructors :
+      init : int (*$\times$*) int(*$\times$*) int (*$\rightarrow$*) [Terrain]
+             pre init(largeur, hauteur, prof) require largeur > 0 ^ hauteur > 0 ^ prof > 0
+Operators :        
+      modifier_bloc : [Terrain](*$\times$*)int(*$\times$*) int (*$\times$*) int (*$\times$*) Bloc (*$\rightarrow$*) -> [Terrain]
+             pre bloc( T, i, j, k, b) require 0 =< i =< largeur && 0<= j =< hauteur && 0 <= k =< profondeur && b != null
+Observations :
+      [(*$\specB{Invariants}$*)]
+      [(*$\specB{init}$*)]
+            largeur(init(l, h, p)) = l
+            hauteur(init(l, h, p)) = h
+            profondeur(init(l, h, p)) = p
+            bloc(init(l, h, p), x, y, z) != NULL
+      [(*$\specB{modifier\_bloc}$*)]
+            bloc(modifier_bloc(T, x, y, z, b), x, y, z) = b 
+\end{Spe}
+
+
+\section{Moteur de jeu}
+\begin{Spe}
+service : MoteurJeu
+use : GestionCombat
+types : boolean, int, enum RESULTAT{LESDEUXGAGNANTS, RYANGAGNANT, ALEXGAGNANT, SLICKGAGNANT, NULLE},
+        enum COMMANDE{RIEN, GAUCHE, DROITE, BAS, HAUT, FRAPPE, SAUT, RAMASSER, JETER}
+Observators :
+      estFini : [MoteurJeu] -> boolean
+      resultatFinal : [MoteurJeu] -> RESULTAT
+            pre resultatFinal(M) require estFini(M)
+      combat : [MoteurJeu] -> GestionCombat
+Constructors :
+      init :  -> [MoteurJeu]
+Operators :
+      pasJeu : [MoteurJeu] x COMMANDE x COMMANDE -> [MoteurJeu]
+            pre pasJeu(M,comRyan,comAlex) require :estFini(M)
+Observations :
+      [(*$\specB{Invariants}$*)]
+        (*$ estFini(M) =min  \left\{\begin{array}{ll}
+         &  (Personnage:: estVaincu(GestionCombat::alex(combat(M))) $ $ \land \\
+                      &  Personnage::estVaincu(GestionCombat::ryan(combat(M)))) \\ 
+                      & \lor  Gangster::estVaincu(GestionCombat::slick(combat(M)) 
+  \end{array} \right.$*)
+      resultatFinal(M)=min
+     (* $ \left\{\begin{array}{ll}
+ ALEXGAGNANT & si Personnage::!estVaincu(GestionCombat::alex(combat(M))) \\
+& et :Gangster::estVaincu(GestionCombat::slick(combat(M)))\\
+& et : Personnage::estVaincu(GestionCombat::ryan(combat(M)) \\
+
+ RYANGAGNANT & si Personnage::!estVaincu(GestionCombat::ryan(combat(M))) \\
+& et :Gangster::estVaincu(GestionCombat::slick(combat(M)))\\
+& et : Personnage::estVaincu(GestionCombat::alex(combat(M)) \\
+
+ LESDEUXGAGNANTS & si Personnage::!estVaincu(GestionCombat::ryan(combat(M))) \\
+& et :Gangster::estVaincu(GestionCombat::slick(combat(M)))\\
+& et : Personnage::!estVaincu(GestionCombat::alex(combat(M)) \\
+
+SLICKGAGNANT & si Personnage: estVaincu(GestionCombat::ryan(combat(M))) \\
+& et :Gangster::!estVaincu(GestionCombat::slick(combat(M)))\\
+& et : Personnage::estVaincu(GestionCombat::alex(combat(M)) \\
+
+
+
+NULLE & sinon \\
+ \end{array} \right.$*)
+      [(*$\specB{init}$*)]
+          combat(init()) = GestionCombat::init(???)
+      [(*$\specB{pasJeu}$*)]
+          combat(pasJeu(M,cA,cR)) = GestionCombat::gerer(combat(M), cA, cR)
+            
+\end{Spe}
+
+\section{GestionCombat}
+\begin{Spe}
+service : GestionCombat
+use : Terrain, Personnage, Gangster  
+types : ??? 
+
+Observators :
+ terrain: [GestionCombat] -> Terrain
+ alex : [GestionCombat] -> Personnage
+ ryan : [GestionCombat] -> Personnage
+ slick : [GestionCombat] -> Gangster 
+ gangster :  [GestionCombat] -> {Gangster*} // Une liste de gangsters (les autres) 
+ estGele(GestionCombat] x String -> boolean 
+     pre estGele(G, id) require id = ``alex'' ou id = ``ryan'' ou id = ``slick'' // et pour les autres gangsters ?  
+ estFrappe(GestionCombat] x String -> boolean 
+     pre estFrappe(G, id) require id = ``alex'' ou id = ``ryan'' ou id = ``slick'' // idem 
+positionX : [GestionCombat] x String -> int
+      pre positionX(G, id) require id = ``alex'' ou id = ``ryan'' ou id = ``slick'' // idem 
+positionY :  [GestionCombat] x String -> int 
+      pre positionY(G, id) require id = ``alex'' ou id = ``ryan'' ou id = ``slick'' // idem 
+positionZ :   [GestionCombat] x String -> int
+      pre positionZ(G, id) require id = ``alex'' ou id = ``ryan'' ou id = ``slick'' // idem  
+collision : [GestionCombat] x String = x String -> boolean
+      pre collision(G, id1, id2) require (id = ``alex'' et id = ``ryan'')
+                                        (ou id = ``slick''et id = ``alex'') 
+                                        (ou id = ``ryan'' et id = ``slick'') // idem 
+
+      Constructors:
+      init : (*$\emptyset$*) -> [GestionCombat]
+      
+Operators :
+     gerer : [GestionCombat] x COMMANDE x COMMANDE -> [GestionCombat]
+
+Observations : 
+
+[init]
+      terrain(init()) = Terrain::init(256,256,256)
+      alex(init()) = Personnage::init()
 
 \end{Spe}
 
