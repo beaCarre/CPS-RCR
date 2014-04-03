@@ -29,7 +29,7 @@ public class ObjetContract extends ObjetDecorator {
 		checkInvariants();
 		// \post nom.equals(n) && bonusForce() == bonus && valeurMarchande() == valeur
 		if(!(nom.equals(nom) & bonusForce() == bonus && valeurMarchande() == valeur)) 
-			throw new PostConditionError("init");
+			throw new PostConditionError("init Objet");
 	}
 
 	

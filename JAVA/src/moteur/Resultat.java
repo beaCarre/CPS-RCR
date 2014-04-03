@@ -1,0 +1,5 @@
+package moteur;
+
+public enum Resultat {
+	LESDEUXGAGNANTS, RYANGAGNANT, ALEXGAGNANT, SLICKGAGNANT, NULLE;
+}

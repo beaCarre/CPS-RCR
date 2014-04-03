@@ -1,15 +1,16 @@
-package perso;
+package gangster;
 
 import objet.ObjetService;
+import perso.PersonnageService;
 import exceptions.InvariantError;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
 
-public abstract class PersonnageDecorator implements PersonnageService {
+public abstract class GangsterDecorator implements GangsterService {
 
-	private PersonnageService delegates;
+	private GangsterService delegates;
 	
-	protected PersonnageDecorator(PersonnageService delegates){
+	protected GangsterDecorator(GangsterService delegates){
 		this.delegates = delegates;
 	}
 	

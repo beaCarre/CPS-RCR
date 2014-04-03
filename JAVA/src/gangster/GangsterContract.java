@@ -1,13 +1,14 @@
-package perso;
+package gangster;
 
 import objet.ObjetService;
+import perso.PersonnageService;
 import exceptions.InvariantError;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
 
-public class PersonnageContract extends PersonnageDecorator {
+public class GangsterContract extends GangsterDecorator {
 
-	protected PersonnageContract(PersonnageService delegates) {
+	protected GangsterContract(GangsterService delegates) {
 		super(delegates);
 		// TODO Auto-generated constructor stub
 	}

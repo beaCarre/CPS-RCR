@@ -1,11 +1,12 @@
 package perso;
 
+import objet.ObjetService;
 import exceptions.InvariantError;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
 
 public interface PersonnageService {
-	
+
 	/* Observators */
 	public String nom();
 	public int largeur();
@@ -15,9 +16,11 @@ public interface PersonnageService {
 	public int pointsDeVie();
 	public int argent();
 	public boolean estVaincu();
-	public boolean estEquipe();
-	public Object choseEquipee();
-	
+	public boolean estEquipeObjet();
+	public boolean estEquipePerso();
+	public ObjetService objetEquipe();
+	public PersonnageService persoEquipe();
+
 	/* constructor */
 	// \pre n !=""  && l%2==1 && h%2==1 && f >0 && f < p
 	// \post nom.equals(n) && largeur() == l && hauteur() == h && profondeur() == p && force() == f && pointsDeVie() ==v && argent() == a
@@ -39,18 +42,24 @@ public interface PersonnageService {
 	// \post argent() == argent@pre + s
 	public void depotArgent(int s) throws PreconditionError, InvariantError, PostConditionError;
 
-	// \pre ramasser(chose) require !est_vaincu() && !est_equipe()
-	// \post choseEquipee() == chose && est_equipe() == true
-	public void ramasser(Object o) throws PreconditionError, InvariantError, PostConditionError;
-	
-	// \pre jeter() require !est_vaincu() && est_equipe()
-	// \post estEquipe() == false
+	// \pre ramasserObjet(obj) require !est_vaincu() && !estEuipeObjet() && !estEquipePerso()
+	// \post objetEquipe() == objet
+	public void ramasserObjet(ObjetService o) throws PreconditionError, InvariantError, PostConditionError;
+
+	// \pre ramasserPerso(perso) require !est_vaincu() && !estEuipeObjet() && !estEquipePerso()
+	// \post persoEquipe() == objet
+	public void ramasserPerso(PersonnageService p) throws PreconditionError, InvariantError, PostConditionError;
+
+
+	// \pre jeter() require !est_vaincu() && (estEquipeObjet() || estEquipePerso())
+	// \post persoEquipe() == null && objetEquipe() == null 
 	public void jeter() throws PreconditionError, InvariantError, PostConditionError;
-		
-	
+
+
 	/* invariants */
 	// \inv estVaincu() == (pointsDeVie() <= 0)
-	// \inv est_equipe() == (choseEquipee() != null)
+	// \inv estEquipePerso() == (persoEquipe() != null)
+	// \inv estEquipeObjet() == (objetEquipe() != null)
 
-	
+
 }

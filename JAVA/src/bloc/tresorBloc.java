@@ -1,0 +1,5 @@
+package bloc;
+
+public enum tresorBloc {
+	CINQUANTECENTIMES,CHAINEDEVELO,RIEN,UNDOLLAR,POUBELLEMETALLIQUE;
+}
