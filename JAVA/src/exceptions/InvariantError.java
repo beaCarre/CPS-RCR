@@ -1,6 +1,6 @@
 package exceptions;
 
-public class InvariantError extends Exception {
+public class InvariantError extends ContractError {
 
 	/**
 	 * 

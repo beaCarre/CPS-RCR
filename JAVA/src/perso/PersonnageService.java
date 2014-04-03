@@ -22,9 +22,9 @@ public interface PersonnageService {
 	public PersonnageService persoEquipe();
 
 	/* constructor */
-	// \pre n !=""  && l%2==1 && h%2==1 && f >0 && f < p
+	// \pre n !=""  && l>0 && h>0 && p>0 && f >0 && a > 0 && v > 0 
 	// \post nom.equals(n) && largeur() == l && hauteur() == h && profondeur() == p && force() == f && pointsDeVie() ==v && argent() == a
-	public void init(String n, int l, int h, int p, int f, int v, int a);
+	public void init(String n, int l, int h, int p, int f, int v, int a) throws PreconditionError, InvariantError, PostConditionError;
 
 	// \pre retraitPdV(s) require !estVaincu() && s > 0
 	// \post pointsDeVie() ==  pointsDeVie@pre - s

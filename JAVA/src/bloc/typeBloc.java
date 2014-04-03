@@ -1,5 +1,5 @@
 package bloc;
 
-public enum typeBloc {
+public enum TypeBloc {
 	VIDE, FOSSE;
 }

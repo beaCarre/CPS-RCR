@@ -1,6 +1,6 @@
 package moteur;
 
-import combat.ServiceCombat;
+import combat.CombatService;
 import exceptions.InvariantError;
 
 public interface MoteurService {
@@ -9,7 +9,7 @@ public interface MoteurService {
 	// \pre resultatFinal() require estFini()
 	public Resultat resultatFinal();
 	
-	public ServiceCombat combat();
+	public CombatService combat();
 	
 	
 	// \post init() : combat() == Servicecombat().init()

@@ -4,7 +4,7 @@ import gangster.GangsterService;
 import moteur.Commande;
 import perso.PersonnageService;
 
-public interface ServiceCombat {
+public interface CombatService {
 
 	public PersonnageService alex();
 	public PersonnageService ryan();

@@ -1,6 +1,6 @@
 package exceptions;
 
-public class PostConditionError extends Exception {
+public class PostConditionError extends ContractError {
 
 	/**
 	 * 

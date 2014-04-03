@@ -93,8 +93,9 @@ public abstract class PersonnageDecorator implements PersonnageService {
 	}
 	
 	
-	public void init(String n, int l, int h, int p, int f, int v, int a){
+	public void init(String n, int l, int h, int p, int f, int v, int a) throws PreconditionError, InvariantError, PostConditionError{
 		delegates.init(n, l, h, p, f, v, a);
+		
 	}
 	
 

@@ -3,9 +3,9 @@ package bloc;
 import exceptions.PostConditionError;
 
 public interface BlocService {
-	public tresorBloc tresor();
-	public typeBloc type();
+	public TresorBloc tresor();
+	public TypeBloc type();
 	
 	// \post type(init(ty,tr) == ty && tresor(init(ty,tr) == tr
-	public void init(typeBloc ty, tresorBloc tr) throws PostConditionError;
+	public void init(TypeBloc ty, TresorBloc tr) throws PostConditionError;
 }

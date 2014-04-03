@@ -11,18 +11,18 @@ public abstract class BlocDecorator implements BlocService{
 		this.delegates = delegates;
 	}
 	@Override
-	public tresorBloc tresor() {
+	public TresorBloc tresor() {
 		return delegates.tresor();
 	}
 
 	@Override
-	public typeBloc type() {
+	public TypeBloc type() {
 		return delegates.type();
 		
 	}
 
 	@Override
-	public void init(typeBloc ty, tresorBloc tr) throws PostConditionError {
+	public void init(TypeBloc ty, TresorBloc tr) throws PostConditionError {
 		delegates.init(ty, tr);
 	}
 

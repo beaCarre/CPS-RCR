@@ -1,5 +1,5 @@
 package bloc;
 
-public enum tresorBloc {
+public enum TresorBloc {
 	CINQUANTECENTIMES,CHAINEDEVELO,RIEN,UNDOLLAR,POUBELLEMETALLIQUE;
 }

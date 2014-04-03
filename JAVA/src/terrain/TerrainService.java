@@ -14,7 +14,7 @@ public interface TerrainService {
 	
 	// \pre init(l,h,p) require l > 0 && h > 0 && p > 0 
 	// \post init(l,h,p) : largeur() == l  && hauteur() == h && profondeur() == p && bloc(x,y,z) != null
-	public void init(int l, int h, int p); 
+	public void init(int l, int h, int p) throws PreconditionError, PostConditionError; 
 	
 	
 	// \pre modifierBloc(i,j,k,b) require 0 <= i <= largeur && 0 <= j <= hauteur && 0 <= k <= profondeur && b != null

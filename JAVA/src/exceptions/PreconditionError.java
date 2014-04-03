@@ -1,6 +1,6 @@
 package exceptions;
 
-public class PreconditionError extends Exception {
+public class PreconditionError extends ContractError {
 
 	/**
 	 * 

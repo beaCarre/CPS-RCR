@@ -31,7 +31,7 @@ public abstract class TerrainDecorator implements TerrainService {
 	}
 
 	@Override
-	public void init(int l, int h, int p) {
+	public void init(int l, int h, int p) throws PreconditionError, PostConditionError {
 		delegates.init(l, h, p);
 	}
 

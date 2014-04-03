@@ -1,6 +1,6 @@
 package moteur;
 
-import combat.ServiceCombat;
+import combat.CombatService;
 import exceptions.InvariantError;
 
 public class MoteurDecorator implements MoteurService {
@@ -21,7 +21,7 @@ public class MoteurDecorator implements MoteurService {
 	}
 
 	@Override
-	public ServiceCombat combat() {
+	public CombatService combat() {
 		return delegates.combat();
 	}
 

@@ -6,21 +6,21 @@ public class BlocContract extends BlocDecorator {
 
 	public BlocContract(BlocService delegates) {
 		super(delegates);
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	
-	public tresorBloc tresor() {
+	public TresorBloc tresor() {
 		return super.tresor();
 	}
 
 
-	public typeBloc type() {
+	public TypeBloc type() {
 		return super.type();
 	}
 
 	
-	public void init(typeBloc ty, tresorBloc tr) throws PostConditionError {
+	public void init(TypeBloc ty, TresorBloc tr) throws PostConditionError {
 		super.init(ty, tr);
 		// \post type(init(ty,tr) == ty && tresor(init(ty,tr) == tr
 		if(!(type() == ty && tresor() == tr)) 
