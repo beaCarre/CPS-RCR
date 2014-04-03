@@ -135,17 +135,42 @@ Observations :
 \section{Bloc}
 \begin{Spe}
 service : Bloc
-types : enum TYPE{VIDE,FOSSE, ...}, enum TRESOR {RIEN,UNDOLLAR,CINQUANTECENTIMES,CHAINEDEVELO,POUBELLEMETALLIQUE,
-  ...} // a completer ??
+use : Objet
+types : enum TYPE{VIDE,FOSSE, PLEIN },
 Observators :
       const type : [Bloc] (*$\rightarrow$*) TYPE
-      const tresor : [Bloc] (*$\rightarrow$*) TRESOR
+      const objet : [Bloc] (*$\rightarrow$*) Objet
+      const perso : [Bloc] (*$\rightarrow$*) Perso
 Constructors :
-      init : TYPE (*$\times$*) TRESOR (*$\rightarrow$*) [Bloc]
+      init : TYPE (*$\times$*) Objet (*$\times$*) perso (*$\rightarrow$*) [Bloc]
+            pre init(t,o,p) require 
+            (( ty=PLEIN (*$\lor$*) ty=FOSSE ) (*$\land$*) o=null (*$\land$*) p=null) 
+            (*$\lor$*) (ty=VIDE (*$\land$*)(*$\lnot$*)( o=null(*$\lor$*)p=null) ) // qu'il n'y ait pas les deux en meme temps.
+Operators :
+      prendreObjet : [Bloc] (*$\rightarrow$*) [Bloc]
+            pre prendreObjet(B) require type(B)=PLEIN (*$\land$*) (o(*$\ne$*)null(*$\lor$*)p(*$\ne$*)null)
+      poserObjet : [BLOC] (*$\times$*) Objet (*$\rightarrow$*) [Bloc]
+            pre poserObjet(B,o) require type(B)=VIDE (*$\land$*) p(*$\ne$*)null (*$\land$*) 
+            objet(B)=null (*$\land$*) perso(B)=null 
+      prendrePerso : [Bloc] (*$\rightarrow$*) [Bloc]
+            pre prendrePerso(B) require type(B)=PLEIN (*$\land$*) (o(*$\ne$*)null(*$\lor$*)p(*$\ne$*)null)
+      poserPerso : [BLOC] (*$\times$*) Personnage (*$\rightarrow$*) [Bloc]
+            pre poserPerso(B,p) require type(B)=VIDE (*$\land$*) p(*$\ne$*)null 
+            (*$\land$*) objet(B)=null (*$\land$*) perso(B)=null 
 Observations :
       [(*$\specB{init}$*)]
-            type(init(ty,tr)) = ty
-            tresor(init(ty,tr)) = tr
+            type(init(t,o)) = ty
+            objet(init(t,o)) = o
+      [(*$\specB{prendreObjet}$*)]
+            type(prendreObjet(B)) = VIDE
+      [(*$\specB{poserObjet}$*)] 
+            type(poserObjet(B,o)) = PLEIN
+            objet(poserObjet(B,o)) = o 
+      [(*$\specB{prendrePerso}$*)]
+            type(prendrePerso(B)) = VIDE
+      [(*$\specB{poserPerso}$*)] 
+            type(poserPerso(B,p)) = PLEIN
+            objet(poserPerso(B,p)) = p
 \end{Spe}
  
 \section{Objet}
@@ -153,7 +178,7 @@ Observations :
 
 
 service : Objet 
-types : String, boolean, int 
+types : String, boolean, int, enum TRESOR {UNDOLLAR,CINQUANTECENTIMES,CHAINEDEVELO,POUBELLEMETALLIQUE,...} // a completer ??
 Observators :
 	const nom : [Object] (*$\rightarrow$*) String
 	est_equipable : [Objet] (*$\rightarrow$*) boolean 
@@ -166,11 +191,10 @@ Observators :
 Constructors :
 
 	init : String (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Object] 
-		pre(init(n,bonus,valeur) require n(*$\ne$*)""
+		pre(init(n,t,bonus,valeur) require n(*$\ne$*)""
                 (*$\land$*) ( ( bonus (*$>$*)0 (*$\land$*) valeur = 0)
                 (*$\lor$*) (bonus = 0 (*$\land$*) valeur(*$>$*) 0) ) 
                 // comme ca on ne peut pas etre de valeur ET equipable 
-
 Observations : 
         [(*$\specB{Invariants}$*)]
 	        est_equipable(O) (*$\stackrel{min}{=}$*) bonus_force (*$>$*) 0
@@ -289,9 +313,9 @@ Observators :
             pre positionY(G, id) require id = "alex" (*$\lor$*) id = "ryan" (*$\lor$*) id = "slick" // idem 
       positionZ :   [GestionCombat] (*$\times$*) String (*$\rightarrow$*) int
             pre positionZ(G, id) require id = "alex" (*$\lor$*) id = "ryan" (*$\lor$*) id = "slick" // idem  
-      collision : [GestionCombat] (*$\times$*) String = x String (*$\rightarrow$*) boolean
+      collision : [GestionCombat] (*$\times$*) String (*$\times$*) String (*$\rightarrow$*) boolean
             pre collision(G, id1, id2) require (id = "alex" (*$\land$*) id = "ryan")
-            ((*$\lor$*) id = "slick"(*$\land$*) id = "alex") 
+            ((*$\lor$*) id = "slick" (*$\land$*) id = "alex") 
             ((*$\lor$*) id = "ryan"
             (*$\land$*) id = "slick") // idem 
 
@@ -302,10 +326,11 @@ Operators :
       gerer : [GestionCombat] (*$\times$*) COMMANDE (*$\times$*) COMMANDE (*$\rightarrow$*) [GestionCombat]
 
 Observations : 
-
-[init]
-      terrain(init()) = Terrain::init(256,256,256)
-      alex(init()) = Personnage::init()
+      [(*$\specB{Invariants}$*)]
+            
+      [(*$\specB{init}$*)]
+            terrain(init()) = Terrain::init(256,256,256)
+            alex(init()) = Personnage::init()
 
 \end{Spe}
 
