@@ -2,8 +2,8 @@
 
 \addtolength{\hoffset}{-1cm}
 \addtolength{\textwidth}{2cm}
-\setlength{\oddsidemargin}{0pt} % Marge gauche sur pages impaires
-\setlength{\evensidemargin}{0pt} % Marge gauche sur pages paires
+\setlength{\oddsidemargin}{1pt} % Marge gauche sur pages impaires
+\setlength{\evensidemargin}{1pt} % Marge gauche sur pages paires
 \usepackage[utf8]{inputenc}
 \usepackage[frenchb]{babel}
 \usepackage[T1]{fontenc}
@@ -44,19 +44,17 @@
 
 \chapter{Projet CPS : Spécifications de River City Ransom}
 
-Béatrice CARRE
+Béatrice CARRE et Steven VAROUMAS
 
-Steven VAROUMAS
-
-\section*{Introduction}
-Lien vers l'énoncé du projet : 
-\href{http://www-master.ufr-info-p6.jussieu.fr/2013/spip.php?action=acceder_document&arg=2148&cle=11624d21d0734169986d403a88c3f6e4e1755b65&file=pdf\%2Fsujet_projet_2014.pdf}{lien}.
+%% \section*{Introduction}
+%% Lien vers l'énoncé du projet : 
+%% \href{http://www-master.ufr-info-p6.jussieu.fr/2013/spip.php?action=acceder_document&arg=2148&cle=11624d21d0734169986d403a88c3f6e4e1755b65&file=pdf\%2Fsujet_projet_2014.pdf}{lien}.
 
 \section{Le service Personnage}
 
 \begin{Spe}
 service: Personnage
-use : Objet
+use : Objet, Bloc
 types : String, int, boolean
 
 Observators : 
@@ -128,49 +126,78 @@ Observations :
 \end{Spe}
 \section{Gangster}
 \begin{Spe}
-  
-  
+service: Gangster
+Refine : Personnage
+types : String, int, boolean
+ 
+Constructors : 
+
+	init : String (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Gangster]
+		pre init(nom,largeur,hauteur,profondeur,force, pdv, argent) require nom (*$\neq$*) "" (*$\land$*) largeur(*$>$*)0 (*$\land$*) hauteur(*$>$*)0 (*$\land$*) profondeur(*$>$*)0 (*$\land$*) force(*$>$*)0 (*$\land$*) pdv(*$>$*)0 (*$\land$*) argent(*$>$*)0 
+
+Operators :
+
+Observations : 
+	[(*$\specB{invariants}$*)]
+		est_vaincu(P) (*$\stackrel{min}{=}$*) points_de_vie(P) (*$\le$*) 0
+                est_equipe_perso(P) (*$\stackrel{min}{=}$*) perso_equipee(P) (*$\ne$*) null // a verifier si ca ne "boucle" pas avec la precondition de la_chose_equipee ...
+		est_equipe_objet(P) (*$\stackrel{min}{=}$*) objet_equipee(P) (*$\ne$*) null // a verifier si ca ne "boucle" pas avec la precondition de la_chose_equipee ... // TOASK
+	[(*$\specB{init}$*)]
+		nom(init(n,l,h,p,f,v,a))=n
+		largeur(init(n,l,h,p,f,v,a))=l
+		hauteur(init(n,l,h,p,f,v,a))=h
+		profondeur(init(n,l,h,p,f,v,a))=p
+		force(init(n,l,h,p,f,v,a))=f
+		points_de_vie(init(n,l,h,p,f,v,a))=v
+		somme_d_argent(init(n,l,h,p,f,v,a))=a
+                objet_equipe(init(n,l,h,p,f,v,a))=null
+                perso_equipe(init(n,l,h,p,f,v,a))=null
+	[(*$\specB{retrait\_vie}$*)]
+		points_de_vie(retrait_vie(P,s)) = points_de_vie(P) - s
+	[(*$\specB{depot\_vie}$*)]
+		points_de_vie(depot_vie(P,s)) = points_de_vie(P) + s 
+	[(*$\specB{retrait\_argent}$*)]
+	[(*$\specB{depot\_argent}$*)]
+	[(*$\specB{ramasser\_objet}$*)] 
+	[(*$\specB{ramasser\_perso}$*)]
+	[(*$\specB{jeter}$*)]
+ 
 \end{Spe}
 
 \section{Bloc}
 \begin{Spe}
 service : Bloc
 use : Objet
-types : enum TYPE{VIDE,FOSSE, PLEIN },
+types : enum TYPE{VIDE, FOSSE, OBJET},
 Observators :
       const type : [Bloc] (*$\rightarrow$*) TYPE
       const objet : [Bloc] (*$\rightarrow$*) Objet
-      const perso : [Bloc] (*$\rightarrow$*) Perso
 Constructors :
-      init : TYPE (*$\times$*) Objet (*$\times$*) perso (*$\rightarrow$*) [Bloc]
+      init : TYPE (*$\times$*) Objet (*$\times$*) [Bloc]
             pre init(t,o,p) require 
-            (( ty=PLEIN (*$\lor$*) ty=FOSSE ) (*$\land$*) o=null (*$\land$*) p=null) 
-            (*$\lor$*) (ty=VIDE (*$\land$*)(*$\lnot$*)( o=null(*$\lor$*)p=null) ) // qu'il n'y ait pas les deux en meme temps.
+            (( ty=VIDE (*$\lor$*) ty=FOSSE ) (*$\land$*) o=null (*$\land$*) p=null) 
+            (*$\lor$*) (ty=OBJET (*$\land$*) o(*$\ne$*)null(*$\land$*)p=null ) 
+            (*$\lor$*) (ty=OBJET (*$\land$*) o=null(*$\land$*)p(*$\ne$*)null )
 Operators :
-      prendreObjet : [Bloc] (*$\rightarrow$*) [Bloc]
-            pre prendreObjet(B) require type(B)=PLEIN (*$\land$*) (o(*$\ne$*)null(*$\lor$*)p(*$\ne$*)null)
+      retirerObjet : [Bloc] (*$\rightarrow$*) [Bloc]
+            pre retirerObjet(B) require type(B)=OBJET 
       poserObjet : [BLOC] (*$\times$*) Objet (*$\rightarrow$*) [Bloc]
-            pre poserObjet(B,o) require type(B)=VIDE (*$\land$*) p(*$\ne$*)null (*$\land$*) 
-            objet(B)=null (*$\land$*) perso(B)=null 
-      prendrePerso : [Bloc] (*$\rightarrow$*) [Bloc]
-            pre prendrePerso(B) require type(B)=PLEIN (*$\land$*) (o(*$\ne$*)null(*$\lor$*)p(*$\ne$*)null)
-      poserPerso : [BLOC] (*$\times$*) Personnage (*$\rightarrow$*) [Bloc]
-            pre poserPerso(B,p) require type(B)=VIDE (*$\land$*) p(*$\ne$*)null 
-            (*$\land$*) objet(B)=null (*$\land$*) perso(B)=null 
+            pre poserObjet(B,o) require type(B)=VIDE 
 Observations :
+      [(*$\specB{Invariants}$*)]
+            type(B)= OBJET si o(*$\ne$*)null (*$\land$*) p=null
+
+            //IDEM VIDE si p=null (*$\land$*) o=null
+            //IDEM FOSSE si p=null (*$\land$*) o=null
       [(*$\specB{init}$*)]
-            type(init(t,o)) = ty
+            type(init(t,o)) = t
             objet(init(t,o)) = o
-      [(*$\specB{prendreObjet}$*)]
-            type(prendreObjet(B)) = VIDE
+      [(*$\specB{retirerObjet}$*)]
+            type(retirerObjet(B)) = VIDE
       [(*$\specB{poserObjet}$*)] 
-            type(poserObjet(B,o)) = PLEIN
+            type(poserObjet(B,o)) = OBJET
             objet(poserObjet(B,o)) = o 
-      [(*$\specB{prendrePerso}$*)]
-            type(prendrePerso(B)) = VIDE
-      [(*$\specB{poserPerso}$*)] 
-            type(poserPerso(B,p)) = PLEIN
-            objet(poserPerso(B,p)) = p
+     
 \end{Spe}
  
 \section{Objet}
@@ -295,7 +322,7 @@ NULLE & sinon \\
 \begin{Spe}
 service : GestionCombat
 use : Terrain, Personnage, Gangster  
-types : string, boolean, COMMANDE
+types : string, boolean, COMMANDE{RIEN, GAUCHE, DROITE, BAS, HAUT, FRAPPE, SAUT, RAMASSER, JETER}
 
 Observators :
       terrain: [GestionCombat] (*$\rightarrow$*) Terrain
