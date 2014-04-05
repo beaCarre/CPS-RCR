@@ -101,8 +101,8 @@ Observations :
 
 	[(*$\specB{invariants}$*)]
 		est_vaincu(P) (*$\stackrel{min}{=}$*) points_de_vie(P) (*$\le$*) 0
-		est_equipe_perso(P) (*$\stackrel{min}{=}$*) perso_equipee(P) (*$\ne$*) null
-		est_equipe_objet(P) (*$\stackrel{min}{=}$*) objet_equipee(P) (*$\ne$*) null
+		est_equipe_perso(P) (*$\stackrel{min}{=}$*) perso_equipe(P) (*$\ne$*) null
+		est_equipe_objet(P) (*$\stackrel{min}{=}$*) objet_equipe(P) (*$\ne$*) null
 		
 	[(*$\specB{init}$*)]
 		nom(init(n,l,h,p,f,v,a))=n
@@ -340,15 +340,20 @@ Observations :
       	0 <= positionX(G,s) <= Terrain::largeur(terrain)
       	0 <= positionY(G,s) <= Terrain::profondeur(terrain)
       	0 <= positionZ(G,s) <= Terrain::hauteur(terrain)
-      	collision = ?
+      	collision(G,id1,id2)  (*$\stackrel{min}{=}$*) collision(G,id2,id1)
             
       [(*$\specB{init}$*)]
 	terrain(init()) = Terrain::init(1000,1000,1000)
 	alex(init()) = Personnage::init("Alex",10,10,10,100,100,0)
 	ryan(init()) = Personnage::init("Ryan",10,10,10,100,100,0)
+	gangstersNoms(init()) = { "Slick", "Machin", "Bidule", ...}
 	gangsters(init()) = {Personnage::init(g,10,10,10,100,100,0) , (*$\forall$*) g (*$\in$*) gangstersNoms(G)}
-	estGele(init(), s) = false (*$\forall$*) s (*$\in$*) String 
-	estFrappe(init(), s) = false (*$\forall$*) s (*$\in$*) String
+	estGele(init(), s) = false (*$\forall$*) s (*$\in$*) gangstersNoms()
+	estGele(init(), "Alex") = false
+	estGele(init(), "Ryan") = false
+	estFrappe(init(), s) = false (*$\forall$*) s (*$\in$*) gangstersNoms()
+	estFrappe(init(), "Alex") = false
+	estFrappe(init(), "Ryan") = false
 	positionX(init(),"Alex") = 10
 	positionY(init(), "Alex") = 10
 	positionZ(init(), "Alex") = 0
