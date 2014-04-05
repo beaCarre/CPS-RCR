@@ -275,7 +275,7 @@ Observations :
   & \lor $ Gangster::estVaincu(GestionCombat::slick(combat(M)) $ 
 \end{array} \right.$ *)
 
-(* resultat(M) $ \stackrel{min}{=} \left\{\begin{array}{ll}
+(* $  resultat(M)\stackrel{min}{=} \left\{\begin{array}{ll}
 $ALEXGAGNANT$ & $si Personnage::!estVaincu(GestionCombat::alex(combat(M)))$ \\
 & \land $ Gangster::estVaincu(GestionCombat::slick(combat(M)))$\\
 & \land $ Personnage::estVaincu(GestionCombat::ryan(combat(M)))$ \\
@@ -341,17 +341,14 @@ Observations :
       	0 <= positionY(G,s) <= Terrain::profondeur(terrain)
       	0 <= positionZ(G,s) <= Terrain::hauteur(terrain)
       	collision(G,perso1,perso2)  (*$\stackrel{min}{=}$*) collision(G,perso2,perso1)
-      	collision(G,p1,p2) (*$\stackrel{min}{=}$*) 
-      	Personnage::largeur(p1)/2 + Personnage::largeur(p2)/2) > positionX(G,p1)-positionX(G,^p2)
-      	(*$\land$*) Personnage::hauteur(p1)/2 + Personnage::hauteur(p2)/2) > positionZ(G,p1)-positionZ(G,p2) 
-      	(*$\land$*) Personnage::profondeur(p1)/2 + Personnage::profondeur(p2)/2) > positionY(G,p1)-positionY(G,p2)  
+      	collision(G,p1,p2) (*$\stackrel{min}{=}$*) A FAIRE
             
       [(*$\specB{init}$*)]
 	terrain(init()) = Terrain::init(1000,1000,1000)
 	alex(init()) = Personnage::init(alex(G),10,10,10,100,100,0)
 	ryan(init()) = Personnage::init(ryan(G),10,10,10,100,100,0)
 	
-	gangsters(init()) = {Personnage::init("???",10,10,10,100,100,0)}, (*$\forall$*) g (*$\in$*) gangsters(G)
+	gangsters(init()) = {g = Personnage::init("???",10,10,10,100,100,0)}, (*$\forall$*) g (*$\in$*) gangsters(G)
 	estGele(init(), s) = false
 	estFrappe(init(), s) = false
 	positionX(init(),alex(G)) = 10
