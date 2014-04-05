@@ -1,7 +1,9 @@
 \documentclass[a4paper, 11pt]{report}
 
-
-\setlength{\textwidth}{17cm}
+\setlength{\hoffset}{-1.5cm}
+\setlength{\voffset}{-1.5cm}
+\setlength{\textwidth}{18cm}
+\setlength{\textheight}{24cm}
 \setlength{\oddsidemargin}{0pt} % Marge gauche sur pages impaires
 \setlength{\evensidemargin}{0pt} % Marge gauche sur pages paires
 
@@ -21,10 +23,10 @@
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
-\fontfamily{verdana}
+
 
   \lstdefinelanguage{spegrammar}{
-  morekeywords={const,pre,Observators,Constructors,Operators,Observations,service,types,use,require},
+  morekeywords={const,pre,Observators,Constructors,Operators,Observations,service,types,use,require, Refine},
 }
  \lstnewenvironment{Spe}
                   {\lstset{
@@ -156,10 +158,10 @@ Observators :
 Constructors :
       init : TYPE (*$\times$*) Objet (*$\rightarrow$*) [Bloc]
             pre init(t,o) require 
-            (t=VIDE (*$\lor$*) t=FOSSE ) (*$\land$*) o=null) (*$\lor$*) (t=OBJET (*$\land$*) o(*$\ne$*)null ) 
+            (t=VIDE (*$\lor$*) t=FOSSE ) (*$\land$*) o=null) (*$\lor$*) (t=OBJ(*$\land$*) (*$\land$*) o(*$\ne$*)null ) 
 Operators :
       retirerObjet : [Bloc] (*$\rightarrow$*) [Bloc]
-            pre retirerObjet(B) require type(B)=OBJET 
+            pre retirerObjet(B) require type(B)=OBJ(*$\land$*) 
       poserObjet : [Bloc] (*$\times$*) Objet (*$\rightarrow$*) [Bloc]
             pre poserObjet(B,o) require type(B)=VIDE 
 Observations :
@@ -265,6 +267,7 @@ Operators :
             pre pasJeu(M,comAlex,comRyan) require : (*$\lnot$*)estFini(M)
 Observations :
 	[(*$\specB{Invariants}$*)]
+	
 (* estFini(M) $\stackrel{min}{=} \left\{
 \begin{array}{ll}
   & $(Personnage:: estVaincu(GestionCombat::alex(combat(M))) $ \\  
@@ -310,24 +313,21 @@ Observators :
       alex : [GestionCombat] (*$\rightarrow$*) Personnage
       ryan : [GestionCombat] (*$\rightarrow$*) Personnage
       gangsters :  [GestionCombat] (*$\rightarrow$*) Set<Gangster>
-      gangstersNoms : [GestionCombat] (*$\rightarrow$*) Set<String>
-      estGele : [GestionCombat] (*$\times$*) String (*$\rightarrow$*) boolean 
-            pre estGele(G, id) require id = "alex" (*$\lor$*) id = "ryan"  (*$\lor$*) id (*$\in$*) gangstersNoms(G)
-      estFrappe : [GestionCombat] (*$\times$*) String (*$\rightarrow$*) boolean 
-            pre estFrappe(G, id) require id = "alex" (*$\lor$*) id = "ryan"  (*$\lor$*) id (*$\in$*) gangstersNoms(G)
-      positionX : [GestionCombat] (*$\times$*) String (*$\rightarrow$*) int
-            pre positionX(G, id) require id = "alex" (*$\lor$*) id = "ryan"  (*$\lor$*) id (*$\in$*) gangstersNoms(G)
-      positionY : [GestionCombat] (*$\times$*) String (*$\rightarrow$*) int 
-            pre positionY(G, id) require id = "alex" (*$\lor$*) id = "ryan"  (*$\lor$*) id (*$\in$*) gangstersNoms(G)
-      positionZ : [GestionCombat] (*$\times$*) String (*$\rightarrow$*) int
-            pre positionZ(G, id) require id = "alex" (*$\lor$*) id = "ryan"  (*$\lor$*) id (*$\in$*) gangstersNoms(G)
-      collision : [GestionCombat] (*$\times$*) String (*$\times$*) String (*$\rightarrow$*) boolean
-            pre collision(G, id1, id2) require 
-            (id = "alex" (*$\land$*) id = "ryan")
-            (*$\lor$*) (id1 = "alex" (*$\land$*) id2 = "slick") 
-            (*$\lor$*) (id1 = "ryan" (*$\land$*) id2 = "slick")
-            (*$\lor$*) (id1 = "alex"(*$\land$*) id2 (*$\in$*) gangstersNoms(G))
-            (*$\lor$*) (id1 = "ryan"(*$\land$*) id2 (*$\in$*) gangstersNoms(G))
+      estGele : [GestionCombat] (*$\times$*) Personnage (*$\rightarrow$*) boolean 
+            pre estGele(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G)  (*$\lor$*) perso (*$\in$*) gangsters(G)
+      estFrappe : [GestionCombat] (*$\times$*) Personnage (*$\rightarrow$*) boolean 
+            pre estFrappe(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G)  (*$\lor$*) perso (*$\in$*) gangsters(G)
+      positionX : [GestionCombat] (*$\times$*) Personnage (*$\rightarrow$*) int
+            pre positionX(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G)  (*$\lor$*) perso (*$\in$*) gangsters(G)
+      positionY : [GestionCombat] (*$\times$*) Personnage (*$\rightarrow$*) int 
+            pre positionY(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G)  (*$\lor$*) perso (*$\in$*) gangsters(G)
+      positionZ : [GestionCombat] (*$\times$*) Personnage (*$\rightarrow$*) int
+            pre positionZ(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G)  (*$\lor$*) perso (*$\in$*) gangsters(G)
+      collision : [GestionCombat] (*$\times$*) Personnage (*$\times$*) Personnage (*$\rightarrow$*) boolean
+            pre collision(G, perso1, perso2) require 
+            (perso1 = alex(G) (*$\land$*) perso2 = ryan(G))
+            (*$\lor$*) (perso1 = alex(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
 
 Constructors:
       init : (*$\emptyset$*) (*$\rightarrow$*) [GestionCombat]
@@ -340,63 +340,106 @@ Observations :
       	0 <= positionX(G,s) <= Terrain::largeur(terrain)
       	0 <= positionY(G,s) <= Terrain::profondeur(terrain)
       	0 <= positionZ(G,s) <= Terrain::hauteur(terrain)
-      	collision(G,id1,id2)  (*$\stackrel{min}{=}$*) collision(G,id2,id1)
+      	collision(G,perso1,perso2)  (*$\stackrel{min}{=}$*) collision(G,perso2,perso1)
+      	collision(G,p1,p2) (*$\stackrel{min}{=}$*) 
+      	Personnage::largeur(p1)/2 + Personnage::largeur(p2)/2) > positionX(G,p1)-positionX(G,^p2)
+      	(*$\land$*) Personnage::hauteur(p1)/2 + Personnage::hauteur(p2)/2) > positionZ(G,p1)-positionZ(G,p2) 
+      	(*$\land$*) Personnage::profondeur(p1)/2 + Personnage::profondeur(p2)/2) > positionY(G,p1)-positionY(G,p2)  
             
       [(*$\specB{init}$*)]
 	terrain(init()) = Terrain::init(1000,1000,1000)
-	alex(init()) = Personnage::init("Alex",10,10,10,100,100,0)
-	ryan(init()) = Personnage::init("Ryan",10,10,10,100,100,0)
-	gangstersNoms(init()) = { "Slick", "Machin", "Bidule", ...}
-	gangsters(init()) = {Personnage::init(g,10,10,10,100,100,0) , (*$\forall$*) g (*$\in$*) gangstersNoms(G)}
-	estGele(init(), s) = false (*$\forall$*) s (*$\in$*) gangstersNoms()
-	estGele(init(), "Alex") = false
-	estGele(init(), "Ryan") = false
-	estFrappe(init(), s) = false (*$\forall$*) s (*$\in$*) gangstersNoms()
-	estFrappe(init(), "Alex") = false
-	estFrappe(init(), "Ryan") = false
-	positionX(init(),"Alex") = 10
-	positionY(init(), "Alex") = 10
-	positionZ(init(), "Alex") = 0
-	positionX(init(),"Ryan") = 10
-	positionY(init(), "Ryan") = 30
-	positionZ(init(), "Ryan") = 0
-	positionX(init(),g) = random
-	positionY(init(), g) = random
-	positionZ(init(), g) = 0, (*$\forall$*) g (*$\in$*) gangstersNoms(G)
+	alex(init()) = Personnage::init(alex(G),10,10,10,100,100,0)
+	ryan(init()) = Personnage::init(ryan(G),10,10,10,100,100,0)
+	
+	gangsters(init()) = {Personnage::init("???",10,10,10,100,100,0)}, (*$\forall$*) g (*$\in$*) gangsters(G)
+	estGele(init(), s) = false
+	estFrappe(init(), s) = false
+	positionX(init(),alex(G)) = 10
+	positionY(init(), alex(G)) = 10
+	positionX(init(),ryan(G)) = 10
+	positionY(init(), ryan(G)) = 30
+	positionZ(init(),p) = 0
+	Bloc::type(Terrain:bloc(terrain(G),positionX(init(),g),positionY(init(),g),positionZ(init(),g))) = VIDE (*$\forall$*) g (*$\in$*) gangsters(G)
 
-            
+
 	 [(*$\specB{gerer}$*)]
-	 positionX(gerer(G,cA,cR),"Alex") = 
-	 	positionX(G,"Alex") + 10 si cA = DROIT (*$\lor$*) cA = SAUTDROIT
-	 	positionX(G,"Alex") - 10 si cA = GAUCHE (*$\lor$*) cA = SAUTGAUCHE
-	 	positionX(G,"Alex") Sinon
-	 positionY(gerer(G,cA,cR),"Alex") = 
-	 	positionY(G,"Alex") + 10 si cA = HAUT (*$\lor$*) cA = SAUTHAUT
-	 	positionY(G,"Alex") - 10 si cA = BAS (*$\lor$*) cA = SAUTBAS
-	 	positionY(G,"Alex") Sinon
-	 positionZ(gerer(G,cA,cR),"Alex") = 
-	 	10 si cA = SAUT (*$\lor$*) cA = SAUTBAS (*$\lor$*) cA = SAUTHAUT (*$\lor$*) cA = SAUTDROIT (*$\lor$*) cA = SAUTGAUCHE
-		0 Sinon
+	 positionX(gerer(G,cA,cR),alex(G)) =
+	 	(*$ \left\{
+\begin{array}{ll}
+ $positionX(G,alex(G)) + 10 $&$si cA = DROIT $\lor$ cA = SAUTDROIT $ \\
+ $positionX(G,alex(G)) - 10 $&$si cA = GAUCHE $\lor$ cA = SAUTGAUCHE $ \\
+ $positionX(G,alex(G)) $&$sinon $ 
+\end{array} 
+\right.$ *)
 		
-	positionX(gerer(G,cA,cR),"Ryan") = 
-	 	positionX(G,"Ryan") + 10 si cR = DROIT (*$\lor$*) cR = SAUTDROIT
-	 	positionX(G,"Ryan") - 10 si cR = GAUCHE (*$\lor$*) cR = SAUTGAUCHE
-	 	positionX(G,"Ryan") Sinon
-	 positionY(gerer(G,cA,cR),"Ryan") = 
-	 	positionY(G,"Ryan") + 10 si cR = HAUT (*$\lor$*) cR = SAUTHAUT
-	 	positionY(G,"Ryan") - 10 si cR = BAS (*$\lor$*) cR = SAUTBAS
-	 	positionY(G,"Ryan") Sinon
-	 positionZ(gerer(G,cA,cR),"Ryan") = 
-	 	10 si cR = SAUT (*$\lor$*) cR = SAUTBAS (*$\lor$*) cR = SAUTHAUT (*$\lor$*) cR = SAUTDROIT (*$\lor$*) cR = SAUTGAUCHE
-		0 Sinon
+	 positionY(gerer(G,cA,cR),alex(G)) = 
+	 	(*$ \left\{
+\begin{array}{ll}
+	 	$positionY(G,alex(G)) + 10 $&$si cA = HAUT $\lor$ cA = SAUTHAUT $ \\
+	 	$positionY(G,alex(G)) - 10 $&$si cA = BAS $\lor$ cA = SAUTBAS$ \\
+	 	$positionY(G,alex(G)) $&$sinon $
+	 	\end{array} 
+\right.$ *)
+
+ 	positionZ(gerer(G,cA,cR),alex(G)) = 
+	 	(*$ \left\{
+\begin{array}{ll}
+	 
+	 	$10$&$si cA = SAUT $\lor$ cA = SAUTBAS $\lor$ cA = SAUTHAUT $\lor$ cA = SAUTDROIT $\lor$ cA = SAUTGAUCHE $ \\
+		$0 $&$Sinon $
+	 	\end{array} 
+\right.$ *)
+	
+	 positionX(gerer(G,cA,cR),ryan(G)) =
+	 	(*$ \left\{
+\begin{array}{ll}
+ $positionX(G,ryan(G)) + 10 $&$si cR = DROIT $\lor$ cR = SAUTDROIT $ \\
+ $positionX(G,ryan(G)) - 10 $&$si cR = GAUCHE $\lor$ cR = SAUTGAUCHE $ \\
+ $positionX(G,ryan(G)) $&$sinon $ 
+\end{array} 
+\right.$ *)
+
+	 	
+	 positionY(gerer(G,cA,cR),ryan(G)) = 
+	 	(*$ \left\{
+\begin{array}{ll}
+	 	$positionY(G,ryan(G)) + 10 $&$si cR = HAUT $\lor$ cR = SAUTHAUT $ \\
+	 	$positionY(G,ryan(G)) - 10 $&$si cR = BAS $\lor$ cR = SAUTBAS$ \\
+	 	$positionY(G,ryan(G)) $&$sinon $
+	 	\end{array} 
+\right.$ *)
+
+ 	positionZ(gerer(G,cA,cR),ryan(G)) = 
+	 	(*$ \left\{
+\begin{array}{ll}
+	 
+	 	$10$&$si cR = SAUT $\lor$ cR = SAUTBAS $\lor$ cR = SAUTHAUT $\lor$ cR = SAUTDROIT $\lor$ cR = SAUTGAUCHE $ \\
+		$0 $&$Sinon $
+	 	\end{array} 
+\right.$ *)
+
 		
 	alex(gerer(G,cA,cR)) = 
-		Personnage::jeter(alex(G)) si cA = JETER
-		Personnage ::ramasser_objet(alex(G), Bloc::objet(Terrain::bloc(T, positionX("Alex"), positionY("Alex"),positionZ("Alex"))) si cA = RAMASSER
-		Personnage::ramasser_perso(alex(G), p) si collision("Alex", nom) et Personnage::nom(p) == nom
-		alex(G) Sinon
-		
-		
+ (*$ \left\{
+\begin{array}{ll}
+		$- Personnage::jeter(alex(G)) si cA = JETER$ \\
+		$- Personnage::ramasser\_objet(alex(G), Bloc::objet(Terrain::bloc(terrain(G), positionX(alex(G)), $\\$positionY(alex(G)),positionZ(alex(G)))) si cA = RAMASSER$ \\
+		$- Personnage::ramasser\_perso(alex(G), p) si collision(alex(G), p) $ \\
+		$- alex(G) Sinon$
+		\end{array} 
+\right.$ *)
+
+
+	terrain(gerer(G,cA,cR)) = 
+	- Bloc::retirerObjet(Terrain::bloc(terrain(G), positionX(alex(G)), positionY(alex(G)),positionZ(alex(G))) si cA = RAMASSER
+	- Bloc::poserObjet(Terrain::bloc(terrain(G), positionX(alex(G)), positionY(alex(G)),positionZ(alex(G))), Personnage:objet_equipe(alex()) si cA = JETER (*$\land$*) Personnage::est_equipe_objet(alex()) = true 
+	- terrain(G) sinon
+	
+	positionX(gerer(G,cA,cR),p) = positionX(alex(G))+10 si cA = JETER  (*$\land$*) Personnage::perso_equipe(alex()) = p 
+	positionY(gerer(G,cA,cR),p) = positionY(alex(G)) si cA = JETER (*$\land$*) Personnage::perso_equipe(alex()) = p 
+	positionZ(gerer(G,cA,cR),p) = 0 si cA = JETER (*$\land$*) Personnage::perso_equipe(alex()) = p
+
+
 
 
 \end{Spe}
