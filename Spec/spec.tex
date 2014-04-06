@@ -369,10 +369,9 @@ Observators :
             pre posY(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G) (*$\lor$*) perso = slick(G)  (*$\lor$*) perso (*$\in$*) gangsters(G)
       posZ : [GestionCombat] (*$\times$*) Personnage (*$\rightarrow$*) int
             pre posZ(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G) (*$\lor$*) perso = slick(G)  (*$\lor$*) perso (*$\in$*) gangsters(G)
-      collision : [GestionCombat] (*$\times$*) Personnage (*$\times$*) Personnage (*$\rightarrow$*) boolean
+      collision : [GestionCombat] (*$\times$*) Personnage (*$\times$*) Gangster (*$\rightarrow$*) boolean
             pre collision(G, perso1, perso2) require 
-            
-            (*$\lor$*) (perso1 = alex(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (perso1 = alex(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
             (*$\lor$*) (perso1 = alex(G) (*$\land$*) perso2 = slick(G))
             (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
             (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 = slick(G))
@@ -388,8 +387,7 @@ Observations :
       	0 <= posX(G,s) <= Terrain::largeur(terrain)
       	0 <= posY(G,s) <= Terrain::profondeur(terrain)
       	0 <= posZ(G,s) <= Terrain::hauteur(terrain)
-      	collision(G,perso1,perso2)  (*$\stackrel{min}{=}$*) collision(G,perso2,perso1)
-      	collision(G,p1,p2) (*$\stackrel{min}{=}$*) A FAIRE
+         collision(G,p1,p2) (*$\stackrel{min}{=}$*) A FAIRE
             
       [(*$\specB{init}$*)]
     
