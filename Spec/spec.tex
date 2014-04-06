@@ -59,7 +59,7 @@ Béatrice CARRE et Steven VAROUMAS
 
 \begin{Spe}
 service: Personnage
-use : Objet, Bloc
+use : Objet
 types : String, int, boolean
 
 Observators : 
@@ -81,7 +81,7 @@ Observators :
 Constructors : 
 
 	init : String (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Personnage]
-		pre init(nom,largeur,hauteur,profondeur,force, pdv, argent) require nom (*$\neq$*) "" (*$\land$*) largeur(*$>$*)0 (*$\land$*) hauteur(*$>$*)0 (*$\land$*) profondeur(*$>$*)0 (*$\land$*) force(*$>$*)0 (*$\land$*) pdv(*$>$*)0 (*$\land$*) argent(*$>$*)0 
+		pre init(nom,largeur,hauteur,profondeur,force, pdv, argent) require nom = "Alex" (*$\lor$*) nom = "Ryan" (*$\land$*) largeur(*$>$*)0 (*$\land$*) hauteur(*$>$*)0 (*$\land$*) profondeur(*$>$*)0 (*$\land$*) force(*$>$*)0 (*$\land$*) pdv(*$>$*)0 (*$\land$*) argent(*$\ge$*)0 
 
 Operators :
 	retrait_vie :  [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
@@ -130,13 +130,36 @@ Observations :
 		somme_d_argent(depot_argent(P,s)) = argent(P) + s 
 		
 	[(*$\specB{ramasser\_objet}$*)]
-		objet_equipe(ramasser_objet(P,objet)) = objet 
-		
+		objet_equipe(ramasser_objet(P,objet)) = objet
+		force(ramasser_objet(P,objet)) = 
+			(*$ \left\{
+\begin{array}{ll}
+$ force(P) + Objet::bonus\_force(objet) si Objet::est\_equipable(objet) $ \\
+$			force(P) sinon $
+	 	\end{array} 
+\right.$ *)
+			
+		somme_d_argent(ramasser_objet(P,objet)) = 
+			(*$ \left\{
+		\begin{array}{ll}
+$ somme\_d\_argent(P) + Objet::valeur\_marchande(objet) si Objet::est\_de\_valeur(objet) $ \\
+$ somme\_d\_argent(P) sinon $
+
+	 	\end{array} 
+\right.$ *)
+					
 	[(*$\specB{ramasser\_perso}$*)]
 		perso_equipe(ramasser_perso(P,perso)) = perso 
 		
 	[(*$\specB{jeter}$*)]
 		perso_equipe(jeter(P)) = null
+		force(jeter(P)) = 
+		 	(*$ \left\{
+\begin{array}{ll}
+$force(P) - Objet::bonus\_force(objet) $\\$			   si est\_equipe\_objet(P) $\land$ Objet::est\_equipable(objet\_equipe(P)) $ \\
+$force(P) sinon $ 
+	 	\end{array} 
+\right.$ *)			
 		objet_equipe(jeter(P)) = null
 \end{Spe}
 \section{Gangster}
@@ -144,6 +167,10 @@ Observations :
 service: Gangster
 Refine : Personnage
 
+Constructors : 
+
+	init : String (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Gangster]
+		pre init(nom,largeur,hauteur,profondeur,force, pdv, argent) require nom (*$\neq$*) "" (*$\land$*) largeur(*$>$*)0 (*$\land$*) hauteur(*$>$*)0 (*$\land$*) profondeur(*$>$*)0 (*$\land$*) force(*$>$*)0 (*$\land$*) pdv(*$>$*)0 (*$\land$*) argent(*$\ge$*)0 
  
 \end{Spe}
 
@@ -268,14 +295,14 @@ Operators :
 Observations :
 	[(*$\specB{Invariants}$*)]
 	
-(* estFini(M) $\stackrel{min}{=} \left\{
+(*estFini(M) $\stackrel{min}{=} \left\{
 \begin{array}{ll}
   & $(Personnage:: estVaincu(GestionCombat::alex(combat(M))) $ \\  
   & \land $ Personnage::estVaincu(GestionCombat::ryan(combat(M))))$\\ 
   & \lor $ Gangster::estVaincu(GestionCombat::slick(combat(M)) $ 
 \end{array} \right.$ *)
 
-(* $  resultat(M)\stackrel{min}{=} \left\{\begin{array}{ll}
+(*resultat(M)$  \stackrel{min}{=} \left\{\begin{array}{ll}
 $ALEXGAGNANT$ & $si Personnage::!estVaincu(GestionCombat::alex(combat(M)))$ \\
 & \land $ Gangster::estVaincu(GestionCombat::slick(combat(M)))$\\
 & \land $ Personnage::estVaincu(GestionCombat::ryan(combat(M)))$ \\
