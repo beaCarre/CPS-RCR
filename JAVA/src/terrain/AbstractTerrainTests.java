@@ -50,7 +50,7 @@ public abstract class AbstractTerrainTests {
 			TerrainContract tc = new TerrainContract(terrain);
 			tc.init(10, 10, 10);
 			BlocService bloc = new BlocImpl();
-			tc.modifierBloc(1, 1, 1, bloc);
+			tc.modifierBloc(1, 1, bloc);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -63,7 +63,7 @@ public abstract class AbstractTerrainTests {
 			TerrainContract tc = new TerrainContract(terrain);
 			tc.init(10, 10, 10);
 			BlocService bloc = new BlocImpl();
-			tc.modifierBloc(1, 30, 1, bloc);
+			tc.modifierBloc(1, 30, bloc);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);

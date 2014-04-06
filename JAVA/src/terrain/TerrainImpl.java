@@ -6,7 +6,7 @@ import exceptions.PreconditionError;
 
 public class TerrainImpl implements TerrainService {
 	int largeur, hauteur, profondeur;
-	BlocService[][][] blocs; // Mon tableau de blocs 
+	public BlocService[][] blocs; 
 	@Override
 	public int largeur() {
 		
@@ -26,9 +26,9 @@ public class TerrainImpl implements TerrainService {
 	}
 
 	@Override
-	public BlocService bloc(int i, int j, int k) {
+	public BlocService bloc(int i, int j) {
 		
-		return blocs[i][j][k];
+		return blocs[i/50][j/50];
 	}
 
 	@Override
@@ -37,13 +37,13 @@ public class TerrainImpl implements TerrainService {
 		largeur = l;
 		hauteur = 0;
 		profondeur = p; 
-		blocs = new BlocService[l][h][p];
+		blocs = new BlocService[l/50][h/50];
 	}
 
 	@Override
-	public void modifierBloc(int i, int j, int k, BlocService b)
+	public void modifierBloc(int i, int j, BlocService b)
 			throws PreconditionError, PostConditionError {
-		blocs[i][j][k] = null;
+		blocs[i/50][j/50] = b;
 	}
 
 }

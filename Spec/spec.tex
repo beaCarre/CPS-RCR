@@ -265,18 +265,18 @@ Observators :
 	const largeur : [Terrain] (*$\rightarrow$*) int
 	const hauteur : [Terrain] (*$\rightarrow$*) int
 	const profondeur : [Terrain] (*$\rightarrow$*) int
-	bloc : [Terrain] (*$\times$*) int(*$\times$*) int (*$\times$*) int (*$\rightarrow$*) Bloc
-		pre bloc( T, i, j, k) require 0 (*$\leq$*) i (*$\leq$*) largeur (*$\land$*) 0 (*$\leq$*) j (*$\leq$*) hauteur(*$\land$*) 0 (*$\leq$*) k (*$\leq$*) profondeur
+	bloc : [Terrain] (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) Bloc
+		pre bloc( T, x,y) require 0 (*$\leq$*) x (*$\leq$*) largeur (*$\land$*) 0 (*$\leq$*) y (*$\leq$*) profondeur
              
 Constructors :
 
-	init : int (*$\times$*) int(*$\times$*) int (*$\rightarrow$*) [Terrain]
+	init : int (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Terrain]
 		pre init(largeur, hauteur, prof) require largeur (*$>$*) 0 (*$\land$*) hauteur (*$>$*) 0 (*$\land$*) prof (*$>$*) 0
              
 Operators : 
 
-	modifier_bloc : [Terrain] (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) Bloc (*$\rightarrow$*) [Terrain]
-		pre bloc( T, i, j, k, b) require 0 (*$\leq$*) i (*$\leq$*) largeur (*$\land$*) 0 (*$\leq$*) j (*$\leq$*) hauteur (*$\land$*) 0 (*$\leq$*) k (*$\leq$*) profondeur (*$\land$*) b (*$\neq$*) null
+	modifier_bloc : [Terrain] (*$\times$*) int (*$\times$*) int (*$\times$*) Bloc (*$\rightarrow$*) [Terrain]
+		pre bloc( T, x, y, b) require 0 (*$\leq$*) x (*$\leq$*) largeur (*$\land$*) 0 (*$\leq$*) y (*$\leq$*) profondeur (*$\land$*) b (*$\neq$*) null
              
 Observations :
 
@@ -286,10 +286,10 @@ Observations :
             largeur(init(l, h, p)) = l
             hauteur(init(l, h, p)) = h
             profondeur(init(l, h, p)) = p
-            bloc(init(l, h, p), x, y, z) (*$\neq$*) NULL
+            bloc(init(l, h, p), x, y) (*$\neq$*) NULL
             
       [(*$\specB{modifier\_bloc}$*)]
-            bloc(modifier_bloc(T, x, y, z, b), x, y, z) = b 
+            bloc(modifier_bloc(T, x, y, b), x, y) = b 
             
 \end{Spe}
 
@@ -414,8 +414,8 @@ Observations :
 	 posX(gerer(G,cA,cR),alex(G)) =
 	 	(*$ \left\{
 \begin{array}{ll}
- $posX(G,alex(G)) + 10 $&$si cA = DROIT $\lor$ cA = SAUTDROIT $ \\
- $posX(G,alex(G)) - 10 $&$si cA = GAUCHE $\lor$ cA = SAUTGAUCHE $ \\
+ $posX(G,alex(G)) + 10 $&$si cA = DROIT $\lor$ cA = SAUTDROIT $\land$ $\lnot$Personnage::estVaincu(alex(G)) $ \\
+ $posX(G,alex(G)) - 10 $&$si cA = GAUCHE $\lor$ cA = SAUTGAUCHE $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
  $posX(G,alex(G)) $&$sinon $ 
 \end{array} 
 \right.$ *)
@@ -423,8 +423,8 @@ Observations :
 	 posY(gerer(G,cA,cR),alex(G)) = 
 	 	(*$ \left\{
 \begin{array}{ll}
-	 	$posY(G,alex(G)) + 10 $&$si cA = HAUT $\lor$ cA = SAUTHAUT $ \\
-	 	$posY(G,alex(G)) - 10 $&$si cA = BAS $\lor$ cA = SAUTBAS$ \\
+	 	$posY(G,alex(G)) + 10 $&$si cA = HAUT $\lor$ cA = SAUTHAUT $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+	 	$posY(G,alex(G)) - 10 $&$si cA = BAS $\lor$ cA = SAUTBAS $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
 	 	$posY(G,alex(G)) $&$sinon $
 	 	\end{array} 
 \right.$ *)
@@ -432,17 +432,16 @@ Observations :
  	posZ(gerer(G,cA,cR),alex(G)) = 
 	 	(*$ \left\{
 \begin{array}{ll}
-	 
-	 	$10$&$si cA = SAUT $\lor$ cA = SAUTBAS $\lor$ cA = SAUTHAUT $\lor$ cA = SAUTDROIT $\lor$ cA = SAUTGAUCHE $ \\
-		$0 $&$Sinon $
+	 	$10 si cA = SAUT $\lor$ cA = SAUTBAS $\lor$ cA = SAUTHAUT $\lor$ cA = SAUTDROIT $\lor$ cA = SAUTGAUCHE $\\ \land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+		$0 Sinon $
 	 	\end{array} 
 \right.$ *)
 	
 	 posX(gerer(G,cA,cR),ryan(G)) =
 	 	(*$ \left\{
 \begin{array}{ll}
- $posX(G,ryan(G)) + 10 $&$si cR = DROIT $\lor$ cR = SAUTDROIT $ \\
- $posX(G,ryan(G)) - 10 $&$si cR = GAUCHE $\lor$ cR = SAUTGAUCHE $ \\
+ $posX(G,ryan(G)) + 10 $&$si cR = DROIT $\lor$ cR = SAUTDROIT $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $ \\
+ $posX(G,ryan(G)) - 10 $&$si cR = GAUCHE $\lor$ cR = SAUTGAUCHE $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
  $posX(G,ryan(G)) $&$sinon $ 
 \end{array} 
 \right.$ *)
@@ -451,8 +450,8 @@ Observations :
 	 posY(gerer(G,cA,cR),ryan(G)) = 
 	 	(*$ \left\{
 \begin{array}{ll}
-	 	$posY(G,ryan(G)) + 10 $&$si cR = HAUT $\lor$ cR = SAUTHAUT $ \\
-	 	$posY(G,ryan(G)) - 10 $&$si cR = BAS $\lor$ cR = SAUTBAS$ \\
+	 	$posY(G,ryan(G)) + 10 $&$si cR = HAUT $\lor$ cR = SAUTHAUT $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $ \\
+	 	$posY(G,ryan(G)) - 10 $&$si cR = BAS $\lor$ cR = SAUTBAS $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
 	 	$posY(G,ryan(G)) $&$sinon $
 	 	\end{array} 
 \right.$ *)
@@ -461,8 +460,8 @@ Observations :
 	 	(*$ \left\{
 \begin{array}{ll}
 	 
-	 	$10$&$si cR = SAUT $\lor$ cR = SAUTBAS $\lor$ cR = SAUTHAUT $\lor$ cR = SAUTDROIT $\lor$ cR = SAUTGAUCHE $ \\
-		$0 $&$Sinon $
+	 	$10 si cR = SAUT $\lor$ cR = SAUTBAS $\lor$ cR = SAUTHAUT $\lor$ cR = SAUTDROIT $\lor$ cR = SAUTGAUCHE $\\ \land$ $\lnot$Personnage::estVaincu(ryan(G)) $ \\
+		$0 Sinon $
 	 	\end{array} 
 \right.$ *)
 
@@ -470,29 +469,30 @@ Observations :
 	alex(gerer(G,cA,cR)) = 
  (*$ \left\{
 \begin{array}{ll}
-		$- Personnage::jeter(alex(G)) si cA = JETER$ \\
-		$- Personnage::ramasser\_objet(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(alex(G)), $\\$posY(alex(G)),posZ(alex(G)))) si cA = RAMASSER$ \\
-		$- Personnage::ramasser\_perso(alex(G), p) si collision(alex(G), p) $\land$ cA = RAMASSER $ \\
-		$- Personnage::retrait\_vie(alex(G), Personnage::force(p)) si collision(alex(G),p) $\land$ Gangster::action(p) = FRAPPER $ \\
+		$- Personnage::jeter(alex(G)) si cA = JETER $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+		$- Personnage::ramasser\_objet(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(alex(G)), $\\$posY(alex(G)),posZ(alex(G)))) si cA = RAMASSER $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+		$- Personnage::ramasser\_perso(alex(G), p) $\\$si collision(alex(G), p) $\land$ cA = RAMASSER  $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+		$- Personnage::retrait\_vie(alex(G), Personnage::force(p)) $\\$si collision(alex(G),p) $\land$ Gangster::action(p) = FRAPPER $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+		$ - Personnage::retrait\_vie(alex(G), Personnage::points\_de\_vie(alex(G)) $ \\ $ 	si Bloc::type(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)),posZ(alex(G)))) = FOSSE $\\\land$ $\lnot$Personnage::estVaincu(alex(G)) $ \\
 		$- alex(G) Sinon$
 		\end{array} 
 \right.$ *)
 
 	posX(gerer(G,cA,cR),p) = 
-		posX(G,alex(G))+10 si cA = JETER  (*$\land$*) Personnage::perso_equipe(alex()) = p 
+		posX(G,alex(G))+10 si cA = JETER  (*$\land$*) Personnage::perso_equipe(alex()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
 		posX(G,p) sinon
 	posY(gerer(G,cA,cR),p) = 
-		posY(G,alex(G)) si cA = JETER (*$\land$*) Personnage::perso_equipe(alex()) = p 
+		posY(G,alex(G)) si cA = JETER (*$\land$*) Personnage::perso_equipe(alex()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
 		posY(G,p) sinon
 	posZ(gerer(G,cA,cR),p) = 
-		0 si cA = JETER (*$\land$*) Personnage::perso_equipe(alex()) = p
+		0 si cA = JETER (*$\land$*) Personnage::perso_equipe(alex()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
 		posZ(G,p) sinon
 		
 	slick(gerer(G,cA,cR)) = 
 	(*$ \left\{
 \begin{array}{ll}
-		$- Gangster::retrait\_vie(slick(G),Personnage::force(h)) si collison(alex(G),slick(G)) $\land$ cA = FRAPPER $ \\
-		$- Gangster::retrait\_vie(slick(G),Personnage::force(h)) si collison(ryan(G),slick(G)) $\land$ cR = FRAPPER $ \\
+		$- Gangster::retrait\_vie(slick(G),Personnage::force(alex(G))) $\\$  si collison(alex(G),slick(G)) $\land$ cA = FRAPPER $\land$ $\lnot$Personnage::estVaincu(alex(G)) $ \\
+		$- Gangster::retrait\_vie(slick(G),Personnage::force(ryan(G))) $\\$  si collison(ryan(G),slick(G)) $\land$ cR = FRAPPER $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
 		$ - slick(G) sinon$
 		\end{array} 
 \right.$ *)	
@@ -500,33 +500,38 @@ Observations :
 	ryan(gerer(G,cA,cR)) = 
 	(*$ \left\{
 \begin{array}{ll}
-		$- Personnage::jeter(ryan(G)) si cR = JETER$ \\
-		$- Personnage::ramasser\_objet(ryan(G), Bloc::objet(Terrain::bloc(terrain(G), posX(ryan(G)), $\\$posY(ryan(G)),posZ(ryan(G)))) si cR = RAMASSER$ \\
-		$- Personnage::ramasser\_perso(ryan(G), p) si collision(ryan(G), p) $\land$ cR = RAMASSER$ \\
-		$- Personnage::retrait\_vie(ryan(G), Personnage::force(p)) si collision(ryan(G),p) $\land$ Gangster::action(p) = FRAPPER $ \\
+		$- Personnage::jeter(ryan(G)) si cR = JETER $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
+		$- Personnage::ramasser\_objet(ryan(G), Bloc::objet(Terrain::bloc(terrain(G), posX(ryan(G)), $\\$posY(ryan(G)),posZ(ryan(G)))) si cR = RAMASSER $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $ \\
+		$- Personnage::ramasser\_perso(ryan(G), p) $\\$ si collision(ryan(G), p) $\land$ cR = RAMASSER $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
+		$- Personnage::retrait\_vie(ryan(G), Personnage::force(p)) $\\$ si collision(ryan(G),p) $\land$ Gangster::action(p) = FRAPPER $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
+		$- Personnage::retrait\_vie(ryan(G), Personnage::points\_de\_vie(ryan(G)) $ \\ $	si Bloc::type(Terrain::bloc(terrain(G), posX(ryan(G)), posY(ryan(G)),posZ(ryan(G)))) = FOSSE $ \\\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
 		$- ryan(G) Sinon$
 		\end{array} 
 \right.$ *)
 
 	posX(gerer(G,cA,cR),p) = 
-		posX(ryan(G))+10 si cR = JETER  (*$\land$*) Personnage::perso_equipe(ryan()) = p 
+		posX(ryan(G))+10 si cR = JETER  (*$\land$*) Personnage::perso_equipe(ryan()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
 		posX(G,p) sinon
 		
 	posY(gerer(G,cA,cR),p) = 
-		posY(ryan(G)) si cR = JETER (*$\land$*) Personnage::perso_equipe(ryan()) = p 
+		posY(ryan(G)) si cR = JETER (*$\land$*) Personnage::perso_equipe(ryan()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
 		posY(G,p) sinon
 	
 	posZ(gerer(G,cA,cR),p) = 
-		0 si cR = JETER (*$\land$*) Personnage::perso_equipe(ryan()) = p
+		0 si cR = JETER (*$\land$*) Personnage::perso_equipe(ryan()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
 		posZ(G,p) sinon
 
 
 	terrain(gerer(G,cA,cR)) = 
-	- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)),posZ(alex(G))) si cA = RAMASSER
-	- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)),posZ(alex(G))), Personnage:objet_equipe(alex()) si cA = JETER (*$\land$*) Personnage::est_equipe_objet(alex()) = true 
-	- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(ryan(G)), posY(ryan(G)),posZ(ryan(G))) si cR = RAMASSER
-	- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(ryan(G)), posY(ryan(G)),posZ(ryan(G))), Personnage:objet_equipe(ryan()) si cR = JETER (*$\land$*) Personnage::est_equipe_objet(ryan()) = true 
-	- terrain(G) sinon // Faut il faire aussi les deux ?????
+	- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)),posZ(alex(G))) 
+		si cA = RAMASSER (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
+	- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)),posZ(alex(G))), Personnage:objet_equipe(alex()) 
+		si cA = JETER (*$\land$*) Personnage::est_equipe_objet(alex()) = true (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
+	- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(ryan(G)), posY(ryan(G)),posZ(ryan(G))) 
+		si cR = RAMASSER (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
+	- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(ryan(G)), posY(ryan(G)),posZ(ryan(G))), Personnage:objet_equipe(ryan()) 
+		si cR = JETER (*$\land$*) Personnage::est_equipe_objet(ryan()) = true (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
+	- terrain(G) sinon 
 	
 	
 

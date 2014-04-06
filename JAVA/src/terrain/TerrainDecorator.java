@@ -26,8 +26,8 @@ public abstract class TerrainDecorator implements TerrainService {
 	}
 
 	@Override
-	public BlocService bloc(int i, int j, int k) {
-		return delegates.bloc(i, j, k);
+	public BlocService bloc(int i, int j) {
+		return delegates.bloc(i, j);
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public abstract class TerrainDecorator implements TerrainService {
 	}
 
 	@Override
-	public void modifierBloc(int i, int j, int k, BlocService b) throws PreconditionError, PostConditionError {
-		delegates.modifierBloc(i, j, k, b);
+	public void modifierBloc(int i, int j, BlocService b) throws PreconditionError, PostConditionError {
+		delegates.modifierBloc(i, j, b);
 	}
 
 }

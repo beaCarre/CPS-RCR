@@ -1,29 +1,40 @@
 package combat;
 
+import exceptions.InvariantError;
+import exceptions.PostConditionError;
+import exceptions.PreconditionError;
 import gangster.GangsterService;
+
+import java.util.Set;
+
 import moteur.Commande;
 import perso.PersonnageService;
+import terrain.TerrainService;
 
 public interface CombatService {
 
+	public TerrainService terrain();
 	public PersonnageService alex();
 	public PersonnageService ryan();
 	public GangsterService slick();
-	public GangsterService gangsters();
-	// \pre positionX(id) require id == "alex" || id == "ryan" || id == "slick" || id \in gansgtersid  
-	public int positionX(String id);
-	// \pre positionY(id) require id == "alex" || id == "ryan" || id == "slick" || id \in gansgtersid  
-	public int positionY(String id);
-	// \pre positionZ(id) require id == "alex" || id == "ryan" || id == "slick" || id \in gansgtersid  
-	public int positionZ(String id);
-	public boolean estGele(String id);
-	public boolean estFrappe(String id);
-	// \pre collision(id1,id2) require (id1 == "alex" && id2 = 'ryan') || (id1 == "ryan" && id2 = "alex") || ...
-	public boolean collision(String id1, String id2);
+	public Set<GangsterService> gangsters();
+	 
+	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
+	public int positionX(PersonnageService p) throws PreconditionError;
+	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
+	public int positionZ(PersonnageService p);
+	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
+	public int positionY(PersonnageService p);
+	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
+	public boolean estGele(PersonnageService p);
+	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
+	public boolean estFrappe(PersonnageService p);
 	
-	public void gerer(Commande c1, Commande c2);
+	public boolean collision(PersonnageService p1, GangsterService p2);
 	
-	// \post init() : terrain() == TerrainService.init(255,255,255) && alex() == Personnage.init("alex", ...)
+	public void gerer(Commande c1, Commande c2) throws PreconditionError, InvariantError, PostConditionError;
+	
 	
 	public void init();
+
 }
