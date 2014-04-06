@@ -1,30 +1,44 @@
 package bloc;
 
+import objet.ObjetService;
 import exceptions.PostConditionError;
+import exceptions.PreconditionError;
 
 public class BlocFailImpl implements BlocService {
-	TresorBloc tresor;
-	TypeBloc type; 
-	public BlocFailImpl(){
-		type = null;
-		tresor = null;
-		
-	}
-
+	ObjetService objet;
+	TypeBloc type;
 	@Override
-	public TresorBloc tresor() {
-		return tresor;
+	public ObjetService objet() {
+		// TODO Auto-generated method stub
+		return this.objet;
 	}
 
 	@Override
 	public TypeBloc type() {
-		return type;
+		// TODO Auto-generated method stub
+		return this.type;
 	}
 
 	@Override
-	public void init(TypeBloc ty, TresorBloc tr) throws PostConditionError {
-		tresor = null;
-		type = null;
+	public void init(TypeBloc ty, ObjetService obj) throws PostConditionError,
+			PreconditionError {
+		this.type = ty;
+		this.objet = obj;
 	}
+
+	@Override
+	public void retirerObjet() throws PostConditionError, PreconditionError {
+		this.type = TypeBloc.VIDE;
+		this.objet = null;
+	}
+
+	@Override
+	public void poserObjet(ObjetService obj) throws PostConditionError,
+			PreconditionError {
+		this.type = TypeBloc.OBJET;
+		this.objet = obj;
+		
+	}
+	
 
 }

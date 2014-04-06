@@ -24,7 +24,7 @@ public class ObjetContract extends ObjetDecorator {
 		// \pre init(nom,bonus,valeur) require nom!= "" && ( (bonus > 0 && valeur == 0) || ( bonus == 0 && valeur > 0)
 		if(!(!nom.equals("") && (( bonus > 0 && valeur == 0 ) || bonus == 0 && valeur > 0)))
 			throw new PreconditionError("init");
-		checkInvariants();
+		//checkInvariants();
 		super.init(nom, bonus, valeur);
 		checkInvariants();
 		// \post nom.equals(n) && bonusForce() == bonus && valeurMarchande() == valeur

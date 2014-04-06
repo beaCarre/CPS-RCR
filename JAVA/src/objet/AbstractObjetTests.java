@@ -23,8 +23,8 @@ public abstract class AbstractObjetTests {
 	@Test
 	public final void initWorking(){
 		try{
-			ObjetContract oc = new ObjetContract(objet);
-			oc.init("fusil", 10, 0);
+		
+			objet.init("fusil", 10, 0);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -34,8 +34,8 @@ public abstract class AbstractObjetTests {
 	@Test
 	public final void initFailing(){
 		try{
-			ObjetContract oc = new ObjetContract(objet);
-			oc.init("fusil", 10, 10);
+		
+			objet.init("fusil", 10, 10);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -44,8 +44,8 @@ public abstract class AbstractObjetTests {
 	@Test
 	public final void initFailing2(){
 		try{
-			ObjetContract oc = new ObjetContract(objet);
-			oc.init("fusil", 0, 0);
+		
+			objet.init("fusil", 0, 0);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -54,8 +54,8 @@ public abstract class AbstractObjetTests {
 	@Test
 	public final void initFailing3(){
 		try{
-			ObjetContract oc = new ObjetContract(objet);
-			oc.init("", 10, 0);
+		
+			objet.init("", 10, 0);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);

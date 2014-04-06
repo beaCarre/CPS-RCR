@@ -22,7 +22,7 @@ public interface PersonnageService {
 	public PersonnageService persoEquipe();
 
 	/* constructor */
-	// \pre n !=""  && l>0 && h>0 && p>0 && f >0 && a > 0 && v > 0 
+	// \pre n == "Alex" || n =="Ryan" && l>0 && h>0 && p>0 && f >0 && a >= 0 && v > 0 
 	// \post nom.equals(n) && largeur() == l && hauteur() == h && profondeur() == p && force() == f && pointsDeVie() ==v && argent() == a
 	public void init(String n, int l, int h, int p, int f, int v, int a) throws PreconditionError, InvariantError, PostConditionError;
 
@@ -44,10 +44,10 @@ public interface PersonnageService {
 
 	// \pre ramasserObjet(obj) require !est_vaincu() && !estEquipeObjet() && !estEquipePerso()
 	// \post objetEquipe() == objet
-	// \post force() == force() + objet.bonusForce() si objet.estEquipable()
-	// \post force() == force() sinon
-	// \post argent() == argent() + objet.valeurMarchande() si objet.estDeValeur()
-	// \post argent() == argent() sinon
+	// \post force() == force()@pre + obj.bonusForce() si obj.estEquipable()
+	// \post force() == force()@pre sinon
+	// \post argent() == argent()@pre + obj.valeurMarchande() si objet.estDeValeur()
+	// \post argent() == argent()@pre sinon
 	public void ramasserObjet(ObjetService o) throws PreconditionError, InvariantError, PostConditionError;
 
 	// \pre ramasserPerso(perso) require !est_vaincu() && !estEuipeObjet() && !estEquipePerso()
@@ -57,8 +57,8 @@ public interface PersonnageService {
 
 	// \pre jeter() require !est_vaincu() && (estEquipeObjet() || estEquipePerso())
 	// \post persoEquipe() == null && objetEquipe() == null 
-	// \post force() == force() - objetEquipe().bonusForce() si estEquipeObjet()
-	// \post force() == force() sinon
+	// \post force() == force()@pre - objetEquipe()@pre.bonusForce() si estEquipeObjet()@pre = true
+	// \post force() == force()@pre sinon
 	public void jeter() throws PreconditionError, InvariantError, PostConditionError;
 
 

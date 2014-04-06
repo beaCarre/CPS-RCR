@@ -29,10 +29,10 @@ public class PersonnageContract extends PersonnageDecorator {
 		}
 	}
 
-	// \pre n !=""  && l>0 && h>0 && p>0 && f >0 && a >= 0 && v > 0 
+	// \pre n == "Alex" || n =="Ryan" && l>0 && h>0 && p>0 && f >0 && a >= 0 && v > 0 
 	// \post nom.equals(n) && largeur() == l && hauteur() == h && profondeur() == p && force() == f && pointsDeVie() ==v && argent() == a
 	public void init(String n, int l, int h, int p, int f, int v, int a) throws PreconditionError, InvariantError, PostConditionError{
-		if( ! (!n.equals("") && l>0 && h>0 && p>0 && f>0 && v>0 && a>=0 ))
+		if( ! ((n.equals("Alex") || n.equals("Ryan")) && l>0 && h>0 && p>0 && f>0 && v>0 && a>=0 ))
 			throw new PreconditionError("init(): Personnage");
 		checkInvariants();
 		super.init(n, l, h, p, f, v, a);
@@ -104,10 +104,10 @@ public class PersonnageContract extends PersonnageDecorator {
 		super.ramasserObjet(o);
 		checkInvariants();
 		// \post objetEquipe() == objet
-		// \post force() == force() + objet.bonusForce() si objet.estEquipable()
-		// \post force() == force() sinon
-		// \post argent() == argent() + objet.valeurMarchande() si objet.estDeValeur()
-		// \post argent() == argent() sinon
+		// \post force() == force()@pre + objet.bonusForce() si objet.estEquipable()
+		// \post force() == force()@pre sinon
+		// \post argent() == argent()@pre + objet.valeurMarchande() si objet.estDeValeur()
+		// \post argent() == argent()pre sinon
 		if( !( objetEquipe() == o )) throw new PostConditionError("ramasserObjet()");
 		if(o.estEquipable() && force()!= force_at_pre + o.bonusForce()) 
 			throw new PostConditionError("ramasserObjet()");
@@ -125,6 +125,7 @@ public class PersonnageContract extends PersonnageDecorator {
 		if (!(! estVaincu() && !estEquipeObjet() && !estEquipePerso())) throw new PreconditionError("ramassePerso");
 		checkInvariants();
 		super.ramasserPerso(p);
+		checkInvariants();
 		// \post persoEquipe() == objet
 		if( !( persoEquipe() == p )) throw new PostConditionError("ramasserObjet()");
 	}
@@ -142,8 +143,8 @@ public class PersonnageContract extends PersonnageDecorator {
 		super.jeter();
 		checkInvariants();
 		// \post persoEquipe() == null && objetEquipe() == null 
-		// \post force() == force() - objetEquipe().bonusForce() si estEquipeObjet()
-		// \post force() == force() sinon
+		// \post force() == force()@pre - objetEquipe().bonusForce() si estEquipeObjet()
+		// \post force() == force()@pre sinon
 		if(!(persoEquipe()== null && objetEquipe() == null)) throw new PostConditionError("jeter");
 		if(est_EquipeObjet_at_pre && objetEquipe_at_pre.estEquipable() && force() != force_at_pre - objetEquipe_at_pre.bonusForce())
 			throw new PostConditionError("jeter");

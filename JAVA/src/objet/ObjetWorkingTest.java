@@ -6,7 +6,7 @@ public class ObjetWorkingTest extends AbstractObjetTests {
 	
 	@Override
 	public void beforeTests() {
-		this.setObjet(new ObjetImpl());
+		this.setObjet(new ObjetContract(new ObjetImpl()));
 	}
 
 }
