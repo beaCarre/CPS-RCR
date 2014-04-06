@@ -17,7 +17,7 @@ public abstract class AbstractPersonnageTests {
 		personnage = null;
 	}
 
-	public void setPersonnage(PersonnageService perso){
+	public void setPersonnage(PersonnageService perso){ // Soit on lui donne un contrat soit un perso 
 		this.personnage = perso;
 		
 	}
@@ -25,8 +25,8 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void initWorking(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -36,8 +36,8 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void initFailing(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", -5, 10, 10, 10, 100, 100);
+			
+			personnage.init("alex", -5, 10, 10, 10, 100, 100);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -46,9 +46,9 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void retraitVieWorking(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
-			pc.retraitPdV(3);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
+			personnage.retraitPdV(3);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -58,9 +58,9 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void retraitVieFailing(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
-			pc.retraitPdV(-5);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
+			personnage.retraitPdV(-5);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -69,9 +69,9 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void depotVieWorking(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
-			pc.depotPdV(3);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
+			personnage.depotPdV(3);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -81,9 +81,9 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void depotVieFailing(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
-			pc.depotPdV(-5);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
+			personnage.depotPdV(-5);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -92,9 +92,9 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void retraitArgentWorking(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
-			pc.retraitArgent(3);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
+			personnage.retraitArgent(3);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -104,9 +104,9 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void retraitArgentFailing(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
-			pc.retraitArgent(-5);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
+			personnage.retraitArgent(-5);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -115,9 +115,9 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void depotArgentWorking(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
-			pc.depotArgent(3);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
+			personnage.depotArgent(3);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -127,9 +127,9 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void depotArgentFailing(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
-			pc.depotArgent(-5);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
+			personnage.depotArgent(-5);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -139,10 +139,10 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void ramasserObjetWorking(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
 			ObjetService obj = new ObjetImpl();
-			pc.ramasserObjet(obj);
+			personnage.ramasserObjet(obj);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -151,11 +151,11 @@ public abstract class AbstractPersonnageTests {
 	}
 	public final void ramasserObjetFailing(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
 			ObjetService obj = new ObjetImpl();
-			pc.retraitPdV(1000);
-			pc.ramasserObjet(obj);
+			personnage.retraitPdV(1000);
+			personnage.ramasserObjet(obj);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -165,10 +165,10 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void ramasserPersoWorking(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
 			PersonnageService perso = new PersonnageImpl();
-			pc.ramasserPerso(perso);
+			personnage.ramasserPerso(perso);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -179,11 +179,11 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void ramasserPersoFailing(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
 			PersonnageService perso = new PersonnageImpl();
-			pc.retraitPdV(10000);
-			pc.ramasserPerso(perso);
+			personnage.retraitPdV(10000);
+			personnage.ramasserPerso(perso);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -194,11 +194,11 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void jeterWorking(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
 			PersonnageService perso = new PersonnageImpl();
-			pc.ramasserPerso(perso);
-			pc.jeter();
+			personnage.ramasserPerso(perso);
+			personnage.jeter();
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -209,9 +209,9 @@ public abstract class AbstractPersonnageTests {
 	@Test
 	public final void jeterFailing(){
 		try{
-			PersonnageContract pc = new PersonnageContract(personnage);
-			pc.init("alex", 10, 10, 10, 10, 100, 100);
-			pc.jeter();
+			
+			personnage.init("alex", 10, 10, 10, 10, 100, 100);
+			personnage.jeter();
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();

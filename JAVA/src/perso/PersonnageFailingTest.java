@@ -6,7 +6,7 @@ public class PersonnageFailingTest extends AbstractPersonnageTests {
 	
 	@Override
 	public void beforeTests() {
-		this.setPersonnage(new PersonnageFailImpl());
+		this.setPersonnage(new PersonnageContract(new PersonnageFailImpl()));
 	}
 
 }
