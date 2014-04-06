@@ -16,7 +16,7 @@ public class ObjetFailImpl implements ObjetService {
 	@Override
 	public boolean estEquipable() {
 		
-		return (bonus<0);
+		return (bonus>0);
 	}
 
 	@Override

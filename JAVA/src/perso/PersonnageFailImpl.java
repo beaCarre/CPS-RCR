@@ -88,9 +88,9 @@ public class PersonnageFailImpl implements PersonnageService {
 	public void init(String n, int l, int h, int p, int f, int v, int a)
 			throws PreconditionError, InvariantError, PostConditionError {
 		nom = n;
-		largeur = 0;
-		hauteur = 0;
-		profondeur = 0;
+		largeur = l;
+		hauteur = h;
+		profondeur = p;
 		force = f;
 		vie = v; 
 		argent = a;

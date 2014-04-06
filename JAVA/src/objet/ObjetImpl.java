@@ -40,9 +40,12 @@ public class ObjetImpl implements ObjetService {
 	@Override
 	public void init(String nom, int bonus, int valeur)
 			throws PreconditionError, InvariantError, PostConditionError {
-		this.nom = nom;
-		this.bonus = bonus;
-		this.valeur = valeur;
+		if(!nom.equals("") && ((bonus>0 && valeur == 0) || (bonus == 0 && valeur>0))){
+			this.nom = nom;
+			this.bonus = bonus;
+			this.valeur = valeur;
+		}
+		
 
 	}
 

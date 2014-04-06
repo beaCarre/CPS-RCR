@@ -43,6 +43,7 @@ public abstract class AbstractBlocTests {
 		}
 	}
 	
+	@Test
 	public final void retirerObjetWorking(){
 		try{
 			
@@ -55,6 +56,7 @@ public abstract class AbstractBlocTests {
 		}
 	}
 	
+	@Test
 	public final void poserObjetWorking(){
 		try{
 			
