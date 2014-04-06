@@ -114,7 +114,7 @@ public class PersonnageImpl implements PersonnageService {
 	@Override
 	public void retraitArgent(int s) throws PreconditionError, InvariantError,
 	PostConditionError {
-		if(!estVaincu() && s>0)
+		if(!estVaincu() && s>0 && argent() >=s)
 			argent-=s;
 	}
 
@@ -126,13 +126,23 @@ public class PersonnageImpl implements PersonnageService {
 	}
 
 	@Override
+	// \post objetEquipe() == objet
+	// \post force() == force() + objet.bonusForce() si objet.estEquipable()
+	// \post force() == force() sinon
+	// \post argent() == argent() + objet.valeurMarchande() si objet.estDeValeur()
+	// \post argent() == argent() sinon
 	public void ramasserObjet(ObjetService o) throws PreconditionError,
 	InvariantError, PostConditionError {
 		if(!estVaincu() && !estEquipeObjet() && !estEquipePerso())
+			if(o.estEquipable())
+				force += o.bonusForce();
+			else if(o.estDeValeur())
+				argent += o.valeurMarchande();
 			objet = o;
 	}
 
 	@Override
+
 	public void ramasserPerso(PersonnageService p) throws PreconditionError,
 	InvariantError, PostConditionError {
 		if(!estVaincu() && !estEquipeObjet() && !estEquipePerso())
@@ -140,9 +150,17 @@ public class PersonnageImpl implements PersonnageService {
 	}
 
 	@Override
+	// \pre jeter() require !est_vaincu() && (estEquipeObjet() || estEquipePerso())
+		// \post persoEquipe() == null && objetEquipe() == null 
+		// \post force() == force() - objetEquipe().bonusForce() si estEquipeObjet()
+		// \post force() == force() sinon
 	public void jeter() throws PreconditionError, InvariantError,
 	PostConditionError {
+		
 		if(!estVaincu() && (estEquipeObjet() || estEquipePerso())){
+			if(estEquipeObjet() && objetEquipe().estEquipable()){
+				force -= objetEquipe().bonusForce();
+			}
 			objet = null;
 			perso = null;
 		}

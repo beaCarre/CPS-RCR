@@ -156,7 +156,7 @@ $ somme\_d\_argent(P) sinon $
 		force(jeter(P)) = 
 		 	(*$ \left\{
 \begin{array}{ll}
-$force(P) - Objet::bonus\_force(objet) $\\$			   si est\_equipe\_objet(P) $\land$ Objet::est\_equipable(objet\_equipe(P)) $ \\
+$force(P) - Objet::bonus\_force(objet\_equipe(P)) $\\$			   si est\_equipe\_objet(P) $\land$ Objet::est\_equipable(objet\_equipe(P)) $ \\
 $force(P) sinon $ 
 	 	\end{array} 
 \right.$ *)			
@@ -456,7 +456,7 @@ Observations :
 \begin{array}{ll}
 		$- Personnage::jeter(alex(G)) si cA = JETER$ \\
 		$- Personnage::ramasser\_objet(alex(G), Bloc::objet(Terrain::bloc(terrain(G), positionX(alex(G)), $\\$positionY(alex(G)),positionZ(alex(G)))) si cA = RAMASSER$ \\
-		$- Personnage::ramasser\_perso(alex(G), p) si collision(alex(G), p) $ \\
+		$- Personnage::ramasser\_perso(alex(G), p) si collision(alex(G), p) $\land$ cA = RAMASSER $ \\
 		$- alex(G) Sinon$
 		\end{array} 
 \right.$ *)
@@ -476,7 +476,7 @@ Observations :
 \begin{array}{ll}
 		$- Personnage::jeter(ryan(G)) si cR = JETER$ \\
 		$- Personnage::ramasser\_objet(ryan(G), Bloc::objet(Terrain::bloc(terrain(G), positionX(ryan(G)), $\\$positionY(ryan(G)),positionZ(ryan(G)))) si cR = RAMASSER$ \\
-		$- Personnage::ramasser\_perso(ryan(G), p) si collision(ryan(G), p) $ \\
+		$- Personnage::ramasser\_perso(ryan(G), p) si collision(ryan(G), p) $\land$ cR = RAMASSER$ \\
 		$- ryan(G) Sinon$
 		\end{array} 
 \right.$ *)

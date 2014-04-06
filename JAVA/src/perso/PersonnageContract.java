@@ -29,10 +29,10 @@ public class PersonnageContract extends PersonnageDecorator {
 		}
 	}
 
-	// \pre n !=""  && l>0 && h>0 && p>0 && f >0 && a > 0 && v > 0 
+	// \pre n !=""  && l>0 && h>0 && p>0 && f >0 && a >= 0 && v > 0 
 	// \post nom.equals(n) && largeur() == l && hauteur() == h && profondeur() == p && force() == f && pointsDeVie() ==v && argent() == a
 	public void init(String n, int l, int h, int p, int f, int v, int a) throws PreconditionError, InvariantError, PostConditionError{
-		if( ! (!n.equals("") && l>0 && h>0 && p>0 && f>0 && v>0 && a>0 ))
+		if( ! (!n.equals("") && l>0 && h>0 && p>0 && f>0 && v>0 && a>=0 ))
 			throw new PreconditionError("init(): Personnage");
 		checkInvariants();
 		super.init(n, l, h, p, f, v, a);
@@ -99,10 +99,24 @@ public class PersonnageContract extends PersonnageDecorator {
 		// \pre ramasserObjet(obj) require !est_vaincu() && !est_equipeObjet()
 		if(! ( !estVaincu() && !estEquipeObjet() && !estEquipePerso())) throw new PreconditionError("ramasserObjet");
 		checkInvariants();
+		int argent_at_pre = argent();
+		int force_at_pre = force();
 		super.ramasserObjet(o);
 		checkInvariants();
 		// \post objetEquipe() == objet
+		// \post force() == force() + objet.bonusForce() si objet.estEquipable()
+		// \post force() == force() sinon
+		// \post argent() == argent() + objet.valeurMarchande() si objet.estDeValeur()
+		// \post argent() == argent() sinon
 		if( !( objetEquipe() == o )) throw new PostConditionError("ramasserObjet()");
+		if(o.estEquipable() && force()!= force_at_pre + o.bonusForce()) 
+			throw new PostConditionError("ramasserObjet()");
+		if(o.estDeValeur() && argent()!= argent_at_pre + o.valeurMarchande()) 
+			throw new PostConditionError("ramasserObjet()");
+		if(!o.estDeValeur() && argent() != argent_at_pre) 
+			throw new PostConditionError("ramasserObjet()");
+		if(!o.estEquipable() && force()!= force_at_pre)
+			throw new PostConditionError("ramasserObjet()");
 	}
 
 
@@ -122,10 +136,19 @@ public class PersonnageContract extends PersonnageDecorator {
 		// \pre jeter() require !est_vaincu() && (estEquipeObjet() || estEquipePerso())
 		if(! ( !estVaincu() &&  (estEquipeObjet() || estEquipePerso() ) ) ) throw new PreconditionError("jeter");
 		checkInvariants();
+		int force_at_pre = force();
+		ObjetService objetEquipe_at_pre = objetEquipe();
+		boolean est_EquipeObjet_at_pre = estEquipeObjet();
 		super.jeter();
 		checkInvariants();
 		// \post persoEquipe() == null && objetEquipe() == null 
+		// \post force() == force() - objetEquipe().bonusForce() si estEquipeObjet()
+		// \post force() == force() sinon
 		if(!(persoEquipe()== null && objetEquipe() == null)) throw new PostConditionError("jeter");
+		if(est_EquipeObjet_at_pre && objetEquipe_at_pre.estEquipable() && force() != force_at_pre - objetEquipe_at_pre.bonusForce())
+			throw new PostConditionError("jeter");
+		else if (force() != force_at_pre)
+			throw new PostConditionError("jeter");
 	}
 
 
