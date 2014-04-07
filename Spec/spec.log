@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.29)  7 APR 2014 01:19
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.29)  7 APR 2014 16:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -589,44 +589,44 @@ Chapitre 1.
 
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2] [3] [4] [5] [6]
-Overfull \hbox (15.39249pt too wide) in paragraph at lines 415--423
+Overfull \hbox (15.39249pt too wide) in paragraph at lines 428--436
 [][][][]$[]$  
  []
 
 
-Overfull \hbox (20.33493pt too wide) in paragraph at lines 433--440
+Overfull \hbox (20.33493pt too wide) in paragraph at lines 446--453
 [][][][]$[]$  
  []
 
 [7]
-Overfull \hbox (19.05826pt too wide) in paragraph at lines 441--450
+Overfull \hbox (19.05826pt too wide) in paragraph at lines 454--463
 [][][][]$[]$  
  []
 
 
-Overfull \hbox (19.64066pt too wide) in paragraph at lines 460--469
+Overfull \hbox (19.64066pt too wide) in paragraph at lines 473--482
 [][][][]$[]$  
  []
 
 [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 542.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 555.
  [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 542.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 555.
  (./spec.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 542.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 542.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 555.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 555.
 Package rerunfilecheck Info: File `spec.out' has not changed.
 (rerunfilecheck)             Checksum: BD1EA1A6F544B042E4E6A7BECEE259D8;479.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 542.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 555.
  ) 
 Here is how much of TeX's memory you used:
- 9040 strings out of 493315
- 126262 string characters out of 6137903
- 360428 words of memory out of 5000000
+ 9048 strings out of 493315
+ 126382 string characters out of 6137903
+ 363428 words of memory out of 5000000
  12036 multiletter control sequences out of 15000+600000
  13663 words of font info for 29 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 29i,8n,40p,301b,1925s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,8n,40p,301b,1901s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
 /usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
@@ -639,10 +639,10 @@ al/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local
 exlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/tex
 live/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texli
 ve/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on spec.pdf (9 pages, 168040 bytes).
+Output written on spec.pdf (9 pages, 168164 bytes).
 PDF statistics:
- 559 PDF objects out of 1000 (max. 8388607)
- 531 compressed objects within 6 object streams
- 372 named destinations out of 1000 (max. 500000)
+ 569 PDF objects out of 1000 (max. 8388607)
+ 541 compressed objects within 6 object streams
+ 380 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 

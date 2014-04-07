@@ -32,25 +32,25 @@ public class PersonnageImpl implements PersonnageService {
 
 	@Override
 	public int profondeur() {
-		
+
 		return profondeur;
 	}
 
 	@Override
 	public int force() {
-		
+
 		return force;
 	}
 
 	@Override
 	public int pointsDeVie() {
-		
+
 		return vie;
 	}
 
 	@Override
 	public int argent() {
-		
+
 		return argent;
 	}
 
@@ -68,19 +68,19 @@ public class PersonnageImpl implements PersonnageService {
 
 	@Override
 	public boolean estEquipePerso() {
-		
+
 		return (persoEquipe()!=null);
 	}
 
 	@Override
 	public ObjetService objetEquipe() {
-		
+
 		return objet;
 	}
 
 	@Override
 	public PersonnageService persoEquipe() {
-		
+
 		return perso;
 	}
 
@@ -129,14 +129,15 @@ public class PersonnageImpl implements PersonnageService {
 
 	public void ramasserObjet(ObjetService o) throws PreconditionError,
 	InvariantError, PostConditionError {
-		if(!estVaincu() && !estEquipeObjet() && !estEquipePerso()){
-			if(o.estEquipable())
+		if((!estVaincu() && !estEquipeObjet() && !estEquipePerso() && o.estEquipable()) || o.estDeValeur()){
+			if(o.estEquipable()){
 				force += o.bonusForce();
+				objet = o;
+			}
 			else if(o.estDeValeur())
 				argent += o.valeurMarchande();
-			objet = o;
 		}
-			//System.out.println(force);
+		//System.out.println(force);
 	}
 
 	@Override
@@ -149,7 +150,7 @@ public class PersonnageImpl implements PersonnageService {
 	@Override
 	public void jeter() throws PreconditionError, InvariantError,
 	PostConditionError {
-		
+
 		if(!estVaincu() && (estEquipeObjet() || estEquipePerso())){
 			if(estEquipeObjet() && objetEquipe().estEquipable()){
 				force -= objetEquipe().bonusForce();

@@ -96,19 +96,23 @@ public class PersonnageContract extends PersonnageDecorator {
 
 
 	public void ramasserObjet(ObjetService o) throws PreconditionError, InvariantError, PostConditionError {
-		// \pre ramasserObjet(obj) require !est_vaincu() && !est_equipeObjet()
-		if(! ( !estVaincu() && !estEquipeObjet() && !estEquipePerso())) throw new PreconditionError("ramasserObjet");
+		// \pre ramasserObjet(obj) require (!est_vaincu() && !estEquipeObjet() && !estEquipePerso() && obj.estEquipable()) || (obj.estDeValeur())
+		if(! ((!estVaincu() && !estEquipeObjet() && !estEquipePerso() && o.estEquipable() ) || o.estDeValeur())) 
+			throw new PreconditionError("ramasserObjet");
 		checkInvariants();
 		int argent_at_pre = argent();
 		int force_at_pre = force();
 		super.ramasserObjet(o);
 		checkInvariants();
-		// \post objetEquipe() == objet
+
+		// \post objetEquipe() == obj si obj.estEquipable()
+		// \post objetEquipe() == null sinon
 		// \post force() == force()@pre + objet.bonusForce() si objet.estEquipable()
 		// \post force() == force()@pre sinon
 		// \post argent() == argent()@pre + objet.valeurMarchande() si objet.estDeValeur()
 		// \post argent() == argent()pre sinon
-		if( !( objetEquipe() == o )) throw new PostConditionError("ramasserObjet()");
+		if( !( o.estEquipable() && objetEquipe() == o )) throw new PostConditionError("ramasserObjet()");
+		else if( !(objetEquipe() == null )) throw new PostConditionError("ramasserObjet()");
 		if(o.estEquipable() && force()!= force_at_pre + o.bonusForce()) 
 			throw new PostConditionError("ramasserObjet()");
 		if(o.estDeValeur() && argent()!= argent_at_pre + o.valeurMarchande()) 

@@ -12,6 +12,7 @@ import java.util.Set;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import objet.ObjetService;
 import bloc.TypeBloc;
 import moteur.Commande;
 import perso.PersonnageImpl;
@@ -133,11 +134,13 @@ public class GestionCombatGraphic extends JPanel implements CombatService{
 			break;
 		case RAMASSER :
 			if(terrain.bloc(positionX(alex), positionY(alex)).type() == TypeBloc.OBJET){
-				if(!alex.estEquipeObjet() && !alex.estVaincu()){
-					alex.ramasserObjet(terrain.bloc(positionX(alex), positionY(alex)).objet());
-
-					terrain.bloc(positionX(alex), positionY(alex)).retirerObjet();
-					
+				if(!alex.estVaincu()){
+					ObjetService objet = terrain.bloc(positionX(alex), positionY(alex)).objet();
+					if(objet.estEquipable() && !alex.estEquipeObjet() && !alex.estEquipePerso())
+						terrain.bloc(positionX(alex), positionY(alex)).retirerObjet();
+					else if(terrain.bloc(positionX(alex), positionY(alex)).objet().estDeValeur())
+						terrain.bloc(positionX(alex), positionY(alex)).retirerObjet();
+					alex.ramasserObjet(objet);
 				}
 			}
 

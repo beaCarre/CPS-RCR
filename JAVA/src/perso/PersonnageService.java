@@ -42,8 +42,9 @@ public interface PersonnageService {
 	// \post argent() == argent@pre + s
 	public void depotArgent(int s) throws PreconditionError, InvariantError, PostConditionError;
 
-	// \pre ramasserObjet(obj) require !est_vaincu() && !estEquipeObjet() && !estEquipePerso()
-	// \post objetEquipe() == objet
+	// \pre ramasserObjet(obj) require (!est_vaincu() && !estEquipeObjet() && !estEquipePerso() && obj.estEquipable()) || (obj.estDeValeur())
+	// \post objetEquipe() == obj si obj.estEquipable()
+	// \post objetEquipe() == null sinon
 	// \post force() == force()@pre + obj.bonusForce() si obj.estEquipable()
 	// \post force() == force()@pre sinon
 	// \post argent() == argent()@pre + obj.valeurMarchande() si objet.estDeValeur()

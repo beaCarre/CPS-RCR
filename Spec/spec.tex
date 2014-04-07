@@ -86,16 +86,22 @@ Constructors :
 Operators :
 	retrait_vie :  [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
 		pre retrait_vie(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
+		
 	depot_vie : [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
 		pre depot_vie(P,s) require (*$\lnot$*) est_vaincu(P) (*$\land$*) s(*$>$*)0
+		
 	retrait_argent :  [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
 		pre retrait_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0 (*$\land$*) somme_d_argent(P) (*$\ge$*) s // pour ne pas avoir une somme negative
+		
 	depot_argent : [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
 		pre depot_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
+		
 	ramasser_objet : [Personnage] (*$\times$*) Object (*$\rightarrow$*) [Personnage]
-		pre ramasser_objet(P,o) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe_objet(P) (*$\land$*)  (*$\lnot$*)est_equipe_perso(P)
-        ramasser_perso : [Personnage] (*$\times$*) Personnage (*$\rightarrow$*) [Personnage]
+		pre ramasser_objet(P,o) require (*$\lnot$*)est_vaincu(P) (*$\land$*) ((*$\lnot$*)est_equipe_objet(P) (*$\land$*)  (*$\lnot$*)est_equipe_perso(P) (*$\land$*) Objet::est_equipable(o)) (*$\lor$*) Objet::est_de_valeur(o)
+		
+	ramasser_perso : [Personnage] (*$\times$*) Personnage (*$\rightarrow$*) [Personnage]
 		pre ramasser_perso(P,p) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe_objet(P) (*$\land$*) (*$\lnot$*)est_equipe_perso(P)
+		
 	jeter : [Personnage] (*$\rightarrow$*) [Personnage]
 		pre jeter(P) require (*$\lnot$*)est_vaincu(P) (*$\land$*) ( est_equipe_objet(P) (*$\lor$*) est_equipe_perso (P) )
 
@@ -130,20 +136,27 @@ Observations :
 		somme_d_argent(depot_argent(P,s)) = argent(P) + s 
 		
 	[(*$\specB{ramasser\_objet}$*)]
-		objet_equipe(ramasser_objet(P,objet)) = objet
+		objet_equipe(ramasser_objet(P,objet)) = 
+			(*$ \left\{
+		\begin{array}{ll}
+			$objet $&$si  Objet::est\_equipable(objet\_equipe(P)) $ \\
+			$null $&$sinon $
+				 	\end{array} 
+\right.$ *)
+
 		force(ramasser_objet(P,objet)) = 
 			(*$ \left\{
 \begin{array}{ll}
-$ force(P) + Objet::bonus\_force(objet) si Objet::est\_equipable(objet) $ \\
-$			force(P) sinon $
+$force(P) + Objet::bonus\_force(objet) $&$si Objet::est\_equipable(objet) $ \\
+$force(P) $&$sinon $
 	 	\end{array} 
 \right.$ *)
 			
 		somme_d_argent(ramasser_objet(P,objet)) = 
 			(*$ \left\{
 		\begin{array}{ll}
-$ somme\_d\_argent(P) + Objet::valeur\_marchande(objet) si Objet::est\_de\_valeur(objet) $ \\
-$ somme\_d\_argent(P) sinon $
+$somme\_d\_argent(P) + Objet::valeur\_marchande(objet) $&$si Objet::est\_de\_valeur(objet) $ \\
+$somme\_d\_argent(P) $&$sinon $
 
 	 	\end{array} 
 \right.$ *)
