@@ -97,7 +97,7 @@ Operators :
 		pre depot_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
 		
 	ramasser_objet : [Personnage] (*$\times$*) Object (*$\rightarrow$*) [Personnage]
-		pre ramasser_objet(P,o) require (*$\lnot$*)est_vaincu(P) (*$\land$*) ((*$\lnot$*)est_equipe_objet(P) (*$\land$*)  (*$\lnot$*)est_equipe_perso(P) (*$\land$*) Objet::est_equipable(o)) (*$\lor$*) Objet::est_de_valeur(o)
+		pre ramasser_objet(P,o) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (((*$\lnot$*)est_equipe_objet(P) (*$\land$*)  (*$\lnot$*)est_equipe_perso(P) (*$\land$*) Objet::est_equipable(o)) (*$\lor$*) Objet::est_de_valeur(o))
 		
 	ramasser_perso : [Personnage] (*$\times$*) Personnage (*$\rightarrow$*) [Personnage]
 		pre ramasser_perso(P,p) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe_objet(P) (*$\land$*) (*$\lnot$*)est_equipe_perso(P)
