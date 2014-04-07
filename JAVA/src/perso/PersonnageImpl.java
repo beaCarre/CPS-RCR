@@ -129,12 +129,14 @@ public class PersonnageImpl implements PersonnageService {
 
 	public void ramasserObjet(ObjetService o) throws PreconditionError,
 	InvariantError, PostConditionError {
-		if(!estVaincu() && !estEquipeObjet() && !estEquipePerso())
+		if(!estVaincu() && !estEquipeObjet() && !estEquipePerso()){
 			if(o.estEquipable())
 				force += o.bonusForce();
 			else if(o.estDeValeur())
 				argent += o.valeurMarchande();
 			objet = o;
+		}
+			//System.out.println(force);
 	}
 
 	@Override

@@ -39,7 +39,7 @@ public class ObjetFailImpl implements ObjetService {
 
 	@Override
 	public void init(String nom, int bonus, int valeur)
-			throws PreconditionError, InvariantError, PostConditionError {
+			throws PreconditionError, PostConditionError {
 		this.nom = nom;
 		this.bonus = bonus;
 		this.valeur = valeur;

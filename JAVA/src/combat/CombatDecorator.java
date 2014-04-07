@@ -90,7 +90,7 @@ public abstract class CombatDecorator implements CombatService {
 	}
 
 	@Override
-	public void init() {
+	public void init(){
 		// TODO Auto-generated method stub
 		combat.init();
 	}

@@ -1,5 +1,6 @@
 package terrain;
 
+import exceptions.InvariantError;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
 import bloc.BlocService;

@@ -39,6 +39,9 @@ public class BlocGraphic extends JPanel implements BlocService {
 	public void retirerObjet() throws PostConditionError, PreconditionError {
 		// TODO Auto-generated method stub
 		bloc.retirerObjet();
+		this.removeAll();
+		this.repaint();
+	
 	}
 
 	@Override

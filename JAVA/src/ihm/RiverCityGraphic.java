@@ -25,7 +25,7 @@ public class RiverCityGraphic extends JFrame implements KeyListener {
 	}
 
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws InvariantError{
 		game = new RiverCityGraphic();
 		combat = new GestionCombatGraphic();
 		game.setContentPane(combat);
@@ -80,6 +80,22 @@ public class RiverCityGraphic extends JFrame implements KeyListener {
 		case KeyEvent.VK_SPACE :
 			try {
 				combat.gerer(Commande.FRAPPE, Commande.GAUCHE);
+			} catch (PreconditionError | InvariantError | PostConditionError e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		case KeyEvent.VK_R :
+			try {
+				combat.gerer(Commande.RAMASSER, Commande.GAUCHE);
+			} catch (PreconditionError | InvariantError | PostConditionError e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		case KeyEvent.VK_J :
+			try {
+				combat.gerer(Commande.JETER, Commande.GAUCHE);
 			} catch (PreconditionError | InvariantError | PostConditionError e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

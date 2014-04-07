@@ -27,7 +27,6 @@ public class PersonnageGraphic extends JPanel implements PersonnageService{
 		this.setVisible(true);
 
 
-
 	}
 	@Override
 	public String nom() {
@@ -97,10 +96,7 @@ public class PersonnageGraphic extends JPanel implements PersonnageService{
 		perso.init(n, l, h, p, f, v, a);
 		this.setSize(l, h);
 		this.setLayout(new FlowLayout());
-		lab = new JLabel(n+" "+v);
-		lab.setSize(l,h);
-		lab.setVisible(true);
-		this.add(lab);
+		
 
 	}
 	@Override
@@ -108,9 +104,10 @@ public class PersonnageGraphic extends JPanel implements PersonnageService{
 	PostConditionError {
 		perso.retraitPdV(s);
 
-		lab.setText(""+perso.pointsDeVie());
+		
 		if(perso.estVaincu()){
 			this.setBackground(Color.white);
+			
 		}
 	}
 

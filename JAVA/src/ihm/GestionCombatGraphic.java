@@ -6,9 +6,11 @@ import exceptions.PreconditionError;
 import gangster.GangsterService;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.util.Set;
 
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import bloc.TypeBloc;
 import moteur.Commande;
@@ -27,9 +29,17 @@ public class GestionCombatGraphic extends JPanel implements CombatService{
 
 	TerrainGraphic terrain; 
 	PersonnageGraphic alex;
+	JTextArea infos;
 	public GestionCombatGraphic(){
 
 		this.setSize(800, 600);
+		infos = new JTextArea("INFOS");
+
+
+		this.setLayout(null);
+		infos.setLocation(510, 10);
+		infos.setSize(260, 300);
+		this.add(infos);
 	}
 	@Override
 	public PersonnageService alex() {
@@ -121,17 +131,35 @@ public class GestionCombatGraphic extends JPanel implements CombatService{
 			else
 				alex.setLocation(positionX(alex), terrain.profondeur()-alex.profondeur());
 			break;
+		case RAMASSER :
+			if(terrain.bloc(positionX(alex), positionY(alex)).type() == TypeBloc.OBJET){
+				if(!alex.estEquipeObjet() && !alex.estVaincu()){
+					alex.ramasserObjet(terrain.bloc(positionX(alex), positionY(alex)).objet());
+
+					terrain.bloc(positionX(alex), positionY(alex)).retirerObjet();
+					
+				}
+			}
+
+			break;
+		case JETER :
+			alex.jeter();
+
+
+			break;
 		default:
 			break;
 		}
-		
+
 		if(terrain.bloc(positionX(alex), positionY(alex)).type() == TypeBloc.FOSSE){
 			alex.retraitPdV(alex.pointsDeVie());
 		}
+		alex.repaint();
+		majInfos();
 	}
 
 	@Override
-	public void init() {
+	public void init(){
 		// TODO Auto-generated method stub
 		terrain = new TerrainGraphic(new TerrainImpl());
 		alex = new PersonnageGraphic(new PersonnageImpl());
@@ -147,9 +175,11 @@ public class GestionCombatGraphic extends JPanel implements CombatService{
 		} catch (PostConditionError e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 		try {
 			alex.init("Alex", 30, 30, 30, 10, 10, 10);
+
+			majInfos();
 		} catch (PreconditionError e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -161,6 +191,31 @@ public class GestionCombatGraphic extends JPanel implements CombatService{
 			e.printStackTrace();
 		}
 
+	}
+
+	public void majInfos(){
+		String info = "";
+
+		info +=alex.nom()+": \n"+alex.pointsDeVie()+" pdv \n";
+		info +=alex.force()+" force \n";
+		info +=alex.argent()+"$\n";
+		info+="est equipe de : ";
+		if(alex.estEquipeObjet())
+			info+=alex.objetEquipe().nom();
+		else if(alex.estEquipePerso())
+			info+=alex.persoEquipe().nom();
+		else
+			info+="rien";
+		info+="\n";
+		try {
+			info+="Position :"+positionX(alex)+","+positionY(alex);
+			info+="\nSur le bloc :"+positionX(alex)/50+","+positionY(alex)/50;
+		} catch (PreconditionError e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		infos.setText(info);
 	}
 
 	@Override
