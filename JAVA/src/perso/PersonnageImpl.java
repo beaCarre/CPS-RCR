@@ -104,12 +104,7 @@ public class PersonnageImpl implements PersonnageService {
 			vie-=s;
 	}
 
-	@Override
-	public void depotPdV(int s) throws PreconditionError, InvariantError,
-	PostConditionError {
-		if(!estVaincu() && s > 0)
-			vie+=s;
-	}
+	
 
 	@Override
 	public void retraitArgent(int s) throws PreconditionError, InvariantError,
@@ -129,13 +124,9 @@ public class PersonnageImpl implements PersonnageService {
 
 	public void ramasserObjet(ObjetService o) throws PreconditionError,
 	InvariantError, PostConditionError {
-		if((!estVaincu() && !estEquipeObjet() && !estEquipePerso() && o.estEquipable()) || o.estDeValeur()){
-			if(o.estEquipable()){
-				force += o.bonusForce();
-				objet = o;
-			}
-			else if(o.estDeValeur())
-				argent += o.valeurMarchande();
+		if(!estVaincu() && !estEquipeObjet() && !estEquipePerso() && o.estEquipable()){
+			force += o.bonusForce();
+			objet = o;
 		}
 		//System.out.println(force);
 	}
@@ -157,6 +148,14 @@ public class PersonnageImpl implements PersonnageService {
 			}
 			objet = null;
 			perso = null;
+		}
+	}
+
+	@Override
+	public void ramasserArgent(ObjetService o) throws PreconditionError,
+	InvariantError, PostConditionError {
+		if(!estVaincu() && o.estDeValeur()){
+			argent += o.valeurMarchande();
 		}
 	}
 

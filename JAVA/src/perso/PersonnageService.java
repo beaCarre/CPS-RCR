@@ -30,10 +30,6 @@ public interface PersonnageService {
 	// \post pointsDeVie() ==  pointsDeVie@pre - s
 	public void retraitPdV(int s) throws PreconditionError, InvariantError, PostConditionError;
 
-	// \pre depotPdV(s) require !estVaincu() && s > 0
-	// \post pointsDeVie() ==  pointsDeVie@pre + s
-	public void depotPdV(int s) throws PreconditionError, InvariantError, PostConditionError;
-
 	// \pre retraitArgent(s) require !estVaincu() && s > 0
 	// \post argent() == argent@pre - s
 	public void retraitArgent(int s) throws PreconditionError, InvariantError, PostConditionError;
@@ -42,17 +38,18 @@ public interface PersonnageService {
 	// \post argent() == argent@pre + s
 	public void depotArgent(int s) throws PreconditionError, InvariantError, PostConditionError;
 
-	// \pre ramasserObjet(obj) require (!est_vaincu() && !estEquipeObjet() && !estEquipePerso() && obj.estEquipable()) || (obj.estDeValeur())
-	// \post objetEquipe() == obj si obj.estEquipable()
-	// \post objetEquipe() == null sinon
-	// \post force() == force()@pre + obj.bonusForce() si obj.estEquipable()
-	// \post force() == force()@pre sinon
-	// \post argent() == argent()@pre + obj.valeurMarchande() si objet.estDeValeur()
-	// \post argent() == argent()@pre sinon
+	// \pre ramasserObjet(obj) require !est_vaincu() && !estEquipeObjet() && !estEquipePerso() && obj.estEquipable()
+	// \post objetEquipe() == obj
+	// \post force() == force()@pre + obj.bonusForce()
+	
 	public void ramasserObjet(ObjetService o) throws PreconditionError, InvariantError, PostConditionError;
 
+	// \pre ramasserArgent(obj) require !estVaincu() && o.estDeValeur()
+	// \post argent() == argent()@pre + obj.valeurMarchande()
+	public void ramasserArgent(ObjetService o) throws PreconditionError, InvariantError,PostConditionError;
+	
 	// \pre ramasserPerso(perso) require !est_vaincu() && !estEuipeObjet() && !estEquipePerso()
-	// \post persoEquipe() == objet
+	// \post persoEquipe() == perso
 	public void ramasserPerso(PersonnageService p) throws PreconditionError, InvariantError, PostConditionError;
 
 

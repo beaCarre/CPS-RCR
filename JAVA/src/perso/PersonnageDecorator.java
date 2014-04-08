@@ -67,9 +67,6 @@ public abstract class PersonnageDecorator implements PersonnageService {
 	}
 
 
-	public void depotPdV(int s) throws PreconditionError, InvariantError, PostConditionError{
-		delegates.depotPdV(s);
-	}
 
 	
 	public void retraitArgent(int s) throws PreconditionError, InvariantError, PostConditionError{
@@ -82,6 +79,10 @@ public abstract class PersonnageDecorator implements PersonnageService {
 
 	public void ramasserObjet(ObjetService o) throws PreconditionError, InvariantError, PostConditionError{
 		delegates.ramasserObjet(o);
+	}
+	
+	public void ramasserArgent(ObjetService o) throws PreconditionError, InvariantError, PostConditionError{
+		delegates.ramasserArgent(o);
 	}
 	
 	public void ramasserPerso(PersonnageService p) throws PreconditionError, InvariantError, PostConditionError{

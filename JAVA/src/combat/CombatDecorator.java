@@ -5,7 +5,7 @@ import exceptions.PostConditionError;
 import exceptions.PreconditionError;
 import gangster.GangsterService;
 
-import java.util.Set;
+import java.util.List;
 
 import moteur.Commande;
 import perso.PersonnageService;
@@ -42,7 +42,7 @@ public abstract class CombatDecorator implements CombatService {
 	}
 
 	@Override
-	public Set<GangsterService> gangsters() {
+	public List<GangsterService> gangsters() {
 		// TODO Auto-generated method stub
 		return combat.gangsters();
 	}
@@ -76,6 +76,29 @@ public abstract class CombatDecorator implements CombatService {
 		// TODO Auto-generated method stub
 		return combat.estFrappe(p);
 	}
+	public boolean estVisible(PersonnageService p){
+		return combat.estVisible(p);
+	}
+	
+	public boolean collisionGauche(PersonnageService p1, GangsterService p2){
+		return combat.collisionGauche(p1, p2);
+	}
+	public boolean collisionDroite(PersonnageService p1, GangsterService p2){
+		return combat.collisionDroite(p1, p2);
+	}
+	public boolean collisionDessous(PersonnageService p1, GangsterService p2){
+		return combat.collisionDessous(p1, p2);
+	}
+	public boolean collisionDessus(PersonnageService p1, GangsterService p2){
+		return combat.collisionDessus(p1, p2);
+	}
+	public boolean collisionDevant(PersonnageService p1, GangsterService p2){
+		return combat.collisionDevant(p1, p2);
+	}
+	public boolean collisionDerriere(PersonnageService p1, GangsterService p2){
+		return combat.collisionDerriere(p1, p2);
+	}
+
 
 	@Override
 	public boolean collision(PersonnageService p1, GangsterService p2) {

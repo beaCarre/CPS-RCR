@@ -126,29 +126,7 @@ public abstract class AbstractPersonnageTests {
 			assertTrue(true);
 		}
 	}
-	@Test
-	public final void depotVieWorking(){
-		try{
-			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			personnage.depotPdV(3);
-			assertTrue(true);
-		}catch(ContractError ce){
-			ce.printStackTrace();
-			fail();
-		}
-	}
-	@Test
-	public final void depotVieFailing(){
-		try{
-			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			personnage.depotPdV(-5);
-			fail();
-		}catch(ContractError ce){
-			assertTrue(true);
-		}
-	}
+	
 	@Test
 	public final void retraitArgentWorking(){
 		try{

@@ -1,110 +1,107 @@
 package ihm;
 
+import exceptions.InvariantError;
+import exceptions.PostConditionError;
+import exceptions.PreconditionError;
+import gangster.GangsterService;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import objet.ObjetService;
 import perso.PersonnageService;
-import exceptions.InvariantError;
-import exceptions.PostConditionError;
-import exceptions.PreconditionError;
 
-public class PersonnageGraphic extends JPanel implements PersonnageService{
+public class GangsterGraphic extends JPanel implements GangsterService{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private PersonnageService perso;
+	private GangsterService gangster;
+	JLabel lab;
+	public GangsterGraphic(GangsterService gangster){
+		this.gangster = gangster;
 
-	public PersonnageGraphic(PersonnageService perso){
-		this.perso = perso;
-
-		this.setBackground(Color.red);
+		this.setBackground(Color.CYAN);
 		this.setVisible(true);
-
+		lab = new JLabel("0");
+		this.add(lab);
 
 	}
 	@Override
 	public String nom() {
 		// TODO Auto-generated method stub
-		return perso.nom();
+		return gangster.nom();
 	}
 	@Override
 	public int largeur() {
 		// TODO Auto-generated method stub
-		return perso.largeur();
+		return gangster.largeur();
 	}
 	@Override
 	public int hauteur() {
 		// TODO Auto-generated method stub
-		return perso.hauteur();
+		return gangster.hauteur();
 	}
 	@Override
 	public int profondeur() {
 		// TODO Auto-generated method stub
-		return perso.profondeur();
+		return gangster.profondeur();
 	}
 	@Override
 	public int force() {
 		// TODO Auto-generated method stub
-		return perso.force();
+		return gangster.force();
 	}
 	@Override
 	public int pointsDeVie() {
 		// TODO Auto-generated method stub
-		return perso.pointsDeVie();
+		return gangster.pointsDeVie();
 	}
 	@Override
 	public int argent() {
 		// TODO Auto-generated method stub
-		return perso.argent();
+		return gangster.argent();
 	}
 	@Override
 	public boolean estVaincu() {
 		// TODO Auto-generated method stub
-		return perso.estVaincu();
+		return gangster.estVaincu();
 	}
 	@Override
 	public boolean estEquipeObjet() {
 		// TODO Auto-generated method stub
-		return perso.estEquipeObjet();
+		return gangster.estEquipeObjet();
 	}
 	@Override
 	public boolean estEquipePerso() {
 		// TODO Auto-generated method stub
-		return perso.estEquipePerso();
+		return gangster.estEquipePerso();
 	}
 	@Override
 	public ObjetService objetEquipe() {
 		// TODO Auto-generated method stub
-		return perso.objetEquipe();
+		return gangster.objetEquipe();
 	}
-	@Override
-	public PersonnageService persoEquipe() {
-		// TODO Auto-generated method stub
-		return perso.persoEquipe();
-	}
+
 	@Override
 	public void init(String n, int l, int h, int p, int f, int v, int a)
 			throws PreconditionError, InvariantError, PostConditionError {
 		// TODO Auto-generated method stub
 
-		perso.init(n, l, h, p, f, v, a);
-		this.setSize(l, h);
-		this.setLayout(new FlowLayout());
-		
+		gangster.init(n, l, h, p, f, v, a);
 
 	}
 	@Override
 	public void retraitPdV(int s) throws PreconditionError, InvariantError,
 	PostConditionError {
-		perso.retraitPdV(s);
+		gangster.retraitPdV(s);
 
 		
-		if(perso.estVaincu()){
+		if(gangster.estVaincu()){
 			this.setBackground(Color.white);
 			
 		}
@@ -113,38 +110,54 @@ public class PersonnageGraphic extends JPanel implements PersonnageService{
 	@Override
 	public void retraitArgent(int s) throws PreconditionError, InvariantError,
 	PostConditionError {
-		perso.retraitArgent(s);
+		gangster.retraitArgent(s);
 
 	}
 	@Override
 	public void depotArgent(int s) throws PreconditionError, InvariantError,
 	PostConditionError {
-		perso.depotArgent(s);
+		gangster.depotArgent(s);
 
 	}
 	@Override
 	public void ramasserObjet(ObjetService o) throws PreconditionError,
 	InvariantError, PostConditionError {
-		perso.ramasserObjet(o);
+		gangster.ramasserObjet(o);
 
 	}
 	@Override
 	public void ramasserPerso(PersonnageService p) throws PreconditionError,
 	InvariantError, PostConditionError {
-		perso.ramasserPerso(p);
+		gangster.ramasserPerso(p);
 
 	}
 	@Override
 	public void jeter() throws PreconditionError, InvariantError,
 	PostConditionError {
-		perso.jeter();
+		gangster.jeter();
 
 	}
 	@Override
 	public void ramasserArgent(ObjetService o) throws PreconditionError,
 			InvariantError, PostConditionError {
-		perso.ramasserArgent(o);
+		gangster.ramasserArgent(o);
 		
+	}
+	@Override
+	public void init(String n, int l, int h, int p, int f, int v)
+			throws PreconditionError, InvariantError, PostConditionError {
+		gangster.init(n, l, h, p, f, v);
+		this.setSize(l, h);
+		this.setLayout(new FlowLayout());
+		lab.setText(""+this.pointsDeVie());
+
+		this.repaint();
+		
+	}
+	@Override
+	public PersonnageService persoEquipe() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
