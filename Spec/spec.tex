@@ -303,6 +303,7 @@ Observators :
       resultat: [MoteurJeu] (*$\rightarrow$*) RESULTAT
 	    pre resultat(M) require estFini(M)
       combat : [MoteurJeu] (*$\rightarrow$*) GestionCombat
+      pasCourant : [MoteurJeu]  (*$\rightarrow$*) int
 Constructors :
       init : (*$\emptyset$*) (*$\rightarrow$*) [MoteurJeu]
 Operators :
@@ -340,6 +341,7 @@ $NULLE$ & $sinon$ \\
 	  combat(init()) = GestionCombat::init()
       [(*$\specB{pasJeu}$*)]
 	  combat(pasJeu(M,cA,cR)) = GestionCombat::gerer(combat(M), cA, cR)
+	  pasCourant(pasJeu(M,cA,cR)) = pasCourant(M)+1
 	    
 \end{Spe}
 %\begin{landscape}
@@ -494,16 +496,16 @@ Observations :
 
 	 [(*$\specB{gerer}$*)]
 	 
-	 posX(gerer(G,cA,cR),alex(G)) =
+	 posX(G,gerer(G,cA,cR),alex(G)) =
 	 	(*$ \left\{
 \begin{array}{ll}
- $min(posX(G,alex(G)) + 10,Terrain:largeur(terrain(G))-Personnage::largeur(alex(G))) $\\$si cA = DROITE$\lor$ cA = SAUTDROITE$\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G))   $\\ \land$ $\lnot$collisionDroite(alex(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$\\
+ $min(posX(G,alex(G)) + 10,Terrain:largeur(terrain(G))-Personnage::largeur(alex(G))) $\\$si cA = DROITE $\lor$ cA = SAUTDROITE $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G))   $\\ \land$ $\lnot$collisionDroite(alex(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$\\
  $max(posX(G,alex(G)) - 10,0) $\\$si cA = GAUCHE $\lor$ cA = SAUTGAUCHE $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G))  $ \\ \land$ $\lnot$collisionGauche(alex(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G) $  \\
  $posX(G,alex(G)) sinon $ 
 \end{array} 
 \right.$ *)
 		
-	 posY(gerer(G,cA,cR),alex(G)) = 
+	 posY(G,gerer(G,cA,cR),alex(G)) = 
 	 	(*$ \left\{
 \begin{array}{ll}
 	 	$min(posY(G,alex(G)) + 10,Terrain:profondeur(terrain(G))-Personnage::profondeur(alex(G))) $\\ $si cA = HAUT $\lor$ cA = SAUTHAUT $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G))  $\land$ $\lnot$collisionDerriere(alex(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
@@ -520,29 +522,120 @@ Observations :
 		$0 $&$Sinon $
 	 	\end{array} 
 \right.$ *)
+
+	posX(G,gerer(G,cA,cR),ryan(G)) =
+	 	(*$ \left\{
+\begin{array}{ll}
+ $min(posX(G,ryan(G)) + 10,Terrain:largeur(terrain(G))-Personnage::largeur(ryan(G))) $\\$si cA = DROITE $\lor$ cA = SAUTDROITE $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G))   $\\ \land$ $\lnot$collisionDroite(ryan(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$\\
+ $max(posX(G,ryan(G)) - 10,0) $\\$si cA = GAUCHE $\lor$ cA = SAUTGAUCHE $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G))  $ \\ \land$ $\lnot$collisionGauche(ryan(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G) $  \\
+ $posX(G,ryan(G)) sinon $ 
+\end{array} 
+\right.$ *)
 		
+	 posY(G,gerer(G,cA,cR),ryan(G)) = 
+	 	(*$ \left\{
+\begin{array}{ll}
+	 	$min(posY(G,ryan(G)) + 10,Terrain:profondeur(terrain(G))-Personnage::profondeur(ryan(G))) $\\ $si cA = HAUT $\lor$ cA = SAUTHAUT $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G))  $\land$ $\lnot$collisionDerriere(ryan(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
+	 	$max(posY(G,ryan(G)) - 10,0) $\\$si cA = BAS $\lor$ cA = SAUTBAS $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G))  $\land$ $\lnot$collisionDevant(ryan(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
+	 	$posY(G,ryan(G)) sinon $
+	 	\end{array} 
+\right.$ *)
+
+ 	posZ(gerer(G,cA,cR),ryan(G)) = 
+	 	(*$ \left\{
+\begin{array}{ll}
+	 	$100 $&$si cA = SAUT $\lor$ cA = SAUTBAS $\lor$ cA = SAUTHAUT $ \lor$ cA = SAUTDROITE$\lor$ cA = SAUTGAUCHE $ \\ &\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G))  $\land$ $\lnot$collisionDessus(ryan(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
+		$pos(G,ryan(G)) $&$si estGele(G,ryan(G)) $ \\
+		$0 $&$Sinon $
+	 	\end{array} 
+\right.$ *)
+
+	posX(G,gerer(G,cA,cR),slick(G)) =
+	 	(*$ \left\{
+\begin{array}{ll}
+ $min(posX(G,slick(G)) + 10,Terrain:largeur(terrain(G))-Personnage::largeur(slick(G))) $\\$si actionGangster(G,slick(G)) = DROITE $\lor$ actionGangster(G,slick(G)) = SAUTDROITE $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))   $\\ \land$ $\lnot$collisionDroite(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$\\
+ $max(posX(G,slick(G)) - 10,0) $\\$si actionGangster(G,slick(G)) = GAUCHE $\lor$ actionGangster(G,slick(G)) = SAUTGAUCHE $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))  $ \\ \land$ $\lnot$collisionGauche(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G) $  \\
+ $posX(G,slick(G)) sinon $ 
+\end{array} 
+\right.$ *)
+		
+	 posY(G,gerer(G,cA,cR),slick(G)) = 
+	 	(*$ \left\{
+\begin{array}{ll}
+	 	$min(posY(G,slick(G)) + 10,Terrain:profondeur(terrain(G))-Personnage::profondeur(slick(G))) $\\ $si actionGangster(G,slick(G)) = HAUT $\lor$ actionGangster(G,slick(G)) = SAUTHAUT $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))  $\land$ $\lnot$collisionDerriere(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
+	 	$max(posY(G,slick(G)) - 10,0) $\\$si actionGangster(G,slick(G)) = BAS $\lor$ actionGangster(G,slick(G)) = SAUTBAS $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))  $\land$ $\lnot$collisionDevant(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
+	 	$posY(G,slick(G)) sinon $
+	 	\end{array} 
+\right.$ *)
+
+ 	posZ(gerer(G,cA,cR),slick(G)) = 
+	 	(*$ \left\{
+\begin{array}{ll}
+	 	$100 $&$si actionGangster(G,slick(G)) = SAUT $\lor$ actionGangster(G,slick(G)) = SAUTBAS $\lor$ actionGangster(G,slick(G)) = SAUTHAUT $ \lor$ actionGangster(G,slick(G)) = SAUTDROITE$\lor$ actionGangster(G,slick(G)) = SAUTGAUCHE $ \\ &\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))  $\land$ $\lnot$collisionDessus(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
+		$pos(G,slick(G)) $&$si estGele(G,slick(G)) $ \\
+		$0 $&$Sinon $
+	 	\end{array} 
+\right.$ *)
+
+	posX(G,gerer(G,cA,cR),gangsters(G)) = { g = 
+	 	(*$ \left\{
+\begin{array}{ll}
+ $min(posX(G,g) + 10,Terrain:largeur(terrain(G))-Personnage::largeur(g)) $\\$si actionGangster(G,g) = DROITE $\lor$ actionGangster(G,g) = SAUTDROITE $\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)   $\\ \land$ $\lnot$collisionDroite(g,p) $\forall$ p $\in$ gangster $\lor$ p = g$\\
+ $max(posX(G,g) - 10,0) $\\$si actionGangster(G,g) = GAUCHE $\lor$ actionGangster(G,g) = SAUTGAUCHE $\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)  $ \\ \land$ $\lnot$collisionGauche(g,p) $\forall$ p $\in$ gangster $\lor$ p = g $  \\
+ $posX(G,g) sinon $ 
+\end{array} 
+\right.$ *)
+}  (*$\forall$*) g (*$\in$*) gangsters(G)
+
+		
+	 posY(G,gerer(G,cA,cR),gangsters(G)) = { g = 
+	 	(*$ \left\{
+\begin{array}{ll}
+	 	$min(posY(G,g) + 10,Terrain:profondeur(terrain(G))-Personnage::profondeur(g)) $\\ $si actionGangster(G,g) = HAUT $\lor$ actionGangster(G,g) = SAUTHAUT $\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)  $\land$ $\lnot$collisionDerriere(g,p) $\forall$ p $\in$ gangster $\lor$ p = g$  \\
+	 	$max(posY(G,g) - 10,0) $\\$si actionGangster(G,g) = BAS $\lor$ actionGangster(G,g) = SAUTBAS $\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)  $\land$ $\lnot$collisionDevant(g,p) $\forall$ p $\in$ gangster $\lor$ p = g$  \\
+	 	$posY(G,g) sinon $
+	 	\end{array} 
+\right\}.$ *)
+}  (*$\forall$*) g (*$\in$*) gangsters(G)
+
+
+ 	posZ(gerer(G,cA,cR),gangsters(G)) = { g = 
+	 	(*$ \left\{
+\begin{array}{ll}
+	 	$100 $&$si actionGangster(G,g) = SAUT $\lor$ actionGangster(G,g) = SAUTBAS $\lor$ actionGangster(G,g) = SAUTHAUT $ \lor$ actionGangster(G,g) = SAUTDROITE$\lor$ actionGangster(G,g) = SAUTGAUCHE $ \\ &\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)  $\land$ $\lnot$collisionDessus(g,p) $\forall$ p $\in$ gangster $\lor$ p = g$  \\
+		$pos(G,g) $&$si estGele(G,g) $ \\
+		$0 $&$Sinon $
+	 	\end{array} 
+\right.$ *) 
+} (*$\forall$*) g (*$\in$*) gangsters(G)
+
+
+
+	
 	alex(gerer(G,cA,cR)) = 
  (*$ \left\{
 \begin{array}{ll}
 		$- Personnage::jeter(alex(G)) $\\$si cA = JETER $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G)) $\land$ Bloc::type(Terrain::bloc(terrain(G),posX(G,alex(G)),posY(G,alex(G))))=VIDE $  \\
-		$- Personnage::ramasser\_objet(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(alex(G)),posY(alex(G))))) $\\$si cA = RAMASSER $\land$ posZ(alex(G))=0 $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G)) $  \\
+		$- Personnage::ramasser\_objet(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(G,alex(G)),posY(G,alex(G))))) $\\$si cA = RAMASSER $\land$ posZ(G,alex(G))=0 $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G)) $  \\
 		$- Personnage::ramasser\_perso(alex(G), p) $\\$si collision(G,alex(G), p) $\land$ cA = RAMASSER  $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G)) $  \\
-		$- Personnage::ramasser\_argent(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(alex(G)),posY(alex(G))))) $\\$si cA = RAMASSER $\land$ posZ(alex(G))=0 $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G)) $  \\
+		$- Personnage::ramasser\_argent(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(G,alex(G)),posY(G,alex(G))))) $\\$si cA = RAMASSER $\land$ posZ(G,alex(G))=0 $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G)) $  \\
 		$- Personnage::retrait\_vie(alex(G), Personnage::force(p)) $\\$si collision(G,alex(G),p) $\land$ actionGangster(G,p) = FRAPPER $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G)) $  \\
-		$ - Personnage::retrait\_vie(alex(G), Personnage::points\_de\_vie(alex(G)) $ \\ $ si Bloc::type(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)),posZ(alex(G)))) = FOSSE $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G)) $ \\
+		$ - Personnage::retrait\_vie(alex(G), Personnage::points\_de\_vie(alex(G)) $ \\ $ si Bloc::type(Terrain::bloc(terrain(G), posX(G,alex(G)), posY(G,alex(G)))) = FOSSE $\land$ $\lnot$Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G)) $ \\
 		$- alex(G) Sinon$
 		\end{array} 
 \right.$ *)
+
+
 
 	ryan(gerer(G,cA,cR)) = 
  (*$ \left\{
 \begin{array}{ll}
 		$- Personnage::jeter(ryan(G)) $\\$si cR = JETER $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G)) $\land$ Bloc::type(Terrain::bloc(terrain(G),posX(G,ryan(G)),posY(G,ryan(G))))=VIDE $  \\
-		$- Personnage::ramasser\_objet(ryan(G), Bloc::objet(Terrain::bloc(terrain(G), posX(ryan(G)),posY(ryan(G))))) $\\$si cR = RAMASSER $\land$ posZ(ryan(G))=0 $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G)) $  \\
+		$- Personnage::ramasser\_objet(ryan(G), Bloc::objet(Terrain::bloc(terrain(G), posX(G,ryan(G)),posY(G,ryan(G))))) $\\$si cR = RAMASSER $\land$ posZ(G,ryan(G))=0 $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G)) $  \\
 		$- Personnage::ramasser\_perso(ryan(G), p) $\\$si collision(G,ryan(G), p) $\land$ cR = RAMASSER  $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G)) $  \\
-		$- Personnage::ramasser\_argent(ryan(G), Bloc::objet(Terrain::bloc(terrain(G), posX(ryan(G)),posY(ryan(G))))) $\\$si cR = RAMASSER $\land$ posZ(ryan(G))=0 $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G)) $  \\
+		$- Personnage::ramasser\_argent(ryan(G), Bloc::objet(Terrain::bloc(terrain(G), posX(G,ryan(G)),posY(G,ryan(G))))) $\\$si cR = RAMASSER $\land$ posZ(G,ryan(G))=0 $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G)) $  \\
 		$- Personnage::retrait\_vie(ryan(G), Personnage::force(p)) $\\$si collision(G,ryan(G),p) $\land$ actionGangster(G,p) = FRAPPER $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G)) $  \\
-		$ - Personnage::retrait\_vie(ryan(G), Personnage::points\_de\_vie(ryan(G)) $ \\ $ si Bloc::type(Terrain::bloc(terrain(G), posX(ryan(G)), posY(ryan(G)),posZ(ryan(G)))) = FOSSE $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G)) $ \\
+		$ - Personnage::retrait\_vie(ryan(G), Personnage::points\_de\_vie(ryan(G)) $ \\ $ si Bloc::type(Terrain::bloc(terrain(G), posX(G,ryan(G)), posY(G,ryan(G)))) = FOSSE $\land$ $\lnot$Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G)) $ \\
 		$- ryan(G) Sinon$
 		\end{array} 
 \right.$ *)
@@ -551,20 +644,40 @@ Observations :
  (*$ \left\{
 \begin{array}{ll}
 		$- Gangster::jeter(g) $\\$si actionGangster(G,g) = JETER $\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g) $\land$ Bloc::type(Terrain::bloc(terrain(G),posX(G,g),posY(G,g)))=VIDE $  \\
-		$- Gangster::ramasser\_objet(g, Bloc::objet(Terrain::bloc(terrain(G), posX(g),posY(g)))) $\\$si actionGangster(G,g) = RAMASSER $\land$ posZ(g)=0 $\land$ $\lnot$Gangster::est\_vaincu(g) $\land$ $\lnot$estGele(G,g) $  \\
+		$- Gangster::ramasser\_objet(g, Bloc::objet(Terrain::bloc(terrain(G), posX(G,g),posY(G,g)))) $\\$si actionGangster(G,g) = RAMASSER $\land$ posZ(G,g)=0 $\land$ $\lnot$Gangster::est\_vaincu(g) $\land$ $\lnot$estGele(G,g) $  \\
 		$- Gangster::retrait\_vie(g, Personnage::force(p)) $\\$si collision(G,alex(G),g) $\land$ cA = FRAPPER $\land$ $\lnot$Gangster::est\_vaincu(g) $\land$ $\lnot$estGele(G,g) $  \\
 		$- Gangster::retrait\_vie(g, Personnage::force(p)) $\\$si collision(G,ryan(G),g) $\land$ cR = FRAPPER $\land$ $\lnot$Gangster::est\_vaincu(g) $\land$ $\lnot$estGele(G,g) $  \\
-		$- Gangster::retrait\_vie(g, Gangster::points\_de\_vie(g) $ \\ $ si Bloc::type(Terrain::bloc(terrain(G), posX(g), posY(g),posZ(g))) = FOSSE $\land$ $\lnot$Gangster::est\_vaincu(g) $\land$ $\lnot$estGele(G,g) $ \\
+		$- Gangster::retrait\_vie(g, Gangster::points\_de\_vie(g) $ \\ $ si Bloc::type(Terrain::bloc(terrain(G), posX(G,g), posY(G,g))) = FOSSE $\land$ $\lnot$Gangster::est\_vaincu(g) $\land$ $\lnot$estGele(G,g) $ \\
 		$- g Sinon$
 		\end{array} 
 \right.$ *) 
 }  (*$\forall$*) g (*$\in$*) gangsters(G)
+
+	slick(gerer(G,cA,cR)) =
+ (*$ \left\{
+\begin{array}{ll}
+		$- Gangster::jeter(slick(G)) $\\$si actionGangster(G,slick(G)) = JETER $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G)) $\land$ Bloc::type(Terrain::bloc(terrain(G),posX(G,slick(G)),posY(G,slick(G))))=VIDE $  \\
+		$- Gangster::ramasser\_objet(g, Bloc::objet(Terrain::bloc(terrain(G), posX(G,slick(G)),posY(G,slick(G))))) $\\$si actionGangster(G,g) = RAMASSER $\land$ posZ(G,slick(G))=0 $\land$ $\lnot$Gangster::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G)) $  \\
+		$- Gangster::retrait\_vie(slick(G), Personnage::force(p)) $\\$si collision(G,alex(G),slick(G)) $\land$ cA = FRAPPER $\land$ $\lnot$Gangster::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,g) $  \\
+		$- Gangster::retrait\_vie(slick(G), Personnage::force(p)) $\\$si collision(G,ryan(G),slick(G)) $\land$ cR = FRAPPER $\land$ $\lnot$Gangster::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G)) $  \\
+		$- Gangster::retrait\_vie(slick(G), Gangster::points\_de\_vie(slick(G)) $ \\ $ si Bloc::type(Terrain::bloc(terrain(G), posX(G,slick(G)), posY(G,slick(G)))) = FOSSE $\land$ $\lnot$Gangster::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G)) $ \\
+		$- slick(G) Sinon$
+		\end{array} 
+\right.$ *) 
 	
 
 	estVisible(gerer(G,cA,cR),alex(G)) = 
 	 (*$ \left\{
 \begin{array}{ll} 
 		$true $&$si $\lnot$Personnage::est\_vaincu(alex(G)) $ \\
+		$false $&$sinon $
+		\end{array} 
+\right.$ *)
+
+	estVisible(gerer(G,cA,cR),ryan(G)) = 
+	 (*$ \left\{
+\begin{array}{ll} 
+		$true $&$si $\lnot$Personnage::est\_vaincu(ryan(G)) $ \\
 		$false $&$sinon $
 		\end{array} 
 \right.$ *)
@@ -577,35 +690,119 @@ Observations :
 		$false $&$ si collision(G,alex(G),g) $\land$ cA = RAMASSER $ \\
 		$false $&$sinon $
 		\end{array} 
-		
 \right\}$ *) (*$\forall$*) g (*$\in$*) gangsters(G)
 
-	posX(gerer(G,cA,cR),p) = 
-		posX(G,alex(G)) si cA = JETER  (*$\land$*) Personnage::perso_equipe(alex(G)) = p (*$\land$*) (*$\lnot$*)Personnage::est_vaincu(alex(G)) 
-		posX(G,p) sinon
+	estVisible(gerer(G,cA,cR),slick(G))) = 
+	 (*$ \left\{
+\begin{array}{ll} 
+		$true $&$si $\lnot$Gangster::est\_vaincu(slick(G)) $ \\
+		$true $&$ si Personnage:perso\_equipe(alex(G)) = slick(G) $\land$ cA = JETER $ \\
+		$false $&$ si collision(G,alex(G),slick(G)) $\land$ cA = RAMASSER $ \\
+		$false $&$sinon $
+		\end{array} 
+\right.$ *)		
+
+
+	posX(G,gerer(G,cA,cR),p) = 
+		(*$ \left\{
+\begin{array}{ll} 
+		$ posX(G,alex(G)) $&$si cA = JETER  $\land$ Personnage::perso\_equipe(alex(G)) = p $\land$ $\lnot$ Personnage::est\_vaincu(alex(G)) $ \\
+		$ posX(G,p) $&$sinon $
+		\end{array} 
 		
-	posY(gerer(G,cA,cR),p) = 
-		posY(G,alex(G)) si cA = JETER (*$\land$*) Personnage::perso_equipe(alex(G)) = p (*$\land$*) (*$\lnot$*)Personnage::est_vaincu(alex(G)) 
-		posY(G,p) sinon
+\right.$ *)	
+	posY(G,gerer(G,cA,cR),p) = 
+		(*$ \left\{
+\begin{array}{ll} 
+
+		$posY(G,alex(G)) $&$si cA = JETER $\land$ Personnage::perso\_equipe(alex(G)) = p $\land$ $\lnot$ Personnage::est\_vaincu(alex(G)) $ \\
+		$posY(G,p) $&$ sinon $ 
+		\end{array} 
 		
+\right.$ *)			
 	posZ(gerer(G,cA,cR),p) = 
-		0 si cA = JETER (*$\land$*) Personnage::perso_equipe(alex(G)) = p (*$\land$*) (*$\lnot$*)Personnage::est_vaincu(alex(G)) 
-		posZ(G,p) sinon
+		(*$ \left\{
+\begin{array}{ll} 
+		$0 $&$si cA = JETER $\land$  Personnage::perso\_equipe(alex(G)) = p $\land$ $\lnot$ Personnage::est\_vaincu(alex(G))  $ \\
+		$posZ(G,p) $&$ sinon$
+		\end{array} 
 		
-TODO SLICK AND GANGSTERS AND RYAN 
-	
+\right.$ *)	
+
+	posX(G,gerer(G,cA,cR),p) = 
+		(*$ \left\{
+\begin{array}{ll} 
+		$ posX(G,ryan(G)) $&$si cA = JETER  $\land$ Personnage::perso\_equipe(ryan(G)) = p $\land$ $\lnot$ Personnage::est\_vaincu(ryan(G)) $ \\
+		$ posX(G,p) $&$sinon $
+		\end{array} 
+		
+\right.$ *)	
+	posY(G,gerer(G,cA,cR),p) = 
+		(*$ \left\{
+\begin{array}{ll} 
+
+		$posY(G,ryan(G)) $&$si cA = JETER $\land$ Personnage::perso\_equipe(ryan(G)) = p $\land$ $\lnot$ Personnage::est\_vaincu(ryan(G)) $ \\
+		$posY(G,p) $&$ sinon $ 
+		\end{array} 
+		
+\right.$ *)			
+	posZ(gerer(G,cA,cR),p) = 
+		(*$ \left\{
+\begin{array}{ll} 
+		$0 $&$si cA = JETER $\land$  Personnage::perso\_equipe(ryan(G)) = p $\land$ $\lnot$ Personnage::est\_vaincu(ryan(G))  $ \\
+		$posZ(G,p) $&$ sinon$
+		\end{array} 
+		
+\right.$ *)		
 
 
-	Terrain::bloc(terrain(gerer(G,cA,cR)), posX(alex(G)), posY(alex(G))) = 
-	- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)))) 
-		si cA = RAMASSER (*$\land$*) (*$\lnot$*)Personnage::est_vaincu(alex(G)) 
-	- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)))), Personnage:objet_equipe(alex(G)) 
-		si cA = JETER (*$\land$*) Personnage::est_equipe_objet(alex(G)) = true (*$\land$*) (*$\lnot$*)Personnage::est_vaincu(alex(G)) 
-	- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(g),posY(g)), Objet::init("Recompense",0,1000)) si Gangster::est_vaincu(g)
-	- Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G))) Sinon
+	Terrain::bloc(terrain(gerer(G,cA,cR)), posX(G,alex(G)), posY(G,alex(G))) = 
+	(*$ \left\{
+\begin{array}{ll} 
+	$- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(G,alex(G)), posY(G,alex(G)))) $ \\
+	$	si cA = RAMASSER $\land$  $\lnot$ Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G)) $\\
+	$- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(G,alex(G)), posY(G,alex(G)))), Personnage:objet\_equipe(alex(G))  $ \\
+	$	si cA = JETER $\land$  Personnage::est\_equipe\_objet(alex(G)) = true $\land$  $\lnot$ Personnage::est\_vaincu(alex(G)) $\land$ $\lnot$estGele(G,alex(G))$ \\
+	$- Terrain::bloc(terrain(G), posX(G,alex(G)), posY(G,alex(G))) Sinon $
+	\end{array} 
+\right.$  *) 
 	
-	
+	Terrain::bloc(terrain(gerer(G,cA,cR)), posX(G,ryan(G)), posY(G,ryan(G))) = 
+	(*$ \left\{
+\begin{array}{ll} 
+	$- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(G,ryan(G)), posY(G,ryan(G)))) $ \\
+	$	si cR = RAMASSER $\land$  $\lnot$ Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G)) $\\
+	$- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(G,ryan(G)), posY(G,ryan(G)))), Personnage:objet\_equipe(ryan(G))  $ \\
+	$	si cR = JETER $\land$  Personnage::est\_equipe\_objet(ryan(G)) = true $\land$  $\lnot$ Personnage::est\_vaincu(ryan(G)) $\land$ $\lnot$estGele(G,ryan(G))$ \\
+	$- Terrain::bloc(terrain(G), posX(G,ryan(G)), posY(G,ryan(G))) Sinon $
+	\end{array} 
+\right.$  *)
 
+	Terrain::bloc(terrain(gerer(G,cA,cR)), posX(G,slickG)), posY(G,slick(G))) = 
+	(*$ \left\{
+\begin{array}{ll} 
+	$- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(G,slick(G)), posY(G,slick(G)))) $ \\
+	$	si actionGangster(G,slick(G)) = RAMASSER $\land$  $\lnot$ Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G)) $\\
+	$- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(G,slick(G)), posY(G,slick(G)))), Personnage:objet\_equipe(slick(G))  $ \\
+	$	si actionGangster(G,slick(G)) = JETER $\land$  Personnage::est\_equipe\_objet(slick(G)) = true $\land$  $\lnot$ Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))$ \\
+	$- Terrain::bloc(terrain(G), posX(G,slick(G)), posY(G,slick(G))) Sinon $
+	\end{array} 
+\right.$  *)
+
+	Terrain::bloc(terrain(gerer(G,cA,cR)), posX(G,g), posY(G,g)) = 
+	(*$ \left\{
+\begin{array}{ll} 
+	$- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(G,g), posY(G,g))) $ \\
+	$	si actionGangster(G,g) = RAMASSER $\land$  $\lnot$ Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g) $\\
+	$- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(G,g), posY(G,g))), Personnage:objet\_equipe(g)  $ \\
+	$	si actionGangster(G,g) = JETER $\land$  Personnage::est\_equipe\_objet(g) = true $\land$  $\lnot$ Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)$ \\
+	$- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(G,g),posY(G,g)), Objet::init("Recompense",0,1000)) $ \\
+	$      si Gangster::est\_vaincu(g) $ \\
+	$- Terrain::bloc(terrain(G), posX(G,g), posY(G,g)) Sinon $
+	\end{array} 
+\right.$  *) (*$\forall$*) g (*$\in$*) gangsters(G)
+
+	
 
 \end{Spe}
 %\end{landscape}
