@@ -462,8 +462,8 @@ Observations :
 	 posX(gerer(G,cA,cR),alex(G)) =
 	 	(*$ \left\{
 \begin{array}{ll}
- $posX(G,alex(G)) + 10 $&$si cA = DROIT $\lor$ cA = SAUTDROIT $\land$ $\lnot$Personnage::estVaincu(alex(G)) $ \\
- $posX(G,alex(G)) - 10 $&$si cA = GAUCHE $\lor$ cA = SAUTGAUCHE $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+ $min(posX(G,alex(G)) + 10,Terrain:largeur(terrain(G))) $&$si cA = DROIT $\lor$ cA = SAUTDROIT $\land$ $\lnot$Personnage::estVaincu(alex(G)) $ \\
+ $max(posX(G,alex(G)) - 10,0) $&$si cA = GAUCHE $\lor$ cA = SAUTGAUCHE $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
  $posX(G,alex(G)) $&$sinon $ 
 \end{array} 
 \right.$ *)
@@ -471,7 +471,7 @@ Observations :
 	 posY(gerer(G,cA,cR),alex(G)) = 
 	 	(*$ \left\{
 \begin{array}{ll}
-	 	$posY(G,alex(G)) + 10 $&$si cA = HAUT $\lor$ cA = SAUTHAUT $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+	 	$min(posY(G,alex(G)) + 10,Terrain:profondeur(terrain(G))) $&$si cA = HAUT $\lor$ cA = SAUTHAUT $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
 	 	$posY(G,alex(G)) - 10 $&$si cA = BAS $\lor$ cA = SAUTBAS $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
 	 	$posY(G,alex(G)) $&$sinon $
 	 	\end{array} 
@@ -484,35 +484,6 @@ Observations :
 		$0 Sinon $
 	 	\end{array} 
 \right.$ *)
-	
-	 posX(gerer(G,cA,cR),ryan(G)) =
-	 	(*$ \left\{
-\begin{array}{ll}
- $posX(G,ryan(G)) + 10 $&$si cR = DROIT $\lor$ cR = SAUTDROIT $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $ \\
- $posX(G,ryan(G)) - 10 $&$si cR = GAUCHE $\lor$ cR = SAUTGAUCHE $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
- $posX(G,ryan(G)) $&$sinon $ 
-\end{array} 
-\right.$ *)
-
-	 	
-	 posY(gerer(G,cA,cR),ryan(G)) = 
-	 	(*$ \left\{
-\begin{array}{ll}
-	 	$posY(G,ryan(G)) + 10 $&$si cR = HAUT $\lor$ cR = SAUTHAUT $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $ \\
-	 	$posY(G,ryan(G)) - 10 $&$si cR = BAS $\lor$ cR = SAUTBAS $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
-	 	$posY(G,ryan(G)) $&$sinon $
-	 	\end{array} 
-\right.$ *)
-
- 	posZ(gerer(G,cA,cR),ryan(G)) = 
-	 	(*$ \left\{
-\begin{array}{ll}
-	 
-	 	$10 si cR = SAUT $\lor$ cR = SAUTBAS $\lor$ cR = SAUTHAUT $\lor$ cR = SAUTDROIT $\lor$ cR = SAUTGAUCHE $\\ \land$ $\lnot$Personnage::estVaincu(ryan(G)) $ \\
-		$0 Sinon $
-	 	\end{array} 
-\right.$ *)
-
 		
 	alex(gerer(G,cA,cR)) = 
  (*$ \left\{
@@ -546,29 +517,6 @@ Observations :
 		\end{array} 
 \right.$ *)	
 	
-	ryan(gerer(G,cA,cR)) = 
-	(*$ \left\{
-\begin{array}{ll}
-		$- Personnage::jeter(ryan(G)) si cR = JETER $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
-		$- Personnage::ramasser\_objet(ryan(G), Bloc::objet(Terrain::bloc(terrain(G), posX(ryan(G)), $\\$posY(ryan(G)),posZ(ryan(G)))) si cR = RAMASSER $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $ \\
-		$- Personnage::ramasser\_perso(ryan(G), p) $\\$ si collision(ryan(G), p) $\land$ cR = RAMASSER $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
-		$- Personnage::retrait\_vie(ryan(G), Personnage::force(p)) $\\$ si collision(ryan(G),p) $\land$ Gangster::action(p) = FRAPPER $\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
-		$- Personnage::retrait\_vie(ryan(G), Personnage::points\_de\_vie(ryan(G)) $ \\ $	si Bloc::type(Terrain::bloc(terrain(G), posX(ryan(G)), posY(ryan(G)),posZ(ryan(G)))) = FOSSE $ \\\land$ $\lnot$Personnage::estVaincu(ryan(G)) $  \\
-		$- ryan(G) Sinon$
-		\end{array} 
-\right.$ *)
-
-	posX(gerer(G,cA,cR),p) = 
-		posX(ryan(G))+Personnage::largeur(ryan(G))/2 si cR = JETER  (*$\land$*) Personnage::perso_equipe(ryan(G)) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
-		posX(G,p) sinon
-		
-	posY(gerer(G,cA,cR),p) = 
-		posY(ryan(G)) si cR = JETER (*$\land$*) Personnage::perso_equipe(ryan(G)) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
-		posY(G,p) sinon
-	
-	posZ(gerer(G,cA,cR),p) = 
-		0 si cR = JETER (*$\land$*) Personnage::perso_equipe(ryan(G)) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
-		posZ(G,p) sinon
 
 
 	terrain(gerer(G,cA,cR)) = 
