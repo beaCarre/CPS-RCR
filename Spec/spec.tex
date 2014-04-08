@@ -517,7 +517,7 @@ Observations :
 	alex(gerer(G,cA,cR)) = 
  (*$ \left\{
 \begin{array}{ll}
-		$- Personnage::jeter(alex(G)) si cA = JETER $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+		$- Personnage::jeter(alex(G)) si cA = JETER $\land$ $\lnot$Personnage::estVaincu(alex(G)) $\land$ Bloc::type(Terrain::bloc(terrain(G),posX(G,alex(G)),posY(G,alex(G))))=VIDE $  \\
 		$- Personnage::ramasser\_objet(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(alex(G)),posY(alex(G))))) si cA = RAMASSER $\land$ posZ(alex(G))=0 $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
 		$- Personnage::ramasser\_perso(alex(G), p) $\\$si collision(alex(G), p) $\land$ cA = RAMASSER  $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
 		$- Personnage::ramasser\_argent(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(alex(G)),posY(alex(G))))) si cA = RAMASSER $\land$ posZ(alex(G))=0 $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
@@ -528,13 +528,13 @@ Observations :
 \right.$ *)
 
 	posX(gerer(G,cA,cR),p) = 
-		posX(G,alex(G))+10 si cA = JETER  (*$\land$*) Personnage::perso_equipe(alex()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
+		posX(G,alex(G))+10 si cA = JETER  (*$\land$*) Personnage::perso_equipe(alex(G)) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
 		posX(G,p) sinon
 	posY(gerer(G,cA,cR),p) = 
-		posY(G,alex(G)) si cA = JETER (*$\land$*) Personnage::perso_equipe(alex()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
+		posY(G,alex(G)) si cA = JETER (*$\land$*) Personnage::perso_equipe(alex(G)) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
 		posY(G,p) sinon
 	posZ(gerer(G,cA,cR),p) = 
-		0 si cA = JETER (*$\land$*) Personnage::perso_equipe(alex()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
+		0 si cA = JETER (*$\land$*) Personnage::perso_equipe(alex(G)) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
 		posZ(G,p) sinon
 		
 	slick(gerer(G,cA,cR)) = 
@@ -559,27 +559,27 @@ Observations :
 \right.$ *)
 
 	posX(gerer(G,cA,cR),p) = 
-		posX(ryan(G))+10 si cR = JETER  (*$\land$*) Personnage::perso_equipe(ryan()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
+		posX(ryan(G))+Personnage::largeur(ryan(G))/2 si cR = JETER  (*$\land$*) Personnage::perso_equipe(ryan(G)) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
 		posX(G,p) sinon
 		
 	posY(gerer(G,cA,cR),p) = 
-		posY(ryan(G)) si cR = JETER (*$\land$*) Personnage::perso_equipe(ryan()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
+		posY(ryan(G)) si cR = JETER (*$\land$*) Personnage::perso_equipe(ryan(G)) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
 		posY(G,p) sinon
 	
 	posZ(gerer(G,cA,cR),p) = 
-		0 si cR = JETER (*$\land$*) Personnage::perso_equipe(ryan()) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
+		0 si cR = JETER (*$\land$*) Personnage::perso_equipe(ryan(G)) = p (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
 		posZ(G,p) sinon
 
 
 	terrain(gerer(G,cA,cR)) = 
 	- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)),posZ(alex(G))) 
 		si cA = RAMASSER (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
-	- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)),posZ(alex(G))), Personnage:objet_equipe(alex()) 
-		si cA = JETER (*$\land$*) Personnage::est_equipe_objet(alex()) = true (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
+	- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)),posZ(alex(G))), Personnage:objet_equipe(alex(G)) 
+		si cA = JETER (*$\land$*) Personnage::est_equipe_objet(alex(G)) = true (*$\land$*) (*$\lnot$*)Personnage::estVaincu(alex(G)) 
 	- Bloc::retirerObjet(Terrain::bloc(terrain(G), posX(ryan(G)), posY(ryan(G)),posZ(ryan(G))) 
 		si cR = RAMASSER (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
-	- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(ryan(G)), posY(ryan(G)),posZ(ryan(G))), Personnage:objet_equipe(ryan()) 
-		si cR = JETER (*$\land$*) Personnage::est_equipe_objet(ryan()) = true (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
+	- Bloc::poserObjet(Terrain::bloc(terrain(G), posX(ryan(G)), posY(ryan(G)),posZ(ryan(G))), Personnage:objet_equipe(ryan(G)) 
+		si cR = JETER (*$\land$*) Personnage::est_equipe_objet(ryan(G)) = true (*$\land$*) (*$\lnot$*)Personnage::estVaincu(ryan(G)) 
 	- terrain(G) sinon 
 	
 	

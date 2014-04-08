@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.12)  8 APR 2014 16:44
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.12)  8 APR 2014 17:27
 entering extended mode
  %&-line parsing enabled.
 **spec.tex -o spec.pdf
@@ -574,34 +574,34 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 361.
  [6] [7]
-Overfull \hbox (15.39249pt too wide) in paragraph at lines 457--465
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (20.33493pt too wide) in paragraph at lines 475--482
+Overfull \hbox (15.39249pt too wide) in paragraph at lines 463--471
 [][][][]$[]$  
  []
 
 [8]
-Overfull \hbox (19.05826pt too wide) in paragraph at lines 483--492
+Overfull \hbox (20.33493pt too wide) in paragraph at lines 481--488
 [][][][]$[]$  
  []
 
 
-Overfull \hbox (19.64066pt too wide) in paragraph at lines 502--511
+Overfull \hbox (19.05826pt too wide) in paragraph at lines 489--498
 [][][][]$[]$  
  []
 
 
-Overfull \hbox (367.9565pt too wide) in paragraph at lines 512--524
+Overfull \hbox (19.64066pt too wide) in paragraph at lines 508--517
+[][][][]$[]$  
+ []
+
+
+Overfull \hbox (367.9565pt too wide) in paragraph at lines 518--530
 [][][][]$[]$  
  []
 
 [9] [10] (./spec.aux) ) 
 Here is how much of TeX's memory you used:
- 8008 strings out of 495061
- 108861 string characters out of 1182621
+ 8014 strings out of 495061
+ 108957 string characters out of 1182621
  639879 words of memory out of 3000000
  10656 multiletter control sequences out of 15000+50000
  13663 words of font info for 29 fonts, out of 3000000 for 9000
@@ -618,9 +618,9 @@ share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf
 -texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fon
 ts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/pub
 lic/amsfonts/cm/cmsy10.pfb>
-Output written on spec.pdf (10 pages, 195495 bytes).
+Output written on spec.pdf (10 pages, 196655 bytes).
 PDF statistics:
- 809 PDF objects out of 1000 (max. 8388607)
- 429 named destinations out of 1000 (max. 500000)
+ 818 PDF objects out of 1000 (max. 8388607)
+ 435 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
