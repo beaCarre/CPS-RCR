@@ -86,18 +86,18 @@ Constructors :
 Operators :
 	retrait_vie :  [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
 		pre retrait_vie(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
-		
-	depot_vie : [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
-		pre depot_vie(P,s) require (*$\lnot$*) est_vaincu(P) (*$\land$*) s(*$>$*)0
-		
+
 	retrait_argent :  [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
-		pre retrait_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0 (*$\land$*) somme_d_argent(P) (*$\ge$*) s // pour ne pas avoir une somme negative
+		pre retrait_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0 (*$\land$*) somme_d_argent(P) (*$\ge$*) s 
 		
 	depot_argent : [Personnage] (*$\times$*) int (*$\rightarrow$*) [Personnage]
 		pre depot_argent(P,s) require (*$\lnot$*)est_vaincu(P) (*$\land$*) s(*$>$*)0
-		
+
+	ramasser_argent : [Personnage] (*$\times$*) Object (*$\rightarrow$*) [Personnage]
+		pre ramasser_argent(P,o) require (*$\lnot$*)est_vaincu(P) (*$\land$*) Objet::est_de_valeur(o))	
+
 	ramasser_objet : [Personnage] (*$\times$*) Object (*$\rightarrow$*) [Personnage]
-		pre ramasser_objet(P,o) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (((*$\lnot$*)est_equipe_objet(P) (*$\land$*)  (*$\lnot$*)est_equipe_perso(P) (*$\land$*) Objet::est_equipable(o)) (*$\lor$*) Objet::est_de_valeur(o))
+		pre ramasser_objet(P,o) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe_objet(P) (*$\land$*)  (*$\lnot$*)est_equipe_perso(P) (*$\land$*) Objet::est_equipable(o)
 		
 	ramasser_perso : [Personnage] (*$\times$*) Personnage (*$\rightarrow$*) [Personnage]
 		pre ramasser_perso(P,p) require (*$\lnot$*)est_vaincu(P) (*$\land$*) (*$\lnot$*)est_equipe_objet(P) (*$\land$*) (*$\lnot$*)est_equipe_perso(P)
@@ -126,9 +126,6 @@ Observations :
 	[(*$\specB{retrait\_vie}$*)]
 		points_de_vie(retrait_vie(P,s)) = points_de_vie(P) - s
 		
-	[(*$\specB{depot\_vie}$*)]
-		points_de_vie(depot_vie(P,s)) = points_de_vie(P) + s 
-		
 	[(*$\specB{retrait\_argent}$*)]
 		somme_d_argent(retrait_argent(P,s)) = argent(P) - s 
 		
@@ -136,30 +133,11 @@ Observations :
 		somme_d_argent(depot_argent(P,s)) = argent(P) + s 
 		
 	[(*$\specB{ramasser\_objet}$*)]
-		objet_equipe(ramasser_objet(P,objet)) = 
-			(*$ \left\{
-		\begin{array}{ll}
-			$objet $&$si  Objet::est\_equipable(objet\_equipe(P)) $ \\
-			$null $&$sinon $
-				 	\end{array} 
-\right.$ *)
+		objet_equipe(ramasser_objet(P,objet)) = objet
+		force(ramasser_objet(P,objet)) = force(P) + Objet::bonus_force(objet)
 
-		force(ramasser_objet(P,objet)) = 
-			(*$ \left\{
-\begin{array}{ll}
-$force(P) + Objet::bonus\_force(objet) $&$si Objet::est\_equipable(objet) $ \\
-$force(P) $&$sinon $
-	 	\end{array} 
-\right.$ *)
-			
-		somme_d_argent(ramasser_objet(P,objet)) = 
-			(*$ \left\{
-		\begin{array}{ll}
-$somme\_d\_argent(P) + Objet::valeur\_marchande(objet) $&$si Objet::est\_de\_valeur(objet) $ \\
-$somme\_d\_argent(P) $&$sinon $
-
-	 	\end{array} 
-\right.$ *)
+	[(*$\specB{ramasser\_argent}$*)]
+		somme_d_argent(ramasser_objet(P,objet)) = somme_d_argent(P) + Objet::valeur_marchande(objet)
 					
 	[(*$\specB{ramasser\_perso}$*)]
 		perso_equipe(ramasser_perso(P,perso)) = perso 
@@ -168,13 +146,15 @@ $somme\_d\_argent(P) $&$sinon $
 		perso_equipe(jeter(P)) = null
 		force(jeter(P)) = 
 		 	(*$ \left\{
-\begin{array}{ll}
-$force(P) - Objet::bonus\_force(objet\_equipe(P)) $\\$			   si est\_equipe\_objet(P) $\land$ Objet::est\_equipable(objet\_equipe(P)) $ \\
-$force(P) sinon $ 
+                \begin{array}{ll}
+                  $force(P) - Objet::bonus\_force(objet\_equipe(P)) si est\_equipe\_objet(P)  $\\$
+                  force(P) sinon $ 
 	 	\end{array} 
-\right.$ *)			
+                \right.$ *)			
 		objet_equipe(jeter(P)) = null
+
 \end{Spe}
+
 \section{Gangster}
 \begin{Spe}
 service: Gangster
@@ -184,25 +164,33 @@ Observators :
 	action : [Gangster]  (*$\rightarrow$*) ACTION
 		pre action(G) require (*$\lnot$*)estVaincu(G)
 		
-
 Constructors : 
 
-	init : String (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Gangster]
-		pre init(nom,largeur,hauteur,profondeur,force, pdv, argent) require nom (*$\neq$*) "" (*$\land$*) largeur(*$>$*)0 (*$\land$*) hauteur(*$>$*)0 (*$\land$*) profondeur(*$>$*)0 (*$\land$*) force(*$>$*)0 (*$\land$*) pdv(*$>$*)0 (*$\land$*) argent(*$\ge$*)0 
+	init : String (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int (*$\times$*) int  (*$\rightarrow$*) [Gangster]
+		pre init(nom,largeur,hauteur,profondeur,force, pdv) require nom (*$\neq$*) "" (*$\land$*) largeur(*$>$*)0 (*$\land$*) hauteur(*$>$*)0 (*$\land$*) profondeur(*$>$*)0 (*$\land$*) force(*$>$*)0 (*$\land$*) pdv(*$>$*)0 
 		
 Observations :
 	[(*$\specB{init}$*)]
-		nom(init(n,l,h,p,f,v,a))=n
-		largeur(init(n,l,h,p,f,v,a))=l
-		hauteur(init(n,l,h,p,f,v,a))=h
-		profondeur(init(n,l,h,p,f,v,a))=p
-		force(init(n,l,h,p,f,v,a))=f
-		points_de_vie(init(n,l,h,p,f,v,a))=v
-		somme_d_argent(init(n,l,h,p,f,v,a))=a
-		objet_equipe(init(n,l,h,p,f,v,a))=null
-		perso_equipe(init(n,l,h,p,f,v,a))=null
-		action(init(n,l,h,p,f,v,a)) = RIEN
- 
+		nom(init(n,l,h,p,f,v))=n
+		largeur(init(n,l,h,p,f,v))=l
+		hauteur(init(n,l,h,p,f,v))=h
+		profondeur(init(n,l,h,p,f,v))=p
+		force(init(n,l,h,p,f,v))=f
+		points_de_vie(init(n,l,h,p,f,v))=v
+		somme_d_argent(init(n,l,h,p,f,v))=0
+		objet_equipe(init(n,l,h,p,f,v))=null
+		perso_equipe(init(n,l,h,p,f,v))=null
+		action(init(n,l,h,p,f,v)) = RIEN
+		
+	[(*$\specB{retrait\_argent}$*)]
+		somme_d_argent(retrait_argent(G,s)) = argent(G)
+		
+	[(*$\specB{depot\_argent}$*)]
+		somme_d_argent(depot_argent(G,s)) = argent(G) 
+
+	[(*$\specB{ramasser\_argent}$*)]
+		somme_d_argent(ramasser_objet(G,objet)) = somme_d_argent(G)
+					
 \end{Spe}
 
 \section{Bloc}
@@ -216,10 +204,10 @@ Observators :
 Constructors :
       init : TYPE (*$\times$*) Objet (*$\rightarrow$*) [Bloc]
             pre init(t,o) require 
-            (t=VIDE (*$\lor$*) t=FOSSE ) (*$\land$*) o=null) (*$\lor$*) (t=OBJ(*$\land$*) (*$\land$*) o(*$\ne$*)null ) 
+            (t=VIDE (*$\lor$*) t=FOSSE ) (*$\land$*) o=null) (*$\lor$*) (t=OBJET (*$\land$*) o(*$\ne$*)null ) 
 Operators :
       retirerObjet : [Bloc] (*$\rightarrow$*) [Bloc]
-            pre retirerObjet(B) require type(B)=OBJ(*$\land$*) 
+            pre retirerObjet(B) require type(B)=OBJET
       poserObjet : [Bloc] (*$\times$*) Objet (*$\rightarrow$*) [Bloc]
             pre poserObjet(B,o) require type(B)=VIDE 
 Observations :
@@ -284,7 +272,7 @@ Observators :
 Constructors :
 
 	init : int (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Terrain]
-		pre init(largeur, hauteur, prof) require largeur (*$>$*) 0 (*$\land$*) hauteur (*$>$*) 0 (*$\land$*) prof (*$>$*) 0
+		pre init(largeur, hauteur, prof) require largeur (*$>$*) 0 (*$\land$*) hauteur (*$>$*) 0 (*$\land$*) prof (*$>$*) 0 (*$\land$*) largeur%50=0 (*$\land$*) profondeur%50=0
              
 Operators : 
 
@@ -326,28 +314,26 @@ Operators :
 Observations :
 	[(*$\specB{Invariants}$*)]
 	
-(*estFini(M) $\stackrel{min}{=} \left\{
-\begin{array}{ll}
-  & $(Personnage:: estVaincu(GestionCombat::alex(combat(M))) $ \\  
-  & \land $ Personnage::estVaincu(GestionCombat::ryan(combat(M))))$\\ 
-  & \lor $ Gangster::estVaincu(GestionCombat::slick(combat(M)) $ 
-\end{array} \right.$ *)
+estFini(M) (*$\stackrel{min}{=}$*) (Personnage:: estVaincu(GestionCombat::alex(combat(M))) 
+             (*$\land$*) Personnage::estVaincu(GestionCombat::ryan(combat(M))))
+             (*$\lor$*) Gangster::estVaincu(GestionCombat::slick(combat(M)))
+
 
 (*resultat(M)$  \stackrel{min}{=} \left\{\begin{array}{ll}
-$ALEXGAGNANT$ & $si Personnage::!estVaincu(GestionCombat::alex(combat(M)))$ \\
+$ALEXGAGNANT$ & $si $\lnot$Personnage::estVaincu(GestionCombat::alex(combat(M)))$ \\
 & \land $ Gangster::estVaincu(GestionCombat::slick(combat(M)))$\\
 & \land $ Personnage::estVaincu(GestionCombat::ryan(combat(M)))$ \\
 \\
-$RYANGAGNANT$ & $si Personnage::!estVaincu(GestionCombat::ryan(combat(M)))$ \\
+$RYANGAGNANT$ & $si $\lnot$Personnage::estVaincu(GestionCombat::ryan(combat(M)))$ \\
 & \land $ Gangster::estVaincu(GestionCombat::slick(combat(M))) $\\
 & \land $ Personnage::estVaincu(GestionCombat::alex(combat(M))) $\\
 \\
-$DEUXGAGNANTS$ & $si Personnage::!estVaincu(GestionCombat::ryan(combat(M)))$ \\
+$DEUXGAGNANTS$ & $si $\lnot$Personnage::estVaincu(GestionCombat::ryan(combat(M)))$ \\
 & \land $ Gangster::estVaincu(GestionCombat::slick(combat(M))) $\\
-& \land $ Personnage::!estVaincu(GestionCombat::alex(combat(M)))$ \\
+& \land $ $\lnot$Personnage::estVaincu(GestionCombat::alex(combat(M)))$ \\
 \\
-$SLICKGAGNANT$ & $si Personnage: estVaincu(GestionCombat::ryan(combat(M)))$ \\
-& \land $ Gangster::!estVaincu(GestionCombat::slick(combat(M)))$\\
+$SLICKGAGNANT$ & $si Personnage:estVaincu(GestionCombat::ryan(combat(M)))$ \\
+& \land $ $\lnot$Gangster::estVaincu(GestionCombat::slick(combat(M)))$\\
 & \land $ Personnage::estVaincu(GestionCombat::alex(combat(M)))$ \\
 \\
 $NULLE$ & $sinon$ \\
@@ -372,6 +358,7 @@ Observators :
       ryan : [GestionCombat] (*$\rightarrow$*) Personnage
       slick : [GestionCombat} (*$\rightarrow$*) Gangster
       gangsters :  [GestionCombat] (*$\rightarrow$*) Set<Gangster>
+      actionGangster : [GestionCombat] ($*times$*) Gangster -> ACTION
       estGele : [GestionCombat] (*$\times$*) Personnage (*$\rightarrow$*) boolean 
             pre estGele(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G) (*$\lor$*) perso = slick(G) (*$\lor$*) perso (*$\in$*) gangsters(G)
       estFrappe : [GestionCombat] (*$\times$*) Personnage (*$\rightarrow$*) boolean 
@@ -382,6 +369,36 @@ Observators :
             pre posY(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G) (*$\lor$*) perso = slick(G)  (*$\lor$*) perso (*$\in$*) gangsters(G)
       posZ : [GestionCombat] (*$\times$*) Personnage (*$\rightarrow$*) int
             pre posZ(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G) (*$\lor$*) perso = slick(G)  (*$\lor$*) perso (*$\in$*) gangsters(G)
+      collisionDroite : [GestionCombat] (*$\times$*) Personnage (*$\times$*) Gangster (*$\rightarrow$*) boolean
+            pre collisionDroite(G, perso1, perso2) require (perso1 = alex(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = alex(G) (*$\land$*) perso2 = slick(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 = slick(G))
+      collisionGauche : [GestionCombat] (*$\times$*) Personnage (*$\times$*) Gangster (*$\rightarrow$*) boolean
+            pre collisionGauche(G, perso1, perso2) require (perso1 = alex(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = alex(G) (*$\land$*) perso2 = slick(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 = slick(G))
+      collisionDevant : [GestionCombat] (*$\times$*) Personnage (*$\times$*) Gangster (*$\rightarrow$*) boolean
+            pre collisionDevant(G, perso1, perso2) require (perso1 = alex(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = alex(G) (*$\land$*) perso2 = slick(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 = slick(G))
+      collisionDerriere : [GestionCombat] (*$\times$*) Personnage (*$\times$*) Gangster (*$\rightarrow$*) boolean
+            pre collisionDerriere(G, perso1, perso2) require (perso1 = alex(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = alex(G) (*$\land$*) perso2 = slick(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 = slick(G))
+      collisionDessus: [GestionCombat] (*$\times$*) Personnage (*$\times$*) Gangster (*$\rightarrow$*) boolean
+            pre collisionDessus(G, perso1, perso2) require (perso1 = alex(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = alex(G) (*$\land$*) perso2 = slick(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 = slick(G))
+      collisionDessous: [GestionCombat] (*$\times$*) Personnage (*$\times$*) Gangster (*$\rightarrow$*) boolean
+            pre collisionDessous(G, perso1, perso2) require (perso1 = alex(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = alex(G) (*$\land$*) perso2 = slick(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
+            (*$\lor$*) (perso1 = ryan(G) (*$\land$*) perso2 = slick(G))
       collision : [GestionCombat] (*$\times$*) Personnage (*$\times$*) Gangster (*$\rightarrow$*) boolean
             pre collision(G, perso1, perso2) require 
             (perso1 = alex(G) (*$\land$*) perso2 (*$\in$*) gangsters(G))
@@ -400,8 +417,20 @@ Observations :
       	0 <= posX(G,s) <= Terrain::largeur(terrain)
       	0 <= posY(G,s) <= Terrain::profondeur(terrain)
       	0 <= posZ(G,s) <= Terrain::hauteur(terrain)
-         collision(G,p1,p2) (*$\stackrel{min}{=}$*) A FAIRE
-            
+        collisionDroite(G,p1,p2) (*$\stackrel{min}{=}$*)( -d (*$\le$*) posX(G,p1) - posX(G,p2) (*$\le$*) d+1) (*$\land$*) ( d = Personnage::largeur(p1)/2 + d = Personnage::largeur(p2)/2 )
+
+        collisionGauche(G,p1,p2) (*$\stackrel{min}{=}$*)( -d (*$\le$*) posX(G,p2) - posX(G,p1) (*$\le$*) d+1) (*$\land$*) ( d = Personnage::largeur(p1)/2 + d = Personnage::largeur(p2)/2 )
+
+        collisionDevant(G,p1,p2) (*$\stackrel{min}{=}$*)( -d (*$\le$*) posY(G,p1) - posY(G,p2) (*$\le$*) d+1) (*$\land$*) ( d = Personnage::profondeur(p1)/2 + d = Personnage::profondeur(p2)/2 )
+
+        collisionDerriere(G,p1,p2) (*$\stackrel{min}{=}$*)( -d (*$\le$*) posY(G,p2) - posY(G,p1) (*$\le$*) d+1) (*$\land$*) ( d = Personnage::profondeur(p1)/2 + d = Personnage::profondeur(p2)/2 )
+
+        collisionDessous(G,p1,p2) (*$\stackrel{min}{=}$*)( -d (*$\le$*) posZ(G,p1) - posZ(G,p2) (*$\le$*) d+1) (*$\land$*) ( d = Personnage::hauteur(p1)/2 + d = Personnage::hauteur(p2)/2 )
+
+        collisionDessus(G,p1,p2) (*$\stackrel{min}{=}$*)( -d (*$\le$*) posZ(G,p2) - posZ(G,p1) (*$\le$*) d+1) (*$\land$*) ( d = Personnage::hauteur(p1)/2 + d = Personnage::hauteur(p2)/2 )
+
+        collision(G,p1,p2) (*$\stackrel{min}{=}$*) collisionDroite(G,p1,p2) (*$\lor$*)collisionGauche(G,p1,p2) (*$\lor$*) collisionDevant(G,p1,p2)(*$\lor$*) collisionDerriere(G,p1,p2)(*$\lor$*) collisionDessous(G,p1,p2) (*$\lor$*) collisionDessus(G,p1,p2) 
+
       [(*$\specB{init}$*)]
     
 	terrain(init()) = Terrain::init(1000,1000,1000)
@@ -410,7 +439,13 @@ Observations :
 	slick(init()) = Gangster::init("Slick",10,10,10,100,100,0)
 	gangsters(init()) = {g = Personnage::init("???",10,10,10,100,100,0)}, (*$\forall$*) g (*$\in$*) gangsters(G)
 	estGele(init(), s) = false
-	collision(p1,p2) = false
+        collisionGauche(init(),p1,p2) = false
+        collisionDroite(init(),p1,p2) = false
+        collisionDevant(init(),p1,p2) = false
+        collisionDerriere(init(),p1,p2) = false
+        collisionDessous(init(),p1,p2) = false
+        collisionDessus(init(),p1,p2) = false
+	collision(init(),p1,p2) = false
 	estFrappe(init(), s) = false
 	posX(init(),alex(G)) < 50
 	posX(init(),slick(G)) > Terrain::largeur(terrain(G))-50
@@ -483,9 +518,10 @@ Observations :
  (*$ \left\{
 \begin{array}{ll}
 		$- Personnage::jeter(alex(G)) si cA = JETER $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
-		$- Personnage::ramasser\_objet(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(alex(G)), $\\$posY(alex(G)),posZ(alex(G)))) si cA = RAMASSER $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+		$- Personnage::ramasser\_objet(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(alex(G)),posY(alex(G))))) si cA = RAMASSER $\land$ posZ(alex(G))=0 $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
 		$- Personnage::ramasser\_perso(alex(G), p) $\\$si collision(alex(G), p) $\land$ cA = RAMASSER  $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
-		$- Personnage::retrait\_vie(alex(G), Personnage::force(p)) $\\$si collision(alex(G),p) $\land$ Gangster::action(p) = FRAPPER $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+		$- Personnage::ramasser\_argent(alex(G), Bloc::objet(Terrain::bloc(terrain(G), posX(alex(G)),posY(alex(G))))) si cA = RAMASSER $\land$ posZ(alex(G))=0 $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
+		$- Personnage::retrait\_vie(alex(G), Personnage::force(p)) $\\$si collision(G,alex(G),p) $\land$ actionGangster(G,p) = FRAPPER $\land$ $\lnot$Personnage::estVaincu(alex(G)) $  \\
 		$ - Personnage::retrait\_vie(alex(G), Personnage::points\_de\_vie(alex(G)) $ \\ $ 	si Bloc::type(Terrain::bloc(terrain(G), posX(alex(G)), posY(alex(G)),posZ(alex(G)))) = FOSSE $\\\land$ $\lnot$Personnage::estVaincu(alex(G)) $ \\
 		$- alex(G) Sinon$
 		\end{array} 
