@@ -23,8 +23,8 @@ public abstract class AbstractMoteurTests {
 	@Test
 	public final void initWorking(){
 		try{
-			MoteurContract mc = new MoteurContract(moteur);
-			mc.init();
+			
+			moteur.init();
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -35,9 +35,9 @@ public abstract class AbstractMoteurTests {
 	@Test
 	public final void pasJeuWorking(){
 		try{
-			MoteurContract mc = new MoteurContract(moteur);
-			mc.init();
-			mc.pasJeu(Commande.BAS, Commande.HAUT);
+			
+			moteur.init();
+			moteur.pasJeu(Commande.BAS, Commande.HAUT);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();

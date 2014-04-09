@@ -25,8 +25,8 @@ public abstract class AbstractTerrainTests {
 	@Test
 	public final void initWorking(){
 		try{
-			TerrainContract tc = new TerrainContract(terrain);
-			tc.init(10, 10, 10);
+	
+			terrain.init(10, 10, 10);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -36,8 +36,8 @@ public abstract class AbstractTerrainTests {
 	@Test
 	public final void initFailing(){
 		try{
-			TerrainContract tc = new TerrainContract(terrain);
-			tc.init(0, 0, 0);
+	
+			terrain.init(0, 0, 0);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -47,10 +47,10 @@ public abstract class AbstractTerrainTests {
 	@Test
 	public final void modifierBlocWorking(){
 		try{
-			TerrainContract tc = new TerrainContract(terrain);
-			tc.init(10, 10, 10);
+	
+			terrain.init(10, 10, 10);
 			BlocService bloc = new BlocImpl();
-			tc.modifierBloc(1, 1, bloc);
+			terrain.modifierBloc(1, 1, bloc);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -60,10 +60,10 @@ public abstract class AbstractTerrainTests {
 	@Test
 	public final void modifierBlocFailing(){
 		try{
-			TerrainContract tc = new TerrainContract(terrain);
-			tc.init(10, 10, 10);
+	
+			terrain.init(10, 10, 10);
 			BlocService bloc = new BlocImpl();
-			tc.modifierBloc(1, 30, bloc);
+			terrain.modifierBloc(1, 30, bloc);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
