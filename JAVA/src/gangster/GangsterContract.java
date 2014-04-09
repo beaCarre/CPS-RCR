@@ -31,7 +31,18 @@ public class GangsterContract extends GangsterDecorator {
 	}
 
 
-
+		// \pre n != "" && l>0 && h>0 && p>0 && f >0 && && v > 0 
+		// \post nom.equals(n) && largeur() == l && hauteur() == h && profondeur() == p && force() == f && pointsDeVie() ==v && argent() == 0
+		public void init(String n, int l, int h, int p, int f, int v) throws PreconditionError, InvariantError, PostConditionError{
+			if( ! (!n.equals("") && l>0 && h>0 && p>0 && f>0 && v>0 ))
+				throw new PreconditionError("init(): Personnage");
+			checkInvariants();
+			super.init(n, l, h, p, f, v);
+			checkInvariants();
+			
+			if(!(nom().equals(n) && largeur() == l && hauteur() ==h && profondeur() == p && force()==f && pointsDeVie() == v && argent()==0)) throw new PostConditionError("init(): Gangster");
+			
+		}
 
 	public void retraitPdV(int s) throws PreconditionError, InvariantError, PostConditionError{
 		// \pre retraitPdV(s) require !estVaincu() && s > 0
@@ -48,7 +59,7 @@ public class GangsterContract extends GangsterDecorator {
 
 
 	public void retraitArgent(int s) throws PreconditionError, InvariantError, PostConditionError{
-		// \pre retraitArgent(s) require !estVaincu() && s > 0
+		// \pre retraitArgent(s) require !estVaincu() && s > 0 && argent() > s 
 		if(estVaincu() || s <=0) throw new PreconditionError("retraitArgent");
 		checkInvariants();
 		int argent_at_pre = argent();
@@ -59,8 +70,8 @@ public class GangsterContract extends GangsterDecorator {
 	}
 
 	public void depotArgent(int s) throws PreconditionError, InvariantError, PostConditionError{
-		// \pre depotArgent(s) require !estVaincu() && s > 0 && argent() >= s
-		if(estVaincu() || s <=0 || argent() < s ) throw new PreconditionError("depotArgent");
+		// \pre depotArgent(s) require !estVaincu() && s > 0 
+		if(estVaincu() || s <=0) throw new PreconditionError("depotArgent");
 		checkInvariants();
 		int argent_at_pre = argent();
 		super.retraitArgent(s);

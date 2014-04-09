@@ -6,6 +6,7 @@ import exceptions.PreconditionError;
 import gangster.GangsterImpl;
 import gangster.GangsterService;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,6 @@ import perso.PersonnageService;
 import terrain.TerrainImpl;
 import terrain.TerrainService;
 import bloc.TypeBloc;
-
 import combat.CombatService;
 
 public class GestionCombatGraphic extends JPanel implements CombatService{

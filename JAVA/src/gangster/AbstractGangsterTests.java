@@ -132,17 +132,7 @@ public abstract class AbstractGangsterTests {
 			assertTrue(true);
 		}
 	}
-	@Test
-	public final void retraitArgentFailing2(){
-		try{
-			
-			gangster.init("machin", 10, 10, 10, 10, 100, 100);
-			gangster.retraitArgent(108);
-			fail();
-		}catch(ContractError ce){
-			assertTrue(true);
-		}
-	}
+
 	@Test
 	public final void depotArgentWorking(){
 		try{
@@ -186,10 +176,10 @@ public abstract class AbstractGangsterTests {
 	public final void ramasserArgentWorking(){
 		try{
 			
-			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			gangster.init("machin", 10, 10, 10, 10, 100);
 			ObjetService obj = new ObjetImpl();
 			obj.init("truc", 0, 10);
-			gangster.ramasserObjet(obj);
+			gangster.ramasserArgent(obj);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -200,7 +190,7 @@ public abstract class AbstractGangsterTests {
 	public final void ramasserObjetFailing(){
 		try{
 			
-			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			gangster.init("machin", 10, 10, 10, 10, 100);
 			ObjetService obj = new ObjetImpl();
 			gangster.retraitPdV(1000);
 			gangster.ramasserObjet(obj);

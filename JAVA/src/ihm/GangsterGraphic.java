@@ -20,8 +20,8 @@ public class GangsterGraphic extends PersonnageGraphic implements GangsterServic
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private GangsterService gangster;
-	JLabel lab;
+	public GangsterService gangster;
+	public JLabel lab;
 	
 	public GangsterGraphic(GangsterService gangster){
 		super(gangster);
@@ -102,8 +102,8 @@ public class GangsterGraphic extends PersonnageGraphic implements GangsterServic
 	PostConditionError {
 		gangster.retraitPdV(s);
 
-		lab.setText(""+pointsDeVie());
 		this.setBackground(new Color(255-pointsDeVie(), 255-pointsDeVie(), 200));
+		
 	}
 
 	@Override

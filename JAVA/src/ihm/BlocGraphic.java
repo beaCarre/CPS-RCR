@@ -13,14 +13,32 @@ import bloc.TypeBloc;
 
 public class BlocGraphic extends JPanel implements BlocService {
 	BlocService bloc;
+	ObjetGraphic obj;
 	public BlocGraphic(BlocService bloc){
 		this.bloc = bloc;
-		this.setBackground(Color.GREEN);
+		if(bloc.type() == TypeBloc.FOSSE)
+			this.setBackground(Color.gray);
+		else
+			this.setBackground(Color.GREEN);
+		if(bloc.type() == TypeBloc.OBJET){
+			obj = new ObjetGraphic(bloc.objet());
+			try {
+				obj.init(bloc.objet().nom(), bloc.objet().bonusForce(), bloc.objet().valeurMarchande());
+			} catch (PreconditionError e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (PostConditionError e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.add(obj);
+		}
+	
 	}
 	@Override
 	public ObjetService objet() {
 		// TODO Auto-generated method stub
-		return bloc.objet();
+		return obj;
 	}
 
 	@Override
@@ -52,6 +70,7 @@ public class BlocGraphic extends JPanel implements BlocService {
 		bloc.poserObjet(obj);
 		this.add((Component) obj);
 		this.repaint();
+		this.obj = (ObjetGraphic) obj;
 	}
 
 }

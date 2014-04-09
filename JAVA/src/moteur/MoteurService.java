@@ -20,7 +20,7 @@ public interface MoteurService {
 	
 	// \post pasJeu(cR,cA) : combat() == Servicecombat().gerer(cA,cR);
 	// \post : pasCourant() == pasCourant()@pre + 1
-	public void pasJeu(Commande cR, Commande cA) throws InvariantError, PostConditionError, PreconditionError;
+	public void pasJeu(Commande cA, Commande cR) throws InvariantError, PostConditionError, PreconditionError;
 	
 	/* invariants 
 	 *  estFini() == ( combat().alex().estVaincu() && combat().ryan().estVaincu() ) 

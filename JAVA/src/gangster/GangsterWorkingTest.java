@@ -1,7 +1,7 @@
 package gangster;
 
 
-public class PersonnageWorkingTest extends AbstractGangsterTests {
+public class GangsterWorkingTest extends AbstractGangsterTests {
 
 	
 	@Override

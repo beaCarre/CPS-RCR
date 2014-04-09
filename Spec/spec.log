@@ -1,6 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.29)  9 APR 2014 13:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.29)  10 APR 2014 01:49
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **spec.tex
 (./spec.tex
@@ -593,55 +594,55 @@ Chapitre 1.
 [2] [3] [4] [5] [6
 
 ] [7] [8]
-Overfull \hbox (28.35593pt too wide) in paragraph at lines 510--518
+Overfull \hbox (28.35593pt too wide) in paragraph at lines 509--517
 [][][][]$[]$  
  []
 
 [9]
-Overfull \hbox (33.8024pt too wide) in paragraph at lines 537--545
+Overfull \hbox (33.8024pt too wide) in paragraph at lines 536--544
 [][][][]$[]$  
  []
 
 
-Overfull \hbox (4.81067pt too wide) in paragraph at lines 555--563
+Overfull \hbox (4.81067pt too wide) in paragraph at lines 554--562
 [][][][]$[]$  
  []
 
 [10]
-Overfull \hbox (73.74582pt too wide) in paragraph at lines 593--600
+Overfull \hbox (73.74582pt too wide) in paragraph at lines 592--599
 [][][][]$[]$  
  []
 
 
-Overfull \hbox (2.88193pt too wide) in paragraph at lines 604--611
+Overfull \hbox (2.88193pt too wide) in paragraph at lines 603--610
 [][][][]$[]$  
  []
 
 
-Overfull \hbox (8.71178pt too wide) in paragraph at lines 617--631
+Overfull \hbox (8.71178pt too wide) in paragraph at lines 616--630
 [][][][]$[]$  
  []
 
 [11]
-Overfull \hbox (15.84601pt too wide) in paragraph at lines 632--644
+Overfull \hbox (15.84601pt too wide) in paragraph at lines 631--643
 [][][][]$[]$  
  []
 
 [12] [13] [14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 811.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 811.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 810.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 810.
  (./spec.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 811.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 811.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 810.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 810.
 Package rerunfilecheck Info: File `spec.out' has not changed.
 (rerunfilecheck)             Checksum: BD1EA1A6F544B042E4E6A7BECEE259D8;479.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 811.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 810.
  ) 
 Here is how much of TeX's memory you used:
- 9215 strings out of 493315
- 129024 string characters out of 6137903
+ 9212 strings out of 493315
+ 128984 string characters out of 6137903
  385585 words of memory out of 5000000
- 12060 multiletter control sequences out of 15000+600000
+ 12058 multiletter control sequences out of 15000+600000
  15711 words of font info for 36 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  29i,8n,40p,445b,1969s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -657,10 +658,10 @@ l/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/
 texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/te
 xlive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texl
 ive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on spec.pdf (14 pages, 188814 bytes).
+Output written on spec.pdf (14 pages, 188740 bytes).
 PDF statistics:
- 747 PDF objects out of 1000 (max. 8388607)
- 712 compressed objects within 8 object streams
- 513 named destinations out of 1000 (max. 500000)
+ 746 PDF objects out of 1000 (max. 8388607)
+ 711 compressed objects within 8 object streams
+ 512 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -2,9 +2,14 @@ package ihm;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
+import combat.CombatImpl;
 import moteur.Commande;
 import exceptions.InvariantError;
 import exceptions.PostConditionError;
@@ -15,28 +20,77 @@ public class RiverCityGraphic extends JFrame implements KeyListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	static Commande cA;
+	static Commande cR;
 	static RiverCityGraphic game;
-	static GestionCombatGraphic combat;
+	//static GestionCombatGraphic combat;
+	static CombatGraphic combat;
+	static MoteurGraphic moteur;
+	static JDialog diag;
 	public RiverCityGraphic(){
 		this.setSize(800,600);
 		this.setVisible(true);
 		this.addKeyListener(this);
+		cA = Commande.RIEN;
+		cR = Commande.RIEN;
+		diag = new JDialog(this);
+		
+		diag.setVisible(false);
+		diag.setSize(300,100);
+		diag.setLocation(50, 50);
 	}
 
 
 	public static void main(String[] args) throws InvariantError{
 		game = new RiverCityGraphic();
-		combat = new GestionCombatGraphic();
-		game.setContentPane(combat);
-		combat.init();
-		
+		//combat = new GestionCombatGraphic();
+		//combat = new CombatGraphic(new CombatImpl());
+		moteur = new MoteurGraphic();
+		game.setContentPane(moteur);
+		//game.setContentPane(combat);
+		//combat.init();
+		//combat.init();
+		moteur.init();
+		moteur.setSize(800,600);
+		Thread t = new Thread(){
+			public void run() {
+				while(!moteur.estFini()) {
+					try {
+						moteur.pasJeu(cA, cR);
+						cA = Commande.RIEN;
+						cR = Commande.RIEN;
+					} catch (InvariantError e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (PostConditionError e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (PreconditionError e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						Thread.sleep(60);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				diag.add(new JLabel(""+moteur.resultat()));
+				diag.setVisible(true);
+			}
+		};
+		t.start();
+
+
 	}
 
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -45,83 +99,60 @@ public class RiverCityGraphic extends JFrame implements KeyListener {
 		// TODO Auto-generated method stub
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_LEFT :
-			try {
-				combat.gerer(Commande.GAUCHE, Commande.GAUCHE);
-			} catch (PreconditionError | InvariantError | PostConditionError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			cA = Commande.GAUCHE;
 			break;
 		case KeyEvent.VK_RIGHT :
-			try {
-				combat.gerer(Commande.DROITE, Commande.GAUCHE);
-			} catch (PreconditionError | InvariantError | PostConditionError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			cA = Commande.DROITE;
 			break;
 		case KeyEvent.VK_UP :
-			try {
-				combat.gerer(Commande.HAUT, Commande.GAUCHE);
-			} catch (PreconditionError | InvariantError | PostConditionError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			cA = Commande.HAUT;
 			break;
 		case KeyEvent.VK_DOWN :
-			try {
-				combat.gerer(Commande.BAS, Commande.GAUCHE);
-			} catch (PreconditionError | InvariantError | PostConditionError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			cA = Commande.BAS;
+			break;
+		case KeyEvent.VK_Q :
+			cR = Commande.GAUCHE;
+			break;
+		case KeyEvent.VK_D :
+			cR = Commande.DROITE;
+			break;
+		case KeyEvent.VK_Z :
+			cR = Commande.HAUT;
+			break;
+		case KeyEvent.VK_S :
+			cR = Commande.BAS;
+			break;
+		case KeyEvent.VK_A :
+			cR = Commande.RAMASSER;
+			break;
+		case KeyEvent.VK_E :
+			cR = Commande.JETER;
+			break;
+		case KeyEvent.VK_SHIFT :
+			cR = Commande.FRAPPE;
 			break;
 		case KeyEvent.VK_SPACE :
-			try {
-				combat.gerer(Commande.FRAPPE, Commande.GAUCHE);
-			} catch (PreconditionError | InvariantError | PostConditionError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			cA = Commande.FRAPPE;
 			break;
 		case KeyEvent.VK_R :
-			try {
-				combat.gerer(Commande.RAMASSER, Commande.GAUCHE);
-			} catch (PreconditionError | InvariantError | PostConditionError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			cA = Commande.RAMASSER;
 			break;
 		case KeyEvent.VK_J :
-			try {
-				combat.gerer(Commande.JETER, Commande.GAUCHE);
-			} catch (PreconditionError | InvariantError | PostConditionError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			cA = Commande.JETER;
 			break;
 		default:
-			try {
-				combat.gerer(Commande.RIEN, Commande.GAUCHE);
-			} catch (PreconditionError | InvariantError | PostConditionError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			cA = Commande.RIEN;
 			break;
 		}
-		
+
 	}
+
 
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		try {
-			combat.gerer(Commande.RIEN, Commande.GAUCHE);
-		} catch (PreconditionError | InvariantError | PostConditionError e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
 	}
 }
 

@@ -1,17 +1,28 @@
-package moteur;
+package ihm;
+
+import java.awt.FlowLayout;
+
+import javax.swing.JPanel;
 
 import combat.CombatImpl;
 import combat.CombatService;
 import exceptions.InvariantError;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
+import moteur.Commande;
+import moteur.MoteurService;
+import moteur.Resultat;
 
-public class MoteurImpl implements MoteurService {
-
-	CombatService combat;
+public class MoteurGraphic extends JPanel implements MoteurService {
+	CombatGraphic combat;
 	int pasCourant;
-
 	
+	public MoteurGraphic(){
+		combat = new CombatGraphic(new CombatImpl());
+	
+		this.setLayout(null);
+		
+	}
 	@Override
 	public boolean estFini() {
 		// TODO Auto-generated method stub
@@ -49,17 +60,19 @@ public class MoteurImpl implements MoteurService {
 
 	@Override
 	public void init() throws InvariantError {
-		combat = new CombatImpl();
+		// TODO Auto-generated method stub
+		this.add(combat);
 		combat.init();
-		pasCourant = 0;
+		
+		
 	}
 
 	@Override
-	public void pasJeu(Commande cR, Commande cA) throws InvariantError,
+	public void pasJeu(Commande cA, Commande cR) throws InvariantError,
 			PostConditionError, PreconditionError {
-		combat.gerer(cR, cA);
+		// TODO Auto-generated method stub
 		pasCourant++;
-
+		combat().gerer(cA, cR);
 	}
 
 }
