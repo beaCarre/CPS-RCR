@@ -200,20 +200,6 @@ public abstract class AbstractPersonnageTests {
 		}
 	}
 	
-	@Test
-	public final void ramasserArgentWorking(){
-		try{
-			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			ObjetService obj = new ObjetImpl();
-			obj.init("truc", 0, 10);
-			personnage.ramasserObjet(obj);
-			assertTrue(true);
-		}catch(ContractError ce){
-			ce.printStackTrace();
-			fail();
-		}
-	}
 	
 	public final void ramasserObjetFailing(){
 		try{
@@ -227,6 +213,36 @@ public abstract class AbstractPersonnageTests {
 			assertTrue(true);
 		}
 	}
+	
+	@Test
+	public final void ramasserArgentWorking(){
+		try{
+			
+			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
+			ObjetService obj = new ObjetImpl();
+			obj.init("truc", 0, 10);
+			personnage.ramasserArgent(obj);
+			assertTrue(true);
+		}catch(ContractError ce){
+			ce.printStackTrace();
+			fail();
+		}
+	}
+	
+	@Test
+	public final void ramasserArgentFailing(){
+		try{
+			
+			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
+			ObjetService obj = new ObjetImpl();
+			obj.init("truc", 10, 0);
+			personnage.ramasserArgent(obj);
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	
 	
 	@Test
 	public final void ramasserPersoWorking(){
