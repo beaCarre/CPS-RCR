@@ -22,7 +22,7 @@ public abstract class CombatDecorator implements CombatService {
 		// TODO Auto-generated method stub
 		return combat.terrain();
 	}
-	
+
 	@Override
 	public PersonnageService alex() {
 		// TODO Auto-generated method stub
@@ -47,22 +47,27 @@ public abstract class CombatDecorator implements CombatService {
 		return combat.gangsters();
 	}
 
-	@Override
-	public int positionX(PersonnageService p) throws PreconditionError {
-		// TODO Auto-generated method stub
-		return combat.positionX(p);
+
+	public Commande actionGangster(GangsterService g){
+		return combat.actionGangster(g);
 	}
 
 	@Override
-	public int positionZ(PersonnageService p) {
+	public int posX(PersonnageService p) throws PreconditionError {
 		// TODO Auto-generated method stub
-		return combat.positionZ(p);
+		return combat.posX(p);
 	}
 
 	@Override
-	public int positionY(PersonnageService p) {
+	public int posZ(PersonnageService p) {
 		// TODO Auto-generated method stub
-		return combat.positionY(p);
+		return combat.posZ(p);
+	}
+
+	@Override
+	public int posY(PersonnageService p) {
+		// TODO Auto-generated method stub
+		return combat.posY(p);
 	}
 
 	@Override
@@ -79,29 +84,29 @@ public abstract class CombatDecorator implements CombatService {
 	public boolean estVisible(PersonnageService p){
 		return combat.estVisible(p);
 	}
-	
-	public boolean collisionGauche(PersonnageService p1, GangsterService p2){
+
+	public boolean collisionGauche(PersonnageService p1, GangsterService p2) throws PreconditionError{
 		return combat.collisionGauche(p1, p2);
 	}
-	public boolean collisionDroite(PersonnageService p1, GangsterService p2){
+	public boolean collisionDroite(PersonnageService p1, GangsterService p2) throws PreconditionError{
 		return combat.collisionDroite(p1, p2);
 	}
-	public boolean collisionDessous(PersonnageService p1, GangsterService p2){
+	public boolean collisionDessous(PersonnageService p1, GangsterService p2) throws PreconditionError{
 		return combat.collisionDessous(p1, p2);
 	}
-	public boolean collisionDessus(PersonnageService p1, GangsterService p2){
+	public boolean collisionDessus(PersonnageService p1, GangsterService p2) throws PreconditionError{
 		return combat.collisionDessus(p1, p2);
 	}
-	public boolean collisionDevant(PersonnageService p1, GangsterService p2){
+	public boolean collisionDevant(PersonnageService p1, GangsterService p2) throws PreconditionError{
 		return combat.collisionDevant(p1, p2);
 	}
-	public boolean collisionDerriere(PersonnageService p1, GangsterService p2){
+	public boolean collisionDerriere(PersonnageService p1, GangsterService p2) throws PreconditionError{
 		return combat.collisionDerriere(p1, p2);
 	}
 
 
 	@Override
-	public boolean collision(PersonnageService p1, GangsterService p2) {
+	public boolean collision(PersonnageService p1, GangsterService p2) throws PreconditionError {
 		// TODO Auto-generated method stub
 		return combat.collision(p1, p2);
 	}

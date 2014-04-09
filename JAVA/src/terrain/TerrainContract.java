@@ -1,9 +1,8 @@
 package terrain;
 
-import exceptions.InvariantError;
+import bloc.BlocService;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
-import bloc.BlocService;
 
 public class TerrainContract extends TerrainDecorator {
 
@@ -12,10 +11,10 @@ public class TerrainContract extends TerrainDecorator {
 		// TODO Auto-generated constructor stub
 	}
 
-	// \pre init(l,h,p) require l > 0 && h > 0 && p > 0 
+	// \pre init(l,h,p) require l > 0 && h > 0 && p > 0 && l%50 = 0 && p%50  = 0
 	// \post init(l,h,p) : largeur() == l  && hauteur() == h && profondeur() == p && bloc(x,y,z) != null
 	public void init(int l, int h, int p) throws PreconditionError, PostConditionError{
-		if(!(l > 0 && h > 0 && p > 0)) throw new PreconditionError("init() : Terrain");
+		if(!(l>0 && (l%50 == 0) && h>0 && p>0 && (p%50==0))) throw new PreconditionError("init() : Terrain");
 		super.init(l, h, p);
 		if(!(largeur() == l && hauteur() == h && profondeur() == p)) 
 			throw new PostConditionError("init(): Terrain");

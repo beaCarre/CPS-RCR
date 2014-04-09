@@ -1,6 +1,5 @@
 package objet;
 
-import exceptions.InvariantError;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
 

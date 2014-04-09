@@ -1,15 +1,14 @@
 package ihm;
 
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
+import moteur.Commande;
 import exceptions.InvariantError;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
-import moteur.Commande;
 
 public class RiverCityGraphic extends JFrame implements KeyListener {
 	/**

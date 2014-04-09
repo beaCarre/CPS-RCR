@@ -1,9 +1,8 @@
 package terrain;
 
-import exceptions.InvariantError;
+import bloc.BlocService;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
-import bloc.BlocService;
 
 public interface TerrainService {
 	public int largeur();
@@ -13,7 +12,7 @@ public interface TerrainService {
 	// \pre bloc(x,y) require 0 <= x <= largeur && 0 <= y <= profondeur
 	public BlocService bloc(int x, int y);
 	
-	// \pre init(l,h,p) require l > 0 && h > 0 && p > 0 
+	// \pre init(l,h,p) require l > 0 && h > 0 && p > 0 && l%50 = 0 && p%50  = 0
 	// \post init(l,h,p) : largeur() == l  && hauteur() == h && profondeur() == p && bloc(x,y,z) != null
 	public void init(int l, int h, int p) throws PreconditionError, PostConditionError; 
 	

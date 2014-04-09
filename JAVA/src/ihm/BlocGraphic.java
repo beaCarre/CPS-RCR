@@ -1,6 +1,7 @@
 package ihm;
 
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.JPanel;
 
@@ -49,6 +50,8 @@ public class BlocGraphic extends JPanel implements BlocService {
 			PreconditionError {
 		// TODO Auto-generated method stub
 		bloc.poserObjet(obj);
+		this.add((Component) obj);
+		this.repaint();
 	}
 
 }

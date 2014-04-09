@@ -363,7 +363,8 @@ Observators :
       gangsters :  [GestionCombat] (*$\rightarrow$*) List<Gangster>
       
       actionGangster : [GestionCombat] (*$\times$*) Gangster (*$\rightarrow$*) COMMANDE
-      
+      	   pre actionGangster(G, gang) require (*$\lnot$*)Gangster::est_vaincu(gang)
+	   
       estGele : [GestionCombat] (*$\times$*) Personnage (*$\rightarrow$*) boolean 
 	    pre estGele(G, perso) require perso = alex(G) (*$\lor$*) perso = ryan(G) (*$\lor$*) perso = slick(G) (*$\lor$*) perso (*$\in$*) gangsters(G)
 	    
@@ -504,7 +505,7 @@ Observations :
  $posX(G,alex(G)) sinon $ 
 \end{array} 
 \right.$ *)
-		
+		% VIRER LES CONDITIONS DE COLLISION (affreuses)
 	 posY(G,gerer(G,cA,cR),alex(G)) = 
 	 	(*$ \left\{
 \begin{array}{ll}

@@ -103,11 +103,6 @@ public class PersonnageGraphic extends JPanel implements PersonnageService{
 	PostConditionError {
 		perso.retraitPdV(s);
 
-		
-		if(perso.estVaincu()){
-			this.setBackground(Color.white);
-			
-		}
 	}
 
 	@Override

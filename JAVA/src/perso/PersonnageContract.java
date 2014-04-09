@@ -52,16 +52,16 @@ public class PersonnageContract extends PersonnageDecorator {
 		int pointsDeVie_at_pre = pointsDeVie();
 		super.retraitPdV(s);
 		checkInvariants();
-		// \post pointsDeVie() ==  pointsDeVie@pre - s
-		
-		if(!(pointsDeVie() == pointsDeVie_at_pre - s)) throw new PostConditionError("retraitPdV");
+		// \post pointsDeVie() ==  max(0,pointsDeVie@pre - s)
+		if(!(pointsDeVie() == Math.max(0,pointsDeVie_at_pre - s))) 
+			throw new PostConditionError("retraitPdV");
 	}
 
 
 
 	public void retraitArgent(int s) throws PreconditionError, InvariantError, PostConditionError{
-		// \pre retraitArgent(s) require !estVaincu() && s > 0
-		if(estVaincu() || s <=0) throw new PreconditionError("retraitArgent");
+		// \pre retraitArgent(s) require !estVaincu() && s > 0 && argent()>=s
+		if(estVaincu() || s <=0 || argent()<s) throw new PreconditionError("retraitArgent");
 		checkInvariants();
 		int argent_at_pre = argent();
 		super.retraitArgent(s);

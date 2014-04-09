@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import objet.ObjetService;
 import perso.PersonnageService;
 
-public class GangsterGraphic extends JPanel implements GangsterService{
+public class GangsterGraphic extends PersonnageGraphic implements GangsterService{
 
 	/**
 	 * 
@@ -22,10 +22,12 @@ public class GangsterGraphic extends JPanel implements GangsterService{
 	private static final long serialVersionUID = 1L;
 	private GangsterService gangster;
 	JLabel lab;
+	
 	public GangsterGraphic(GangsterService gangster){
+		super(gangster);
 		this.gangster = gangster;
 
-		this.setBackground(Color.CYAN);
+		this.setBackground(new Color(100,100,200));
 		this.setVisible(true);
 		lab = new JLabel("0");
 		this.add(lab);
@@ -100,11 +102,8 @@ public class GangsterGraphic extends JPanel implements GangsterService{
 	PostConditionError {
 		gangster.retraitPdV(s);
 
-		
-		if(gangster.estVaincu()){
-			this.setBackground(Color.white);
-			
-		}
+		lab.setText(""+pointsDeVie());
+		this.setBackground(new Color(255-pointsDeVie(), 255-pointsDeVie(), 200));
 	}
 
 	@Override

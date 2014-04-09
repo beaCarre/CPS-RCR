@@ -41,8 +41,8 @@ public class GangsterContract extends GangsterDecorator {
 		int pointsDeVie_at_pre = pointsDeVie();
 		super.retraitPdV(s);
 		checkInvariants();
-		// \post pointsDeVie() ==  pointsDeVie@pre - s
-		if(!(pointsDeVie() == pointsDeVie_at_pre - s)) throw new PostConditionError("retraitPdV");
+		//\post pointsDeVie() ==  max(0,pointsDeVie@pre - s)
+		if(!(pointsDeVie() == Math.max(0, pointsDeVie_at_pre - s))) throw new PostConditionError("retraitPdV");
 	}
 
 
@@ -54,8 +54,8 @@ public class GangsterContract extends GangsterDecorator {
 		int argent_at_pre = argent();
 		super.retraitArgent(s);
 		checkInvariants();
-		// \post argent() == argent@pre - s
-		if(!(argent() == argent_at_pre - s)) throw new PostConditionError("retraitArgent");
+		// \post argent() == argent@pre
+		if(!(argent() == argent_at_pre)) throw new PostConditionError("retraitArgent");
 	}
 
 	public void depotArgent(int s) throws PreconditionError, InvariantError, PostConditionError{
@@ -65,8 +65,8 @@ public class GangsterContract extends GangsterDecorator {
 		int argent_at_pre = argent();
 		super.retraitArgent(s);
 		checkInvariants();
-		// \post argent() == argent@pre + s
-		if(!(argent() == argent_at_pre + s)) throw new PostConditionError("depotArgent");
+		// \post argent() == argent@pre
+		if(!(argent() == argent_at_pre)) throw new PostConditionError("depotArgent");
 	}
 
 
@@ -91,7 +91,7 @@ public class GangsterContract extends GangsterDecorator {
 
 	
 	// \pre ramasserArgent(obj) require !estVaincu() && o.estDeValeur()
-	// \post argent() == argent()@pre + obj.valeurMarchande()
+	// \post argent() == argent()@pre
 	public void ramasserArgent(ObjetService o) throws PreconditionError, InvariantError,PostConditionError{
 		if(!(!estVaincu() && o.estDeValeur())){
 			throw new PreconditionError("ramasserArgent");
@@ -100,7 +100,7 @@ public class GangsterContract extends GangsterDecorator {
 		int argent_at_pre = argent();
 		super.ramasserArgent(o);
 		checkInvariants();
-		if(argent() != argent_at_pre + o.valeurMarchande())
+		if(argent() != argent_at_pre)
 			throw new PostConditionError("ramasserArgent");
 	}
 

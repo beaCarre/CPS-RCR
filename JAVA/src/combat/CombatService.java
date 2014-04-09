@@ -20,11 +20,11 @@ public interface CombatService {
 	public List<GangsterService> gangsters();
 	 
 	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
-	public int positionX(PersonnageService p) throws PreconditionError;
+	public int posX(PersonnageService p) throws PreconditionError;
 	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
-	public int positionZ(PersonnageService p);
+	public int posZ(PersonnageService p);
 	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
-	public int positionY(PersonnageService p);
+	public int posY(PersonnageService p);
 	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
 	public boolean estGele(PersonnageService p);
 	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
@@ -32,13 +32,23 @@ public interface CombatService {
 	// pre p == alex() || p == ryan() || p == slick() || p \in gangsters()
 	public boolean estVisible(PersonnageService p);
 	
-	public boolean collisionGauche(PersonnageService p1, GangsterService p2);
-	public boolean collisionDroite(PersonnageService p1, GangsterService p2);
-	public boolean collisionDessous(PersonnageService p1, GangsterService p2);
-	public boolean collisionDessus(PersonnageService p1, GangsterService p2);
-	public boolean collisionDevant(PersonnageService p1, GangsterService p2);
-	public boolean collisionDerriere(PersonnageService p1, GangsterService p2);
-	public boolean collision(PersonnageService p1, GangsterService p2);
+	// pre !g.estVaincu()
+	public Commande actionGangster(GangsterService g);
+	
+	// pre (p1 = alex || p1 =  ryan) && (p2 = slick || p2 \in gangsters) 
+	public boolean collisionGauche(PersonnageService p1, GangsterService p2) throws PreconditionError;
+	// pre (p1 = alex || p1 =  ryan) && (p2 = slick || p2 \in gangsters)
+	public boolean collisionDroite(PersonnageService p1, GangsterService p2) throws PreconditionError;
+	// pre (p1 = alex || p1 =  ryan) && (p2 = slick || p2 \in gangsters)
+	public boolean collisionDessous(PersonnageService p1, GangsterService p2) throws PreconditionError;
+	// pre (p1 = alex || p1 =  ryan) && (p2 = slick || p2 \in gangsters)
+	public boolean collisionDessus(PersonnageService p1, GangsterService p2) throws PreconditionError;
+	// pre (p1 = alex || p1 =  ryan) && (p2 = slick || p2 \in gangsters)
+	public boolean collisionDevant(PersonnageService p1, GangsterService p2) throws PreconditionError;
+	// pre (p1 = alex || p1 =  ryan) && (p2 = slick || p2 \in gangsters)
+	public boolean collisionDerriere(PersonnageService p1, GangsterService p2) throws PreconditionError;
+	// pre (p1 = alex || p1 =  ryan) && (p2 = slick || p2 \in gangsters)
+	public boolean collision(PersonnageService p1, GangsterService p2) throws PreconditionError;
 	
 	public void gerer(Commande c1, Commande c2) throws PreconditionError, InvariantError, PostConditionError;
 	

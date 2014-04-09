@@ -1,4 +1,4 @@
-package perso;
+package gangster;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -10,15 +10,15 @@ import org.junit.Test;
 
 import exceptions.ContractError;
 
-public abstract class AbstractPersonnageTests {
-	private PersonnageService personnage;
+public abstract class AbstractGangsterTests {
+	private GangsterService gangster;
 
-	protected AbstractPersonnageTests(){
-		personnage = null;
+	protected AbstractGangsterTests(){
+		gangster = null;
 	}
 
-	public void setPersonnage(PersonnageService perso){ // Soit on lui donne un contrat soit un perso 
-		this.personnage = perso;
+	public void setGangster(GangsterService perso){ // Soit on lui donne un contrat soit un perso 
+		this.gangster = perso;
 		
 	}
 	
@@ -26,28 +26,19 @@ public abstract class AbstractPersonnageTests {
 	public final void initWorking(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
+			gangster.init("machin", 10, 10, 10, 10, 100);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
 			fail();
 		}
 	}
-	@Test
-	public final void initFailing1(){
-		try{
-			
-			personnage.init("Joe", -5, 10, 10, 10, 100, 100);
-			fail();
-		}catch(ContractError ce){
-			assertTrue(true);
-		}
-	}
+	
 	@Test
 	public final void initFailing2(){
 		try{
 			
-			personnage.init("Alex", -5, 10, 10, 10, 100, 100);
+			gangster.init("machin", -5, 10, 10, 10, 100);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -57,7 +48,7 @@ public abstract class AbstractPersonnageTests {
 	public final void initFailing3(){
 		try{
 			
-			personnage.init("Alex", 10, -2, 10, 10, 100, 100);
+			gangster.init("machin", 10, -2, 10, 10, 100);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -67,7 +58,7 @@ public abstract class AbstractPersonnageTests {
 	public final void initFailing4(){
 		try{
 			
-			personnage.init("Alex", 10, 10, -2, 10, 100, 100);
+			gangster.init("machin", 10, 10, -2, 10, 100);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -77,7 +68,7 @@ public abstract class AbstractPersonnageTests {
 	public final void initFailing5(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, -5, 100, 100);
+			gangster.init("machin", 10, 10, 10, -5, 100);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -87,28 +78,19 @@ public abstract class AbstractPersonnageTests {
 	public final void initFailing6(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, -1, 100);
+			gangster.init("machin", 10, 10, 10, 10, -1);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
 		}
 	}
-	@Test
-	public final void initFailing7(){
-		try{
-			
-			personnage.init("Alex", 10, 10, 10, 10, 100, -1);
-			fail();
-		}catch(ContractError ce){
-			assertTrue(true);
-		}
-	}
+	
 	@Test
 	public final void retraitVieWorking(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			personnage.retraitPdV(3);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			gangster.retraitPdV(3);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -119,8 +101,8 @@ public abstract class AbstractPersonnageTests {
 	public final void retraitVieFailing(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			personnage.retraitPdV(-5);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			gangster.retraitPdV(-5);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -131,8 +113,8 @@ public abstract class AbstractPersonnageTests {
 	public final void retraitArgentWorking(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			personnage.retraitArgent(3);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			gangster.retraitArgent(3);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -143,8 +125,8 @@ public abstract class AbstractPersonnageTests {
 	public final void retraitArgentFailing(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			personnage.retraitArgent(-5);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			gangster.retraitArgent(-5);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -154,8 +136,8 @@ public abstract class AbstractPersonnageTests {
 	public final void retraitArgentFailing2(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			personnage.retraitArgent(108);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			gangster.retraitArgent(108);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -165,8 +147,8 @@ public abstract class AbstractPersonnageTests {
 	public final void depotArgentWorking(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			personnage.depotArgent(3);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			gangster.depotArgent(3);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -177,8 +159,8 @@ public abstract class AbstractPersonnageTests {
 	public final void depotArgentFailing(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			personnage.depotArgent(-5);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			gangster.depotArgent(-5);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -189,10 +171,10 @@ public abstract class AbstractPersonnageTests {
 	public final void ramasserObjetWorking(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
 			ObjetService obj = new ObjetImpl();
 			obj.init("arme", 10, 0);
-			personnage.ramasserObjet(obj);
+			gangster.ramasserObjet(obj);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -204,10 +186,10 @@ public abstract class AbstractPersonnageTests {
 	public final void ramasserArgentWorking(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
 			ObjetService obj = new ObjetImpl();
 			obj.init("truc", 0, 10);
-			personnage.ramasserObjet(obj);
+			gangster.ramasserObjet(obj);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -218,10 +200,10 @@ public abstract class AbstractPersonnageTests {
 	public final void ramasserObjetFailing(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
 			ObjetService obj = new ObjetImpl();
-			personnage.retraitPdV(1000);
-			personnage.ramasserObjet(obj);
+			gangster.retraitPdV(1000);
+			gangster.ramasserObjet(obj);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -232,9 +214,9 @@ public abstract class AbstractPersonnageTests {
 	public final void ramasserPersoWorking(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			PersonnageService perso = new PersonnageImpl();
-			personnage.ramasserPerso(perso);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			GangsterService perso = new GangsterImpl();
+			gangster.ramasserPerso(perso);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -246,10 +228,10 @@ public abstract class AbstractPersonnageTests {
 	public final void ramasserPersoFailing(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			PersonnageService perso = new PersonnageImpl();
-			personnage.retraitPdV(10000);
-			personnage.ramasserPerso(perso);
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			GangsterService perso = new GangsterImpl();
+			gangster.retraitPdV(10000);
+			gangster.ramasserPerso(perso);
 			fail();
 		}catch(ContractError ce){
 			
@@ -261,10 +243,10 @@ public abstract class AbstractPersonnageTests {
 	public final void jeterWorking(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			PersonnageService perso = new PersonnageImpl();
-			personnage.ramasserPerso(perso);
-			personnage.jeter();
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			GangsterService perso = new GangsterImpl();
+			gangster.ramasserPerso(perso);
+			gangster.jeter();
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -276,8 +258,8 @@ public abstract class AbstractPersonnageTests {
 	public final void jeterFailing(){
 		try{
 			
-			personnage.init("Alex", 10, 10, 10, 10, 100, 100);
-			personnage.jeter();
+			gangster.init("machin", 10, 10, 10, 10, 100, 100);
+			gangster.jeter();
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);

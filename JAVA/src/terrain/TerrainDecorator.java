@@ -1,9 +1,8 @@
 package terrain;
 
-import exceptions.InvariantError;
+import bloc.BlocService;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
-import bloc.BlocService;
 
 public abstract class TerrainDecorator implements TerrainService {
 	private TerrainService delegates;

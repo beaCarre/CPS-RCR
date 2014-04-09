@@ -27,10 +27,10 @@ public interface PersonnageService {
 	public void init(String n, int l, int h, int p, int f, int v, int a) throws PreconditionError, InvariantError, PostConditionError;
 
 	// \pre retraitPdV(s) require !estVaincu() && s > 0
-	// \post pointsDeVie() ==  pointsDeVie@pre - s
+	// \post pointsDeVie() ==  max(0,pointsDeVie@pre - s)
 	public void retraitPdV(int s) throws PreconditionError, InvariantError, PostConditionError;
 
-	// \pre retraitArgent(s) require !estVaincu() && s > 0
+	// \pre retraitArgent(s) require !estVaincu() && s > 0 && argent()>=s
 	// \post argent() == argent@pre - s
 	public void retraitArgent(int s) throws PreconditionError, InvariantError, PostConditionError;
 

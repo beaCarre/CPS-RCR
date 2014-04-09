@@ -102,6 +102,7 @@ public class PersonnageImpl implements PersonnageService {
 	PostConditionError {
 		if(!estVaincu() && s>0)
 			vie-=s;
+		if(vie<0) vie = 0;
 	}
 
 	

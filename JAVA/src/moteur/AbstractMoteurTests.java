@@ -45,8 +45,6 @@ public abstract class AbstractMoteurTests {
 		}
 	}
 	
-	
-
 
 	@Before
 	public abstract void beforeTests();
