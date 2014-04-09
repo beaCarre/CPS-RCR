@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.29)  9 APR 2014 01:52
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.29)  9 APR 2014 02:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -591,138 +591,45 @@ Chapitre 1.
 
 
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] [4] [5] [6] [7] [8]
-Overfull \hbox (12.96338pt too wide) in paragraph at lines 500--508
-[][][][]$[]$  
- []
+[2] [3] [4] [5] [6
 
-
-Overfull \hbox (255.8287pt too wide) in paragraph at lines 509--517
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (163.57425pt too wide) in paragraph at lines 518--526
+] [7] [8]
+Overfull \hbox (28.35593pt too wide) in paragraph at lines 509--517
 [][][][]$[]$  
  []
 
 [9]
-Overfull \hbox (16.90686pt too wide) in paragraph at lines 527--535
+Overfull \hbox (33.8024pt too wide) in paragraph at lines 536--544
 [][][][]$[]$  
  []
 
 
-Overfull \hbox (261.74393pt too wide) in paragraph at lines 536--544
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (171.46121pt too wide) in paragraph at lines 545--553
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (230.3825pt too wide) in paragraph at lines 554--562
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (474.69193pt too wide) in paragraph at lines 563--571
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (627.86957pt too wide) in paragraph at lines 572--580
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (112.1336pt too wide) in paragraph at lines 581--588
+Overfull \hbox (4.81067pt too wide) in paragraph at lines 554--562
 [][][][]$[]$  
  []
 
 [10]
-Overfull \hbox (309.45189pt too wide) in paragraph at lines 592--599
-[][][][]$[] \OML/cmm/m/it/10 :$  
- []
-
-
-Overfull \hbox (450.49622pt too wide) in paragraph at lines 603--610
+Overfull \hbox (73.74582pt too wide) in paragraph at lines 592--599
 [][][][]$[]$  
  []
 
 
-Overfull \hbox (234.58958pt too wide) in paragraph at lines 616--630
+Overfull \hbox (2.88193pt too wide) in paragraph at lines 603--610
 [][][][]$[]$  
  []
 
 
-Overfull \hbox (242.33769pt too wide) in paragraph at lines 631--643
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (199.8203pt too wide) in paragraph at lines 644--654
+Overfull \hbox (8.71178pt too wide) in paragraph at lines 616--630
 [][][][]$[]$  
  []
 
 [11]
-Overfull \hbox (347.63142pt too wide) in paragraph at lines 657--669
+Overfull \hbox (15.84601pt too wide) in paragraph at lines 631--643
 [][][][]$[]$  
  []
 
-
-Overfull \hbox (75.05814pt too wide) in paragraph at lines 707--714
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (71.72562pt too wide) in paragraph at lines 715--723
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (42.77435pt too wide) in paragraph at lines 724--732
-[][][][]$[]$  
- []
-
-[12]
-Overfull \hbox (80.97336pt too wide) in paragraph at lines 733--740
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (77.64084pt too wide) in paragraph at lines 741--749
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (46.71783pt too wide) in paragraph at lines 750--759
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (102.95515pt too wide) in paragraph at lines 760--770
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (108.73152pt too wide) in paragraph at lines 771--781
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (214.5529pt too wide) in paragraph at lines 782--792
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (96.304pt too wide) in paragraph at lines 793--807
-[][][][]$[]$ 
- []
-
+[12] [13] [14]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 810.
-[13]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 810.
  (./spec.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 810.
@@ -732,29 +639,29 @@ Package rerunfilecheck Info: File `spec.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 810.
  ) 
 Here is how much of TeX's memory you used:
- 9192 strings out of 493315
- 128797 string characters out of 6137903
- 394585 words of memory out of 5000000
- 12046 multiletter control sequences out of 15000+600000
- 13663 words of font info for 29 fonts, out of 8000000 for 9000
+ 9207 strings out of 493315
+ 128931 string characters out of 6137903
+ 385585 words of memory out of 5000000
+ 12053 multiletter control sequences out of 15000+600000
+ 15711 words of font info for 36 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 29i,8n,40p,444b,1925s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,8n,40p,445b,1967s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
-r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/loc
-al/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local
-/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/t
-exlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/tex
-live/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texli
-ve/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on spec.pdf (13 pages, 182076 bytes).
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.p
+fb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><
+/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></us
+r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/lo
+cal/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/loca
+l/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texl
+ive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on spec.pdf (14 pages, 188426 bytes).
 PDF statistics:
- 742 PDF objects out of 1000 (max. 8388607)
- 708 compressed objects within 8 object streams
- 511 named destinations out of 1000 (max. 500000)
+ 746 PDF objects out of 1000 (max. 8388607)
+ 711 compressed objects within 8 object streams
+ 512 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 

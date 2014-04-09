@@ -35,8 +35,8 @@
 		      breaklines=true,
 		      showstringspaces=false,
 		      keywordstyle=\color{blue},
-		      identifierstyle=\small,
-		      basicstyle=\small,
+		      identifierstyle=\footnotesize,
+		      basicstyle=\footnotesize,
 		      escapeinside={(*}{*)},
 		      tabsize=3,
 		      %xleftmargin=0.01\textwidth
@@ -344,7 +344,7 @@ $NULLE$ & $sinon$ \\
 	  pasCourant(pasJeu(M,cA,cR)) = pasCourant(M)+1
 	    
 \end{Spe}
-%\begin{landscape}
+\begin{landscape}
 \section{GestionCombat}
 \begin{Spe}
 service : GestionCombat
@@ -562,8 +562,8 @@ Observations :
 	 posY(G,gerer(G,cA,cR),slick(G)) = 
 	 	(*$ \left\{
 \begin{array}{ll}
-	 	$min(posY(G,slick(G)) + 10,Terrain:profondeur(terrain(G))-Personnage::profondeur(slick(G))) $\\ $si actionGangster(G,slick(G)) = HAUT $\lor$ actionGangster(G,slick(G)) = SAUTHAUT $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))  $\land$ $\lnot$collisionDerriere(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
-	 	$max(posY(G,slick(G)) - 10,0) $\\$si actionGangster(G,slick(G)) = BAS $\lor$ actionGangster(G,slick(G)) = SAUTBAS $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))  $\land$ $\lnot$collisionDevant(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
+	 	$min(posY(G,slick(G)) + 10,Terrain:profondeur(terrain(G))-Personnage::profondeur(slick(G))) $\\ $si actionGangster(G,slick(G)) = HAUT $\lor$ actionGangster(G,slick(G)) = SAUTHAUT $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))  $\\$ $\land$ $\lnot$collisionDerriere(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
+	 	$max(posY(G,slick(G)) - 10,0) $\\$si actionGangster(G,slick(G)) = BAS $\lor$ actionGangster(G,slick(G)) = SAUTBAS $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))  $\land$ $\\$ $\lnot$collisionDevant(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
 	 	$posY(G,slick(G)) sinon $
 	 	\end{array} 
 \right.$ *)
@@ -571,9 +571,9 @@ Observations :
  	posZ(gerer(G,cA,cR),slick(G)) = 
 	 	(*$ \left\{
 \begin{array}{ll}
-	 	$100 $&$si actionGangster(G,slick(G)) = SAUT $\lor$ actionGangster(G,slick(G)) = SAUTBAS $\lor$ actionGangster(G,slick(G)) = SAUTHAUT $ \lor$ actionGangster(G,slick(G)) = SAUTDROITE$\lor$ actionGangster(G,slick(G)) = SAUTGAUCHE $ \\ &\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))  $\land$ $\lnot$collisionDessus(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
-		$pos(G,slick(G)) $&$si estGele(G,slick(G)) $ \\
-		$0 $&$Sinon $
+	 	$100 si actionGangster(G,slick(G)) = SAUT $\lor$ actionGangster(G,slick(G)) = SAUTBAS $\lor$ actionGangster(G,slick(G)) = SAUTHAUT $\\$ $ \lor$ actionGangster(G,slick(G)) = SAUTDROITE$\lor$ actionGangster(G,slick(G)) = SAUTGAUCHE $ \\ \land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G))  $\land$ $\lnot$collisionDessus(slick(G),p) $\forall$ p $\in$ gangster $\lor$ p = slick(G)$  \\
+		$pos(G,slick(G)) si estGele(G,slick(G)) $ \\
+		$0 Sinon $
 	 	\end{array} 
 \right.$ *)
 
@@ -595,16 +595,16 @@ Observations :
 	 	$max(posY(G,g) - 10,0) $\\$si actionGangster(G,g) = BAS $\lor$ actionGangster(G,g) = SAUTBAS $\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)  $\land$ $\lnot$collisionDevant(g,p) $\forall$ p $\in$ gangster $\lor$ p = g$  \\
 	 	$posY(G,g) sinon $
 	 	\end{array} 
-\right\}.$ *)
+\right\}$ *)
 }  (*$\forall$*) g (*$\in$*) gangsters(G)
 
 
  	posZ(gerer(G,cA,cR),gangsters(G)) = { g = 
 	 	(*$ \left\{
 \begin{array}{ll}
-	 	$100 $&$si actionGangster(G,g) = SAUT $\lor$ actionGangster(G,g) = SAUTBAS $\lor$ actionGangster(G,g) = SAUTHAUT $ \lor$ actionGangster(G,g) = SAUTDROITE$\lor$ actionGangster(G,g) = SAUTGAUCHE $ \\ &\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)  $\land$ $\lnot$collisionDessus(g,p) $\forall$ p $\in$ gangster $\lor$ p = g$  \\
-		$pos(G,g) $&$si estGele(G,g) $ \\
-		$0 $&$Sinon $
+	 	$100 si actionGangster(G,g) = SAUT $\lor$ actionGangster(G,g) = SAUTBAS $\lor$ actionGangster(G,g) = SAUTHAUT $ \lor$ actionGangster(G,g) = SAUTDROITE$ \\ \lor$ actionGangster(G,g) = SAUTGAUCHE $  \land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)  $\land$ $\lnot$collisionDessus(g,p) $\forall$ p $\in$ gangster $\lor$ p = g$  \\
+		$pos(G,g) si estGele(G,g) $ \\
+		$0 Sinon $
 	 	\end{array} 
 \right.$ *) 
 } (*$\forall$*) g (*$\in$*) gangsters(G)
@@ -656,7 +656,7 @@ Observations :
 	slick(gerer(G,cA,cR)) =
  (*$ \left\{
 \begin{array}{ll}
-		$- Gangster::jeter(slick(G)) $\\$si actionGangster(G,slick(G)) = JETER $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G)) $\land$ Bloc::type(Terrain::bloc(terrain(G),posX(G,slick(G)),posY(G,slick(G))))=VIDE $  \\
+		$- Gangster::jeter(slick(G)) $\\$si actionGangster(G,slick(G)) = JETER $\land$ $\lnot$Personnage::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G)) $\land \\$ Bloc::type(Terrain::bloc(terrain(G),posX(G,slick(G)),posY(G,slick(G))))=VIDE $  \\
 		$- Gangster::ramasser\_objet(g, Bloc::objet(Terrain::bloc(terrain(G), posX(G,slick(G)),posY(G,slick(G))))) $\\$si actionGangster(G,g) = RAMASSER $\land$ posZ(G,slick(G))=0 $\land$ $\lnot$Gangster::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G)) $  \\
 		$- Gangster::retrait\_vie(slick(G), Personnage::force(p)) $\\$si collision(G,alex(G),slick(G)) $\land$ cA = FRAPPER $\land$ $\lnot$Gangster::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,g) $  \\
 		$- Gangster::retrait\_vie(slick(G), Personnage::force(p)) $\\$si collision(G,ryan(G),slick(G)) $\land$ cR = FRAPPER $\land$ $\lnot$Gangster::est\_vaincu(slick(G)) $\land$ $\lnot$estGele(G,slick(G)) $  \\
@@ -805,6 +805,6 @@ Observations :
 	
 
 \end{Spe}
-%\end{landscape}
+\end{landscape}
 
 \end{document}
