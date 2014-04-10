@@ -57,8 +57,8 @@ public class RiverCityGraphic extends JFrame implements KeyListener {
 				while(!moteur.estFini()) {
 					try {
 						moteur.pasJeu(cA, cR);
-						cA = Commande.RIEN;
-						cR = Commande.RIEN;
+						//cA = Commande.RIEN;
+						//cR = Commande.RIEN;
 					} catch (InvariantError e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -152,7 +152,7 @@ public class RiverCityGraphic extends JFrame implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		cA = Commande.RIEN;
 	}
 }
 
