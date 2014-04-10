@@ -629,12 +629,12 @@ public class CombatImpl implements CombatService {
 				int randomx;
 				do{
 					Random rand = new Random();
-					randomx = rand.nextInt(terrain.largeur()/50)*50;
-					randomy = rand.nextInt(terrain.profondeur()/50)*50;
+					randomx = rand.nextInt(terrain.largeur()/50-g.largeur()/100)*50;
+					randomy = rand.nextInt(terrain.profondeur()/50-g.profondeur()/100)*50;
 				}while(terrain.bloc(randomx, randomy).type() != TypeBloc.VIDE);
 
-				positions.get(g).x = randomx;
-				positions.get(g).y = randomy;
+				positions.get(g).x = randomx+g.largeur()/2;
+				positions.get(g).y = randomy+g.profondeur()/2;
 				visibles.put(g, true);
 				geles.put(g, false);
 				frappes.put(g, false);
