@@ -153,6 +153,7 @@ public class RiverCityGraphic extends JFrame implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		cA = Commande.RIEN;
+		cR = Commande.RIEN;
 	}
 }
 
