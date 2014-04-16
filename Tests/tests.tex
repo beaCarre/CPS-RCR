@@ -1,0 +1,294 @@
+\documentclass[a4paper, 11pt, notitlepage]{report}
+
+\setlength{\hoffset}{-1.5cm}
+\setlength{\voffset}{-1.5cm}
+\setlength{\textwidth}{18cm}
+\setlength{\textheight}{24cm}
+\setlength{\oddsidemargin}{0pt} % Marge gauche sur pages impaires
+\setlength{\evensidemargin}{0pt} % Marge gauche sur pages paires
+
+\usepackage[utf8]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath}%\overset{min}{\eq}
+\usepackage{hyperref}
+\usepackage{lscape}
+
+%\usepackage{csquotes}
+
+\usepackage{listings}
+\usepackage{color}
+
+
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+
+  \lstdefinelanguage{testsgrammar}{
+  morekeywords={Cas, de, test, CI, Operation, Oracle},
+}
+ \lstnewenvironment{Test}
+		  {\lstset{
+		      language=testsgrammar,
+		      breaklines=true,
+		      showstringspaces=false,
+		      keywordstyle=\color{blue},
+		      identifierstyle=\footnotesize,
+		      basicstyle=\footnotesize,
+		      escapeinside={(*}{*)},
+		      tabsize=3,
+		      %xleftmargin=0.01\textwidth
+		    }
+		  }
+		  {} 
+\newcommand{\specB}[1]{\textbf{#1}}
+\title{
+  \huge Tests \\
+}
+\author{
+  }
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%% \section*{Introduction}
+%% Lien vers l'énoncé du projet : 
+%% \href{http://www-master.ufr-info-p6.jussieu.fr/2013/spip.php?action=acceder_document&arg=2148&cle=11624d21d0734169986d403a88c3f6e4e1755b65&file=pdf\%2Fsujet_projet_2014.pdf}{lien}.
+
+\section{Le service Personnage}
+
+\begin{Test}
+Cas de test : Personnage::testInitWorking
+CI : nom = "Ryan" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p = 30 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = 100
+Operation : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	nom(P0) == "Ryan"
+	largeur(P0) =	30
+	profondeur(P0) = 30
+	hauteur(P0) = 30
+	pointsDeVie(P0) = 100
+	force(P0) = 100
+	argent(P0) = 10
+	
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Joe" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p = 30 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = 100
+Operation : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	nom (*$\ne$*) "Alex" (*$\land$*) nom (*$\ne$*) "Ryan"
+	Une exception est levee
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" (*$\land$*) l = -5 (*$\land$*) h = 30 (*$\land$*) p = 30 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = 100
+Operation : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	l (*$\leq$*) 0
+	Une exception est levee
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" (*$\land$*) l = 30 (*$\land$*) h = -5 (*$\land$*) p = 30 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = 100
+Operation : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	h (*$\leq$*) 0
+	Une exception est levee
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p = -5 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = 100
+Operation : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	p (*$\leq$*) 0
+	Une exception est levee
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p = 30 (*$\land$*) a = -10 (*$\land$*) v = 100 (*$\land$*) f = 100
+Operation : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	a < 0
+	Une exception est levee
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p = 30 (*$\land$*) a = 10 (*$\land$*) v = 0 (*$\land$*) f = 100
+Operation : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	v (*$\leq$*) 0
+	Une exception est levee
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p
+= 30 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = -8
+Operation : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	f (*$\leq$*) 0
+	Une exception est levee
+
+Cas de test : Personnage::RetraitVieWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Operation : P0 =def retraitPdV(personnage, 3)
+Oracle :
+	argent(P0) = 7 = (10-3)
+
+Cas de test : Personnage::RetraitVieFailing
+CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Operation : P0 =def retraitPdV(personnage, -5);
+Oracle : 
+	-5 < 0
+	Une exception est levee
+	
+	
+	Cas de test : Personnage::RetraitArgentWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Operation : P0 =def retraitArgent(personnage, 3)
+Oracle :
+	pointsDeVie(P0) = 7 = (10-3)
+
+Cas de test : Personnage::RetraitArgentFailing
+CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Operation : P0 =def retraitArgent(personnage, -5);
+Oracle : 
+	-5 < 0
+	Une exception est levee
+	
+Cas de test : Personnage::RetraitArgentFailing
+CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Operation : P0 =def retraitArgent(personnage, 108);
+Oracle : 
+	108 > 100
+	Une exception est levee
+	
+Cas de test : Personnage::DepotAgentWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Operation : P0 =def depotArgent(personnage, 3)
+Oracle :
+	pointsDeVie(P0) = 7 = (10-3)
+
+Cas de test : Personnage::DepotArgentFailing
+CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Operation : P0 =def depotArgent(personnage, -5);
+Oracle : 
+	-5 < 0
+	Une exception est levee
+	
+Cas de test : Personnage::ramasserObjetWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100),
+		 obj = Objet::init("arme",10,0)
+Operation : P0 =def ramasserObjet(personnage, obj)
+Oracle :
+	objetEquipe(personnage) = obj
+	force(personnage) = 110
+
+Cas de test : Personnage::ramasserObjetFailing1
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			obj = Objet::init("sous",0,40)
+Operation : P0 =def ramasserObjet(personnage, obj);
+Oracle : 
+	Objet:est_equipable(obj) = false
+	Une exception est levee
+
+Cas de test : Personnage::ramasserObjetFailing2
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			p = Personnage::init("Ryan",10,10,10,100,100)
+			personnage = ramasser_perso(p)
+			obj = Objet::init("arme",10,0)
+Operation : P0 =def ramasserObjet(personnage, obj);
+Oracle : 
+	est_equipe_perso(personnage) = true
+	Une exception est levee
+	
+	
+Cas de test : Personnage::ramasserArgentWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100),
+		 obj = Objet::init("piece",0,40)
+Operation : P0 =def ramasserObjet(personnage, obj)
+Oracle :
+	objetEquipe(personnage) = obj
+	force(personnage) = 110
+
+Cas de test : Personnage::ramasserArgentFailing1
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			personnage = retraitVie(personnage,200)
+			obj = Objet::init("soussou",0,40)
+Operation : P0 =def ramasserArgent(personnage, obj)
+Oracle : 
+	estVaincu(P0) = true
+	Une exception est levee
+	
+Cas de test : Personnage::ramasserArgentFailing2
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			obj = Objet::init("soussou",30,0)
+Operation : P0 =def ramasserArgent(personnage, obj);
+Oracle : 
+	Objet:est_DeValeur(obj) = false
+	Une exception est levee
+	
+Cas de test : Personnage::ramasserPersoWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			perso2 = init("Ryan", 10, 10, 10, 10, 100, 100)
+Operation : P0 =def ramasserPerso(personnage, perso2)
+Oracle :
+	persoEquipe(P0) = perso2
+
+Cas de test : Personnage::ramasserPersoFailing1
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			perso2 = init("Ryan", 10, 10, 10, 10, 100, 100)
+			personnage = personnage.retraitPdV(10000);
+Operation : P0 =def ramasserPerso(personnage, perso2 )
+Oracle : 
+	estVaincu(P0) = true
+	Une exception est levee
+	
+	
+Cas de test : Personnage::jeterWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			obj = Objet::init("arme",10,0)
+			personnage = ramasserObjet(personnage,obj)
+Operation : P0 =def jeter(personnage)
+Oracle :
+	persoEquipe(P0) = null
+	force(P0) = 100
+	objetEquipe(P0) = false
+
+Cas de test : Personnage::jeterFailing1
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Operation : P0 =def jeter(personnage)
+Oracle : 
+	estEquipeObjet(personnage) = false
+	estEquipePerso(personnage) = false
+	Une exception est levee
+	
+\end{Test}
+\newpage
+\section{Gangster}
+\begin{Test}
+
+     
+\end{Test}
+ 
+\section{Objet}
+\begin{Test}
+
+
+
+\end{Test}
+
+\section{Terrain}
+\begin{Test}
+
+	    
+\end{Test}
+
+
+\section{Moteur de jeu}
+\begin{Test}
+	    
+\end{Test}
+\section{GestionCombat}
+\begin{Test}
+	
+
+\end{Test}
+
+\end{document}
