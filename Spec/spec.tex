@@ -1,4 +1,4 @@
-\documentclass[a4paper, 11pt]{report}
+\documentclass[a4paper, 11pt, notitlepage]{report}
 
 \setlength{\hoffset}{-1.5cm}
 \setlength{\voffset}{-1.5cm}
@@ -6,6 +6,7 @@
 \setlength{\textheight}{24cm}
 \setlength{\oddsidemargin}{0pt} % Marge gauche sur pages impaires
 \setlength{\evensidemargin}{0pt} % Marge gauche sur pages paires
+
 
 \usepackage[utf8]{inputenc}
 \usepackage[frenchb]{babel}
@@ -44,13 +45,15 @@
 		  }
 		  {} 
 \newcommand{\specB}[1]{\textbf{#1}}
-
+\title{
+  \huge Spécifications \\
+}
+\author{
+  }
+\date{}
 
 \begin{document}
-
-\chapter{Projet CPS : Spécifications de River City Ransom}
-
-Béatrice CARRE et Steven VAROUMAS
+\maketitle
 
 %% \section*{Introduction}
 %% Lien vers l'énoncé du projet : 
@@ -155,7 +158,7 @@ Observations :
 		objet_equipe(jeter(P)) = null
 
 \end{Spe}
-
+\newpage
 \section{Gangster}
 \begin{Spe}
 service: Gangster
