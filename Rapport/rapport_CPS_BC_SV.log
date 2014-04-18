@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.29)  16 APR 2014 15:20
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.29)  18 APR 2014 18:41
 entering extended mode
  %&-line parsing enabled.
 **rapport_CPS_BC_SV.tex -o rapport_CPS_BC_SV.pdf
@@ -588,12 +588,13 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 53.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 95.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<../Spec/spec.pdf, id=56, page=1, 597.50829pt x 845.0471pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 115.
+ [2] [3]
+<../Spec/spec.pdf, id=64, page=1, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 1>
@@ -606,8 +607,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 1>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 1> [3 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=92, page=2, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 1> [4 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=100, page=2, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 2>
@@ -615,8 +616,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 2>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 2> [4 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=117, page=3, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 2> [5 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=125, page=3, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 3>
@@ -624,8 +625,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 3>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 3> [5 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=122, page=4, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 3> [6 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=130, page=4, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 4>
@@ -633,8 +634,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 4>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 4> [6 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=127, page=5, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 4> [7 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=136, page=5, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 5>
@@ -642,8 +643,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 5>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 5> [7 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=133, page=6, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 5> [8 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=141, page=6, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 6>
@@ -651,8 +652,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 6>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 6> [8 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=138, page=7, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 6> [9 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=146, page=7, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 7>
@@ -660,8 +661,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 7>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 7> [9 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=143, page=8, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 7> [10 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=151, page=8, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 8>
@@ -669,8 +670,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 8>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 8> [10 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=148, page=9, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 8> [11 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=156, page=9, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 9>
@@ -678,8 +679,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 9>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 9> [11 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=153, page=10, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 9> [12 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=161, page=10, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 10>
@@ -687,8 +688,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 10>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 10> [12 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=158, page=11, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 10> [13 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=167, page=11, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 11>
@@ -696,8 +697,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 11>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 11> [13 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=164, page=12, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 11> [14 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=172, page=12, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 12>
@@ -705,8 +706,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 12>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 12> [14 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=169, page=13, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 12> [15 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=177, page=13, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 13>
@@ -714,8 +715,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 13>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 13> [15 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=174, page=14, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 13> [16 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=182, page=14, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 14>
@@ -723,8 +724,8 @@ File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 14>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
-<use ../Spec/spec.pdf, page 14> [16 <../Spec/spec.pdf>]
-<../Tests/tests.pdf, id=181, page=1, 597.50829pt x 845.0471pt>
+<use ../Spec/spec.pdf, page 14> [17 <../Spec/spec.pdf>]
+<../Tests/tests.pdf, id=189, page=1, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 1>
@@ -737,8 +738,8 @@ File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 1>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
-<use ../Tests/tests.pdf, page 1> [17 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=205, page=2, 597.50829pt x 845.0471pt>
+<use ../Tests/tests.pdf, page 1> [18 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=213, page=2, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 2>
@@ -746,8 +747,8 @@ File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 2>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
-<use ../Tests/tests.pdf, page 2> [18 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=210, page=3, 597.50829pt x 845.0471pt>
+<use ../Tests/tests.pdf, page 2> [19 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=219, page=3, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 3>
@@ -755,8 +756,8 @@ File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 3>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
-<use ../Tests/tests.pdf, page 3> [19 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=216, page=4, 597.50829pt x 845.0471pt>
+<use ../Tests/tests.pdf, page 3> [20 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=224, page=4, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 4>
@@ -764,8 +765,8 @@ File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 4>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
-<use ../Tests/tests.pdf, page 4> [20 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=221, page=5, 597.50829pt x 845.0471pt>
+<use ../Tests/tests.pdf, page 4> [21 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=229, page=5, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 5>
@@ -773,14 +774,14 @@ File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 5>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
-<use ../Tests/tests.pdf, page 5> [21 <../Tests/tests.pdf>]
+<use ../Tests/tests.pdf, page 5> [22 <../Tests/tests.pdf>]
 (./rapport_CPS_BC_SV.aux) ) 
 Here is how much of TeX's memory you used:
- 7426 strings out of 493848
- 105731 string characters out of 1152823
- 187379 words of memory out of 3000000
- 10554 multiletter control sequences out of 15000+50000
- 12684 words of font info for 33 fonts, out of 3000000 for 9000
+ 7432 strings out of 493848
+ 105781 string characters out of 1152823
+ 188379 words of memory out of 3000000
+ 10555 multiletter control sequences out of 15000+50000
+ 13373 words of font info for 34 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  38i,16n,37p,287b,472s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-
@@ -796,10 +797,10 @@ ype1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/
 share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/ty
 pe1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/
-sfrm2074.pfb>
-Output written on rapport_CPS_BC_SV.pdf (21 pages, 281385 bytes).
+sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on rapport_CPS_BC_SV.pdf (22 pages, 306634 bytes).
 PDF statistics:
- 266 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
+ 277 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
  180 words of extra memory for PDF output out of 10000 (max. 10000000)
 

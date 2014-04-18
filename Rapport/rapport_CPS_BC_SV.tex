@@ -43,24 +43,31 @@
   \huge CPS : River City Ransom\\
 }
 \author{
-  Béatrice CARRE \\
+  Béatrice CARR\'E \\
   Steven VAROUMAS \\
   \\
 }
 
 \begin{document}
 \maketitle
-\section*{introduction}
-Méthodologie pour la conception et l’implémentation de
-trusted components
+\section*{Introduction}
+La méthodologie pour la \emph{conception par contrat}  se compose de trois phases :
+\begin{enumerate}
+\item Analyse : spécifications algébriques 
+\item Conception : par contrat à partir des spécifications
+\item Implémentation : garantie vis-à-vis des contrats
+\end{enumerate}
+Nous avons suivi scrupuleusement chacune de ces étapes pour l'élaboration du
+projet et ainsi honorer notre contrat défini. 
 
-1 Analyse : spécifications algébriques (cours 2)
+Le projet consiste à développer un jeu : \emph{River city ransom}
+TODO explication projet
 
-2 Conception : par contrat à partir des spécifications (cours 3 et 4)
-
-3 Implémentation : garantie vis-à-vis des contrats
-
-Conception par contrat : vérification « légère » en ligne (self-testing)
+Dans ce rapport, seront présentées la méthodologie utilisée pour
+réaliser ce projet, ainsi que les difficultés rencontrées.
+ 
+Ensuite, notre réalisation du procédé appliqué
+et les solutions apportées au problème posé vous seront détaillées.
 
 
 
@@ -69,28 +76,41 @@ Conception par contrat : vérification « légère » en ligne (self-testing)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%   Problème   %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Problème}
-petite intro ?
+\section{Problème posé}
+Le problème est de rester cohérents tout au long des phases d'analyse,
+de conception et d'implémentation, tout en respectant la méthodologie de la \emph{conception par contrat},
+pour ainsi obtenir un programme tout aussi cohérent et fiable.
 
-\subsection{Specification}
-Le but de la spécification est de reconnaître les éléments logiques d’un programme à partir d’une
-définition du jeu River City Ransom.
+\subsection{Analyse : la specification}
+Le but de la spécification est de reconnaître les éléments logiques
+d’un programme à partir d’une définition du jeu River City Ransom.
+Pour chaque service décrit, il faut en sortir une spécification la
+plus détaillée et complète possible.
 
-problèmes d’interprétation personnelle
+Nous avons rencontré plusieurs difficultés :
+\begin{itemize}
+\item Les problèmes d’interprétation personnelle, qui peuvent être
+  très différentes selon les membres du groupe de travail.
+\item Le manque d'information dans la description de chaque service
+  est à compléter avec son imagination, qui doit être réaliste.
+\item Il faut rester cohérents au fur et à mesure de la création de
+  chaque service, pour avoir le moins possible à revenir aux services
+  déjà traités. 
+\item Il est important de garder en tête la notion de référentiel pour
+  chaque service, qui permet de ne pas traiter des éléments qui
+  le concerneraient de l'extérieur, et donc de ne pas définir dans celui-ci.
 
-combler le manque d’éléments
-
-rester cohérents
-
-importante notion de référentiel pour chaque service
-
-représentation d’une liste difficile
-
-représentation de la notion de temps difficile
-
+\item La représentation de certains éléments nous a parue difficile,
+  comme pour une liste ou encore la notion de temps.
+\end{itemize}
 
 \subsection{Tests}
-Décrire et implémenter les tests pour le respect du contrat.
+La seconde phase est de décrire et d'implémenter les tests pour préparer
+le respect du contrat lors de la dernière phase.
+
+Celle-ci est importante dans la mesure où elle représente le liens
+entre la spécification et l'implémentation pure, tant au niveau des
+conditions, qu'au niveau de TODO.
 
 Pour n conditions sur chaque opération => (2 à $\sim 6)^n$ tests!
 Pour chaque argument de méthode, il faut trouver les valeurs à tester.
@@ -99,11 +119,8 @@ Mais si entier float string etc, il est impossible de tester toutes
 les valeurs. Il faut donc sélectionner les valeurs les plus
 pertinentes à tester, qui sont en général les valeurs juste avant et
 après les limites d'intervales de tests.
-Par exemple :
 
-Schéma à insérer ?
-
-Théorie : tous les tests réussissent signifierait que nous avons une application sans bug...
+Théorie : tous les tests réussissent signifierait que nous avons une application sans erreurs
 
 Réalité : il faut aussi que l’implémentation respecte ce qui est
 demandé, et toutes les valeurs ne sont pas testées, il est donc
