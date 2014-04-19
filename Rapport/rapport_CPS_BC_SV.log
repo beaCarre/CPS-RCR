@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.29)  19 APR 2014 05:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.29)  19 APR 2014 21:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -627,19 +627,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 117.
+(Font)              <10.95> on input line 122.
 
-Underfull \hbox (badness 10000) in paragraph at lines 117--124
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 122--129
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--135
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 
  []
 
@@ -648,462 +643,547 @@ Underfull \hbox (badness 10000) in paragraph at lines 139--140
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
+
+ []
+
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 168--169
+Underfull \hbox (badness 10000) in paragraph at lines 173--174
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
 
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 206--207
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
+Underfull \hbox (badness 10000) in paragraph at lines 214--215
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--214
+Underfull \hbox (badness 10000) in paragraph at lines 218--219
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--216
+Underfull \hbox (badness 10000) in paragraph at lines 220--221
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 217--218
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
+Underfull \hbox (badness 10000) in paragraph at lines 224--225
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--222
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 223--224
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
+Underfull \hbox (badness 10000) in paragraph at lines 230--231
 
  []
 
-[4] [5] <../Spec/spec.pdf, id=75, page=1, 597.50829pt x 845.0471pt>
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 245--246
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 250--251
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--253
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--254
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--255
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 257--258
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 270--272
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--277
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+
+ []
+
+[6] <../Spec/spec.pdf, id=87, page=1, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 1>
-Package pdftex.def Info: ../Spec/spec.pdf, page1 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page1 used on input line 320.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 1>
-Package pdftex.def Info: ../Spec/spec.pdf, page1 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page1 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 1>
-Package pdftex.def Info: ../Spec/spec.pdf, page1 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page1 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 1>
-Package pdftex.def Info: ../Spec/spec.pdf, page1 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page1 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 1>
-Package pdftex.def Info: ../Spec/spec.pdf, page1 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page1 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [6 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=111, page=2, 597.50829pt x 845.0471pt>
+ [7 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=124, page=2, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 2>
-Package pdftex.def Info: ../Spec/spec.pdf, page2 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page2 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 2>
-Package pdftex.def Info: ../Spec/spec.pdf, page2 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page2 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 2>
-Package pdftex.def Info: ../Spec/spec.pdf, page2 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page2 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [7 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=137, page=3, 597.50829pt x 845.0471pt>
+ [8 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=149, page=3, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 3>
-Package pdftex.def Info: ../Spec/spec.pdf, page3 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page3 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 3>
-Package pdftex.def Info: ../Spec/spec.pdf, page3 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page3 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 3>
-Package pdftex.def Info: ../Spec/spec.pdf, page3 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page3 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [8 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=142, page=4, 597.50829pt x 845.0471pt>
+ [9 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=154, page=4, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 4>
-Package pdftex.def Info: ../Spec/spec.pdf, page4 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page4 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 4>
-Package pdftex.def Info: ../Spec/spec.pdf, page4 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page4 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 4>
-Package pdftex.def Info: ../Spec/spec.pdf, page4 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page4 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [9 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=147, page=5, 597.50829pt x 845.0471pt>
+ [10 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=159, page=5, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 5>
-Package pdftex.def Info: ../Spec/spec.pdf, page5 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page5 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 5>
-Package pdftex.def Info: ../Spec/spec.pdf, page5 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page5 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 5>
-Package pdftex.def Info: ../Spec/spec.pdf, page5 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page5 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [10 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=152, page=6, 597.50829pt x 845.0471pt>
+ [11 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=165, page=6, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 6>
-Package pdftex.def Info: ../Spec/spec.pdf, page6 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page6 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 6>
-Package pdftex.def Info: ../Spec/spec.pdf, page6 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page6 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 6>
-Package pdftex.def Info: ../Spec/spec.pdf, page6 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page6 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [11 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=157, page=7, 597.50829pt x 845.0471pt>
+ [12 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=170, page=7, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 7>
-Package pdftex.def Info: ../Spec/spec.pdf, page7 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page7 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 7>
-Package pdftex.def Info: ../Spec/spec.pdf, page7 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page7 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 7>
-Package pdftex.def Info: ../Spec/spec.pdf, page7 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page7 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [12 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=162, page=8, 597.50829pt x 845.0471pt>
+ [13 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=176, page=8, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 8>
-Package pdftex.def Info: ../Spec/spec.pdf, page8 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page8 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 8>
-Package pdftex.def Info: ../Spec/spec.pdf, page8 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page8 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 8>
-Package pdftex.def Info: ../Spec/spec.pdf, page8 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page8 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [13 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=169, page=9, 597.50829pt x 845.0471pt>
+ [14 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=181, page=9, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 9>
-Package pdftex.def Info: ../Spec/spec.pdf, page9 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page9 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 9>
-Package pdftex.def Info: ../Spec/spec.pdf, page9 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page9 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 9>
-Package pdftex.def Info: ../Spec/spec.pdf, page9 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page9 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [14 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=174, page=10, 597.50829pt x 845.0471pt>
+ [15 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=186, page=10, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 10>
-Package pdftex.def Info: ../Spec/spec.pdf, page10 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page10 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 10>
-Package pdftex.def Info: ../Spec/spec.pdf, page10 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page10 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 10>
-Package pdftex.def Info: ../Spec/spec.pdf, page10 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page10 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [15 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=179, page=11, 597.50829pt x 845.0471pt>
+ [16 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=191, page=11, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 11>
-Package pdftex.def Info: ../Spec/spec.pdf, page11 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page11 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 11>
-Package pdftex.def Info: ../Spec/spec.pdf, page11 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page11 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 11>
-Package pdftex.def Info: ../Spec/spec.pdf, page11 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page11 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [16 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=184, page=12, 597.50829pt x 845.0471pt>
+ [17 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=196, page=12, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 12>
-Package pdftex.def Info: ../Spec/spec.pdf, page12 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page12 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 12>
-Package pdftex.def Info: ../Spec/spec.pdf, page12 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page12 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 12>
-Package pdftex.def Info: ../Spec/spec.pdf, page12 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page12 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [17 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=189, page=13, 597.50829pt x 845.0471pt>
+ [18 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=201, page=13, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 13>
-Package pdftex.def Info: ../Spec/spec.pdf, page13 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page13 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 13>
-Package pdftex.def Info: ../Spec/spec.pdf, page13 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page13 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 13>
-Package pdftex.def Info: ../Spec/spec.pdf, page13 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page13 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [18 <../Spec/spec.pdf>]
-<../Spec/spec.pdf, id=194, page=14, 597.50829pt x 845.0471pt>
+ [19 <../Spec/spec.pdf>]
+<../Spec/spec.pdf, id=207, page=14, 597.50829pt x 845.0471pt>
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 14>
-Package pdftex.def Info: ../Spec/spec.pdf, page14 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page14 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
  <use ../Spec/spec.pdf, page 14>
-Package pdftex.def Info: ../Spec/spec.pdf, page14 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page14 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Spec/spec.pdf Graphic file (type pdf)
 
 <use ../Spec/spec.pdf, page 14>
-Package pdftex.def Info: ../Spec/spec.pdf, page14 used on input line 286.
+Package pdftex.def Info: ../Spec/spec.pdf, page14 used on input line 320.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [19 <../Spec/spec.pdf>]
-<../Tests/tests.pdf, id=202, page=1, 597.50829pt x 845.0471pt>
+ [20 <../Spec/spec.pdf>]
+<../Tests/tests.pdf, id=214, page=1, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 1>
-Package pdftex.def Info: ../Tests/tests.pdf, page1 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page1 used on input line 324.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 1>
-Package pdftex.def Info: ../Tests/tests.pdf, page1 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page1 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 1>
-Package pdftex.def Info: ../Tests/tests.pdf, page1 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page1 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 1>
-Package pdftex.def Info: ../Tests/tests.pdf, page1 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page1 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 1>
-Package pdftex.def Info: ../Tests/tests.pdf, page1 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page1 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [20 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=229, page=2, 597.50829pt x 845.0471pt>
+ [21 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=241, page=2, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 2>
-Package pdftex.def Info: ../Tests/tests.pdf, page2 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page2 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 2>
-Package pdftex.def Info: ../Tests/tests.pdf, page2 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page2 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 2>
-Package pdftex.def Info: ../Tests/tests.pdf, page2 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page2 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [21 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=234, page=3, 597.50829pt x 845.0471pt>
+ [22 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=246, page=3, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 3>
-Package pdftex.def Info: ../Tests/tests.pdf, page3 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page3 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 3>
-Package pdftex.def Info: ../Tests/tests.pdf, page3 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page3 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 3>
-Package pdftex.def Info: ../Tests/tests.pdf, page3 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page3 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [22 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=239, page=4, 597.50829pt x 845.0471pt>
+ [23 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=251, page=4, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 4>
-Package pdftex.def Info: ../Tests/tests.pdf, page4 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page4 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 4>
-Package pdftex.def Info: ../Tests/tests.pdf, page4 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page4 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 4>
-Package pdftex.def Info: ../Tests/tests.pdf, page4 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page4 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [23 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=244, page=5, 597.50829pt x 845.0471pt>
+ [24 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=256, page=5, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 5>
-Package pdftex.def Info: ../Tests/tests.pdf, page5 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page5 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 5>
-Package pdftex.def Info: ../Tests/tests.pdf, page5 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page5 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 5>
-Package pdftex.def Info: ../Tests/tests.pdf, page5 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page5 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [24 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=249, page=6, 597.50829pt x 845.0471pt>
+ [25 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=262, page=6, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 6>
-Package pdftex.def Info: ../Tests/tests.pdf, page6 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page6 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 6>
-Package pdftex.def Info: ../Tests/tests.pdf, page6 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page6 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 6>
-Package pdftex.def Info: ../Tests/tests.pdf, page6 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page6 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [25 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=255, page=7, 597.50829pt x 845.0471pt>
+ [26 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=267, page=7, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 7>
-Package pdftex.def Info: ../Tests/tests.pdf, page7 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page7 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 7>
-Package pdftex.def Info: ../Tests/tests.pdf, page7 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page7 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 7>
-Package pdftex.def Info: ../Tests/tests.pdf, page7 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page7 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [26 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=260, page=8, 597.50829pt x 845.0471pt>
+ [27 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=272, page=8, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 8>
-Package pdftex.def Info: ../Tests/tests.pdf, page8 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page8 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 8>
-Package pdftex.def Info: ../Tests/tests.pdf, page8 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page8 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 8>
-Package pdftex.def Info: ../Tests/tests.pdf, page8 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page8 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [27 <../Tests/tests.pdf>]
-<../Tests/tests.pdf, id=265, page=9, 597.50829pt x 845.0471pt>
+ [28 <../Tests/tests.pdf>]
+<../Tests/tests.pdf, id=277, page=9, 597.50829pt x 845.0471pt>
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 9>
-Package pdftex.def Info: ../Tests/tests.pdf, page9 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page9 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
  <use ../Tests/tests.pdf, page 9>
-Package pdftex.def Info: ../Tests/tests.pdf, page9 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page9 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: ../Tests/tests.pdf Graphic file (type pdf)
 
 <use ../Tests/tests.pdf, page 9>
-Package pdftex.def Info: ../Tests/tests.pdf, page9 used on input line 290.
+Package pdftex.def Info: ../Tests/tests.pdf, page9 used on input line 324.
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
- [28 <../Tests/tests.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 291.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 291.
+ [29 <../Tests/tests.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 325.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 325.
 
 (./rapport_CPS_BC_SV.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 291.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 291.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 325.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 325.
 Package rerunfilecheck Info: File `rapport_CPS_BC_SV.out' has not changed.
-(rerunfilecheck)             Checksum: 419290FD9DEF9487302EE62A4F6B34E6;498.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 291.
+(rerunfilecheck)             Checksum: 20B45297D93CF31F972A493FCB33F6C6;622.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 325.
  ) 
 Here is how much of TeX's memory you used:
- 8963 strings out of 493315
- 129634 string characters out of 6137903
- 234843 words of memory out of 5000000
- 12264 multiletter control sequences out of 15000+600000
+ 8968 strings out of 493315
+ 129701 string characters out of 6137903
+ 235843 words of memory out of 5000000
+ 12266 multiletter control sequences out of 15000+600000
  14156 words of font info for 35 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  41i,18n,46p,521b,514s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1126,10 +1206,10 @@ e/2013/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/
 exmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2013/tex
 mf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2013/texmf
 -dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on rapport_CPS_BC_SV.pdf (28 pages, 320631 bytes).
+Output written on rapport_CPS_BC_SV.pdf (29 pages, 328240 bytes).
 PDF statistics:
- 324 PDF objects out of 1000 (max. 8388607)
- 246 compressed objects within 3 object streams
- 42 named destinations out of 1000 (max. 500000)
- 200 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 337 PDF objects out of 1000 (max. 8388607)
+ 258 compressed objects within 3 object streams
+ 45 named destinations out of 1000 (max. 500000)
+ 216 words of extra memory for PDF output out of 10000 (max. 10000000)
 
