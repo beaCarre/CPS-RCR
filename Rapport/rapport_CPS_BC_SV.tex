@@ -60,7 +60,7 @@ La méthodologie pour la \emph{conception par contrat}  se compose de trois phas
 Nous avons suivi scrupuleusement chacune de ces étapes pour l'élaboration du
 projet et ainsi honorer notre contrat défini. 
 
-Le projet consiste à développer un jeu : \emph{River city ransom}
+Le projet consiste à développer un jeu : \emph{River City Ransom}
 TODO explication projet
 
 Dans ce rapport, seront présentées la méthodologie utilisée pour
@@ -87,6 +87,8 @@ d’un programme à partir d’une définition du jeu River City Ransom.
 Pour chaque service décrit, il faut en sortir une spécification la
 plus détaillée et complète possible.
 
+Une grande partie des opérateurs d'un service requièrent la validité de plusieurs pré-conditions permettant leur appel. De la même façon, plusieurs post-conditions définissent quelle est l'action de l'opérateur sur le service en question.
+
 Nous avons rencontré plusieurs difficultés :
 \begin{itemize}
 \item Les problèmes d’interprétation personnelle, qui peuvent être
@@ -112,19 +114,67 @@ Celle-ci est importante dans la mesure où elle représente le liens
 entre la spécification et l'implémentation pure, tant au niveau des
 conditions, qu'au niveau de TODO.
 
-Pour n conditions sur chaque opération => (2 à $\sim 6)^n$ tests!
+Pour n conditions sur chaque opération $\Rightarrow$ (2 à $\sim 6)^n$ tests!
 Pour chaque argument de méthode, il faut trouver les valeurs à tester.
 Si booléen, il suffit de tester avec true et false.
 Mais si entier float string etc, il est impossible de tester toutes
 les valeurs. Il faut donc sélectionner les valeurs les plus
 pertinentes à tester, qui sont en général les valeurs juste avant et
-après les limites d'intervales de tests.
+après les limites d'intervales de tests ainsi qu'une valeur centrale. \\
+
+
+Par exemple, l'observateur \emph{bloc(T,x,y)} du service \emph{Terrain} possède ce qui semble être deux préconditions simples :  0 $\le$ x $\le$ largeur(T) et 0 $\le$ y $\le$ profondeur(T) \\
+
+
+Ce qui se traduit en réalité par 4 conditions :
+\begin{itemize}
+\item 0 $\le$ x 
+\item x $\le$ largeur(T)
+\item 0 $\le$ y
+\item y $\le$ profondeur(T) \\
+ 
+ \end{itemize} 
+ 
+
+ Pour avoir une étendue de test satisfaisante, il nous faudrait \underline{au moins} tester pour chaque condition une situation qui rendrait la condition fausse et une situation qui rendrait la condition vraie. \\
+ 
+ On peut alors écrire une table de vérité afin d'avoir une idée des différents tests à réaliser, selon les cas :
+ 
+ \begin{center}
+   \begin{tabular}{ | c | c | c | c |}
+     \hline
+     0 $\le$ x &  x $\le$ largeur(T) & 0 $\le$ y &  y $\le$ profondeur(T) \\ \hline
+    $\top$ & $\top$ & $\top$ & $\top$ \\ \hline
+    $\top$ & $\top$ & $\top$ & $\bot$ \\ \hline
+    $\top$ & $\top$ & $\bot$ & $\top$ \\ \hline
+    $\top$ & $\top$ & $\bot$ & $\bot$ \\ \hline
+    $\top$ & $\bot$ & $\top$ & $\top$ \\ \hline
+    $\top$ & $\bot$ & $\top$ & $\bot$ \\ \hline
+    $\top$ & $\bot$ & $\bot$ & $\top$ \\ \hline
+    $\top$ & $\bot$ & $\bot$ & $\bot$ \\ \hline
+    
+    $\bot$ & $\top$ & $\top$ & $\top$ \\ \hline
+    $\bot$ & $\top$ & $\top$ & $\bot$ \\ \hline
+    $\bot$ & $\top$ & $\bot$ & $\top$ \\ \hline
+    $\bot$ & $\top$ & $\bot$ & $\bot$ \\ \hline
+    $\bot$ & $\bot$ & $\top$ & $\top$ \\ \hline
+    $\bot$ & $\bot$ & $\top$ & $\bot$ \\ \hline
+    $\bot$ & $\bot$ & $\bot$ & $\top$ \\ \hline
+    $\bot$ & $\bot$ & $\bot$ & $\bot$ \\ \hline
+
+   \end{tabular}
+ \end{center}
+
+Soient 16($=2^4$) tests à réaliser.  \\
+
+Certains opérateurs (ou constructeurs) possèdent jusqu'à 8 préconditions, ce qui reviendrait à effectuer au moins $2^8=256$ tests. \\
+
 
 Théorie : tous les tests réussissent signifierait que nous avons une application sans erreurs
 
 Réalité : il faut aussi que l’implémentation respecte ce qui est
 demandé, et toutes les valeurs ne sont pas testées, il est donc
-impossible d'être sûrs.
+impossible d'être sûrs. A DÉVELOPPER 
 
 
 \subsection{Implémentation par contrat}
@@ -143,31 +193,63 @@ squelette étudié.
 petite intro ?
 
 \subsection{Specification}
-choix d'implementation :
 
- ramasser => 3 méthodes différentes
+La spécification que nous avons réalisé contient les services suivants : 
 
- 1 objet par bloc => jeter un objet que sur bloc vide
+\begin{itemize}
+\item \textbf{Personnage} qui décrit les comportements des personnages du jeu (Ryan et Alex).
+\item \textbf{Gangster} qui raffine les comportements des personnages pour les ennemis de Ryan et Alex.
+\item \textbf{Bloc}, qui représente un bloc situé sur sol du terrain de jeu.
+\item \textbf{Objet}, définissant les caractéristiques des objets éparpillés sur le sol et pouvant être ramassés par les personnages.
+\item \textbf{Terrain}, représentant le terrain (en trois dimensions) dans lequel les personnages évoluent.
+\item \textbf{MoteurJeu}, service gérant les tours de jeu ainsi que vérifiant l'état de la partie.
+\item \textbf{GestionCombat} qui est le service central de l'application, et qui s'occupe en particulier d'associer à chaque commande envoyée à un personnage des actions concrètes dans le jeu. \\
+\end{itemize}
 
- action gangster => commande aléatoire
+Ces services décrivent de nombreux comportements, tous précisés en annexe. Nous nous attacherons ici à préciser quels ont été nos décisions particulières lors de la conception de leur spécification: \\
 
- ramasser un perso = équipé comme un objet donc invisible
+\begin{itemize}
 
- argent n’est pas un objet équipé  => peut se récolter autant que l’on
-          veut, même si équipé de quelque chose
+\item Dans le service \emph{Personnage}, nous avons choisi de séparer l'action de ramasser (un objet ou un personnage) en trois opérateurs différents : ramasser\_objet, ramasser\_argent, et ramasser\_perso. L'idée était ici de permettre à un personnage de ramasser de l'argent sans pour autant se retrouver dans l'impossibilité de ramasser un autre objet par la suite ou bien de continuer à ramasser de l'argent alors qu'il est équipé d'une arme (ou d'un personnage) \\
 
- Les blocs sont en 2D au sol, mais les personnages peuvent sauter sur
-   le troisième axe.
+\item Chaque \emph{Bloc} possède un observateur \emph{type} qui retourne si le bloc est \emph{VIDE} (il ne contient aucun objet ou trésor), \emph{FOSSE} (il représente un trou dans lequel les personnages peuvent tomber) ou \emph{OBJET} (il contient un objet, qui peut être un trésor ou une arme).  \\
 
- observateur estVisible() pour afficher ou non des gangsters/persos
+\item Nous avons décidé qu'il ne pourrait y avoir qu'un seul objet (au maximum) par bloc sur le sol du terrain de jeu. Ainsi, il est impossible pour un personnage de jeter un objet s'il ne se situe pas sur un bloc vide. De même, l'opération \emph{poserObjet} du service \emph{Bloc} n'est permise qu'à condition que le bloc soit de type \emph{VIDE} \\
 
+\item Les \emph{Gangsters} n'étant pas dirigés par les actions du joueur, nous avons créé un observateur \emph{actionGangster} dans \emph{GestionCombat} retournant ce que décide de faire chaque gangster donné à chaque tour de jeu.  \\
+
+\item Lorsqu'un \emph{Personnage} en ramasse un autre, nous considérons que le personnage ramassé est devient alors invisible sur le terrain de jeu jusqu'à ce qu'il soit jeté. \\ 
+
+\item Les \emph{Objets} ne peuvent se situer qu'au sol. Ainsi, le \emph{Terrain} possède un tableau à deux dimensions de \emph{Blocs} représentant une grille se situant au sol et pouvant contenir des objets. \\
+
+\item Chaque \emph{Bloc} fait 50 pixels de large. Le \emph{Terrain} doit donc posséder une largeur et une profondeur multiples de 50. \\
+
+\item Un observateur \emph{estVisible} est ajouté dans \emph{GestionCombat}, permettant essentiellement à l'implémentation graphique du jeu d'afficher ou non un \emph{Personnage} ou un \emph{Gangster} pendant l'exécution du jeu.
+
+\end{itemize}
 
 \subsection{Tests}
 Nous n'avons malheureusement pas fait tout les tests.
 
+1 exemple ... 
+
 Idéalement : pour chaque méthodes, pour chaque valeur : 
 
 \subsection{Implémentation par contrat}
+
+TODO : 
+
+Qu'est- ce qu'elle suit, comment elle se déroule
+
+Quel est le squelette de l'implem par contrat (+ exemple ?)
+
+De quoi est consistuée notre implem ( 1 version buguée, 1 version pas buguée, 1 version graphique un peu buguée :) )
+
+code en annexe 
+
+desc des options du fichiers build 
+
++ petit manuel utilisateur 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%   CCL  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

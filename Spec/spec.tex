@@ -266,7 +266,7 @@ Observators :
 	const hauteur : [Terrain] (*$\rightarrow$*) int
 	const profondeur : [Terrain] (*$\rightarrow$*) int
 	bloc : [Terrain] (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) Bloc
-		pre bloc( T, x,y) require 0 (*$\leq$*) x (*$\leq$*) largeur (*$\land$*) 0 (*$\leq$*) y (*$\leq$*) profondeur
+		pre bloc( T, x,y) require 0 (*$\leq$*) x (*$\leq$*) largeur(T) (*$\land$*) 0 (*$\leq$*) y (*$\leq$*) profondeur(T)
 	     
 Constructors :
 
