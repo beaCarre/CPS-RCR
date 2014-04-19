@@ -175,7 +175,7 @@ Soient 16($=2^4$) tests à réaliser.  \\
 Certains opérateurs (ou constructeurs) possèdent jusqu'à 8 préconditions, ce qui reviendrait à effectuer au moins $2^8=256$ tests. \\
 
 
-Théorie : tous les tests réussissent signifierait que nous avons une application sans erreurs
+Théorie : tous les tests réussissent signifierait que nous avons une application sans erreurs À VÉRIFIER
 
 Réalité : il faut aussi que l’implémentation respecte ce qui est
 demandé, et toutes les valeurs ne sont pas testées, il est donc
@@ -217,6 +217,8 @@ Ces services décrivent de nombreux comportements, tous précisés en annexe. No
 
 \item Dans le service \emph{Personnage}, nous avons choisi de séparer l'action de ramasser (un objet ou un personnage) en trois opérateurs différents : ramasser\_objet, ramasser\_argent, et ramasser\_perso. L'idée était ici de permettre à un personnage de ramasser de l'argent sans pour autant se retrouver dans l'impossibilité de ramasser un autre objet par la suite ou bien de continuer à ramasser de l'argent alors qu'il est équipé d'une arme (ou d'un personnage) \\
 
+\item Le service \emph{Gangster} n'est qu'un raffinement du service \emph{Personnage} sur lequel les opérateurs concernant l'argent (\emph{ramasser\_argent}, \emph{depot\_argent}, etc.) n'ont pas d'influence.  \\
+
 \item Chaque \emph{Bloc} possède un observateur \emph{type} qui retourne si le bloc est \emph{VIDE} (il ne contient aucun objet ou trésor), \emph{FOSSE} (il représente un trou dans lequel les personnages peuvent tomber) ou \emph{OBJET} (il contient un objet, qui peut être un trésor ou une arme).  \\
 
 \item Nous avons décidé qu'il ne pourrait y avoir qu'un seul objet (au maximum) par bloc sur le sol du terrain de jeu. Ainsi, il est impossible pour un personnage de jeter un objet s'il ne se situe pas sur un bloc vide. De même, l'opération \emph{poserObjet} du service \emph{Bloc} n'est permise qu'à condition que le bloc soit de type \emph{VIDE} \\
@@ -225,7 +227,7 @@ Ces services décrivent de nombreux comportements, tous précisés en annexe. No
 
 \item Lorsqu'un \emph{Personnage} en ramasse un autre, nous considérons que le personnage ramassé est devient alors invisible sur le terrain de jeu jusqu'à ce qu'il soit jeté. \\ 
 
-\item Les \emph{Objets} ne peuvent se situer qu'au sol. Ainsi, le \emph{Terrain} possède un tableau à deux dimensions de \emph{Blocs} représentant une grille se situant au sol et pouvant contenir des objets. \\
+\item Les \emph{Objets} ne peuvent se situer qu'à terre. Ainsi, le \emph{Terrain} possède un tableau à deux dimensions de \emph{Blocs} représentant une grille se situant au sol et pouvant contenir des objets. \\
 
 \item Chaque \emph{Bloc} fait 50 pixels de large. Le \emph{Terrain} doit donc posséder une largeur et une profondeur multiples de 50. \\
 
@@ -244,23 +246,23 @@ Idéalement : pour chaque méthodes, pour chaque valeur :
 
 L'implementation de la spécification que nous avons réalisée a été effectuée en Java à l'aide d'Eclipse. Les noms des méthodes de la spécification ont étés convertis en écriture \emph{camelCase} afin de mieux convenir aux normes Java (par exemple \emph{depot\_argent} est devenu \emph{depotArgent} dans le code). \\
 
-Pour chaque service \emph{xx}, nous avons créé les fichiers suivants :  \\
+Pour chaque service (ici nommé "\emph{foo}"), nous avons créé les fichiers suivants :  \\
 
 \begin{itemize}
-\item \emph{xxService.java}  une interface déclarant chaque méthode associée aux constructeurs, aux observateurs et aux opérateurs du service en question.  \\
-\item \emph{xxDecorator.java}  une classe abstraite d'enrobage réalisant l'interface \emph{xxService} en utilisant le design dattern décorateur.\\
-\item \emph{xxContract.java}  une classe héritant de \emph{xxDecorator} et réalisant l'action voulue pour le service en question sur une implémentation de \emph{xxService}, tout en permettant la vérification de la justesse des pré-conditions, post-conditions, et invariants.  \\
-\item \emph{xxImpl.java}  une classe "concrete" qui implémente l'interface \emph{xxService} et réalise les actions liées à la logique du jeu. \\
-\item \emph{xxFailImpl.java}  une seconde classe qui implémente le jeu, mais qui ne respecte pas les diverses conditions établies par la spécification ( = une implémentation buguée ) \\
+\item \emph{fooService.java}  une interface déclarant chaque méthode associée aux constructeurs, aux observateurs et aux opérateurs du service en question.  \\
+\item \emph{fooDecorator.java}  une classe abstraite d'enrobage réalisant l'interface \emph{fooService} en utilisant le design dattern décorateur.\\
+\item \emph{fooContract.java}  une classe héritant de \emph{fooDecorator} et réalisant l'action voulue pour le service en question sur une implémentation de \emph{fooService}, tout en permettant la vérification de la justesse des pré-conditions, post-conditions, et invariants.  \\
+\item \emph{fooImpl.java}  une classe "concrete" qui implémente l'interface \emph{fooService} et réalise les actions liées à la logique du jeu. \\
+\item \emph{fooFailImpl.java}  une seconde classe qui implémente le jeu, mais qui ne respecte pas les diverses conditions établies par la spécification ( = une implémentation buguée ) \\
 \end{itemize}
 
 À ces classes, chacune présente dans un package du nom du service qu'elle implémente, s'ajoutent plusieurs classes dans le package \emph{ihm} qui réalisent l'interface graphique du jeu à l'aide du design pattern decorator. \\
 
 Notre implémentation de River City Ransom est donc séparée en trois parties : 
 \begin{itemize}
-\item Une implémentation respectant la spécification, sur laquelle nous pouvons lancer les tests, correspondant aux classes \emph{xxImpl.java}
-\item Une implémentation buguée, correspondant aux classes \emph{xxFailImpl.java}
-\item Une application exécutable, permettant de lancer réellement le jeu, qui correspond aux classes de \emph{ihm}, et dont la classe principale est \emph{RiverCityGraphic.java}. \\
+\item Une implémentation respectant la spécification, sur laquelle nous pouvons lancer les tests, correspondant aux classes \emph{*Impl.java}
+\item Une implémentation buguée, correspondant aux classes \emph{*FailImpl.java}
+\item Une application exécutable, permettant de lancer réellement le jeu, qui se base sur les classes de \emph{ihm}, et dont la classe principale est \emph{RiverCityGraphic.java}. \\
 \end{itemize}
 
 L'implémentation des tests a été réalisée dans un package \emph{tests} et regroupe, pour chaque service, des tests Junit correspondant à tous les tests décrits en annexe.
