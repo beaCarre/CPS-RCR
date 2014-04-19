@@ -241,7 +241,7 @@ Observators :
 Constructors :
 
 	init : String (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Object] 
-		pre(init(n,t,bonus,valeur) require n(*$\ne$*)"" (*$\land$*) ( ( bonus (*$>$*)0 (*$\land$*) valeur = 0) (*$\lor$*) (bonus = 0 (*$\land$*) valeur(*$>$*) 0) ) 
+		pre init(n,bonus,valeur) require n(*$\ne$*)"" (*$\land$*) ( ( bonus (*$>$*)0 (*$\land$*) valeur = 0) (*$\lor$*) (bonus = 0 (*$\land$*) valeur(*$>$*) 0) ) 
 		
 Observations : 
 	 [(*$\specB{Invariants}$*)]
@@ -271,7 +271,7 @@ Observators :
 Constructors :
 
 	init : int (*$\times$*) int (*$\times$*) int (*$\rightarrow$*) [Terrain]
-		pre init(largeur, hauteur, prof) require largeur (*$>$*) 50 (*$\land$*) hauteur (*$>$*) 100 (*$\land$*) prof (*$>$*) 50 (*$\land$*) largeur%50=0 (*$\land$*) profondeur%50=0
+		pre init(largeur, hauteur, prof) require largeur (*$\ge$*) 50 (*$\land$*) hauteur (*$\ge$*) 100 (*$\land$*) prof (*$\ge$*) 50 (*$\land$*) largeur%50=0 (*$\land$*) profondeur%50=0
 	     
 Operators : 
 

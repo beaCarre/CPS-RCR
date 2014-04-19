@@ -64,7 +64,7 @@
 \begin{Test}
 Cas de test : Personnage::testInitWorking
 CI : nom = "Ryan" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p = 30 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = 100
-Operation : P0 =def init(nom,l,h,p,f,v,a)
+Operation : P0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v,a)
 Oracle : 
 	nom(P0) == "Ryan"
 	largeur(P0) =	30
@@ -77,42 +77,42 @@ Oracle :
 	
 Cas de test : Personnage::testInitFailing 
 CI : nom = "Joe" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p = 30 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = 100
-Operation : P0 =def init(nom,l,h,p,f,v,a)
+Operation : P0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v,a)
 Oracle : 
 	nom (*$\ne$*) "Alex" (*$\land$*) nom (*$\ne$*) "Ryan"
 	Une exception est levee
 	
 Cas de test : Personnage::testInitFailing 
 CI : nom = "Alex" (*$\land$*) l = -5 (*$\land$*) h = 30 (*$\land$*) p = 30 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = 100
-Operation : P0 =def init(nom,l,h,p,f,v,a)
+Operation : P0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v,a)
 Oracle : 
 	l (*$\leq$*) 0
 	Une exception est levee
 	
 Cas de test : Personnage::testInitFailing 
 CI : nom = "Alex" (*$\land$*) l = 30 (*$\land$*) h = -5 (*$\land$*) p = 30 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = 100
-Operation : P0 =def init(nom,l,h,p,f,v,a)
+Operation : P0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v,a)
 Oracle : 
 	h (*$\leq$*) 0
 	Une exception est levee
 	
 Cas de test : Personnage::testInitFailing 
 CI : nom = "Alex" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p = -5 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = 100
-Operation : P0 =def init(nom,l,h,p,f,v,a)
+Operation : P0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v,a)
 Oracle : 
 	p (*$\leq$*) 0
 	Une exception est levee
 	
 Cas de test : Personnage::testInitFailing 
 CI : nom = "Alex" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p = 30 (*$\land$*) a = -10 (*$\land$*) v = 100 (*$\land$*) f = 100
-Operation : P0 =def init(nom,l,h,p,f,v,a)
+Operation : P0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v,a)
 Oracle : 
 	a < 0
 	Une exception est levee
 	
 Cas de test : Personnage::testInitFailing 
 CI : nom = "Alex" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p = 30 (*$\land$*) a = 10 (*$\land$*) v = 0 (*$\land$*) f = 100
-Operation : P0 =def init(nom,l,h,p,f,v,a)
+Operation : P0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v,a)
 Oracle : 
 	v (*$\leq$*) 0
 	Une exception est levee
@@ -120,20 +120,20 @@ Oracle :
 Cas de test : Personnage::testInitFailing 
 CI : nom = "Alex" (*$\land$*) l = 30 (*$\land$*) h = 30 (*$\land$*) p
 = 30 (*$\land$*) a = 10 (*$\land$*) v = 100 (*$\land$*) f = -8
-Operation : P0 =def init(nom,l,h,p,f,v,a)
+Operation : P0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v,a)
 Oracle : 
 	f (*$\leq$*) 0
 	Une exception est levee
 
 Cas de test : Personnage::RetraitVieWorking
 CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
-Operation : P0 =def retraitPdV(personnage, 3)
+Operation : P0 (*$\stackrel{def}{=}$*) retraitPdV(personnage, 3)
 Oracle :
 	argent(P0) = 7 = (10-3)
 
 Cas de test : Personnage::RetraitVieFailing
 CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
-Operation : P0 =def retraitPdV(personnage, -5);
+Operation : P0 (*$\stackrel{def}{=}$*) retraitPdV(personnage, -5);
 Oracle : 
 	-5 < 0
 	Une exception est levee
@@ -141,33 +141,33 @@ Oracle :
 	
 	Cas de test : Personnage::RetraitArgentWorking
 CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
-Operation : P0 =def retraitArgent(personnage, 3)
+Operation : P0 (*$\stackrel{def}{=}$*) retraitArgent(personnage, 3)
 Oracle :
 	pointsDeVie(P0) = 7 = (10-3)
 
 Cas de test : Personnage::RetraitArgentFailing
 CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
-Operation : P0 =def retraitArgent(personnage, -5);
+Operation : P0 (*$\stackrel{def}{=}$*) retraitArgent(personnage, -5);
 Oracle : 
 	-5 < 0
 	Une exception est levee
 	
 Cas de test : Personnage::RetraitArgentFailing
 CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
-Operation : P0 =def retraitArgent(personnage, 108);
+Operation : P0 (*$\stackrel{def}{=}$*) retraitArgent(personnage, 108);
 Oracle : 
 	108 > 100
 	Une exception est levee
 	
 Cas de test : Personnage::DepotAgentWorking
 CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
-Operation : P0 =def depotArgent(personnage, 3)
+Operation : P0 (*$\stackrel{def}{=}$*) depotArgent(personnage, 3)
 Oracle :
 	pointsDeVie(P0) = 7 = (10-3)
 
 Cas de test : Personnage::DepotArgentFailing
 CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
-Operation : P0 =def depotArgent(personnage, -5);
+Operation : P0 (*$\stackrel{def}{=}$*) depotArgent(personnage, -5);
 Oracle : 
 	-5 < 0
 	Une exception est levee
@@ -175,7 +175,7 @@ Oracle :
 Cas de test : Personnage::ramasserObjetWorking
 CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100),
 		 obj = Objet::init("arme",10,0)
-Operation : P0 =def ramasserObjet(personnage, obj)
+Operation : P0 (*$\stackrel{def}{=}$*) ramasserObjet(personnage, obj)
 Oracle :
 	objetEquipe(personnage) = obj
 	force(personnage) = 110
@@ -183,7 +183,7 @@ Oracle :
 Cas de test : Personnage::ramasserObjetFailing1
 CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
 			obj = Objet::init("sous",0,40)
-Operation : P0 =def ramasserObjet(personnage, obj);
+Operation : P0 (*$\stackrel{def}{=}$*) ramasserObjet(personnage, obj);
 Oracle : 
 	Objet:est_equipable(obj) = false
 	Une exception est levee
@@ -193,7 +193,7 @@ CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
 			p = Personnage::init("Ryan",10,10,10,100,100)
 			personnage = ramasser_perso(p)
 			obj = Objet::init("arme",10,0)
-Operation : P0 =def ramasserObjet(personnage, obj);
+Operation : P0 (*$\stackrel{def}{=}$*) ramasserObjet(personnage, obj);
 Oracle : 
 	est_equipe_perso(personnage) = true
 	Une exception est levee
@@ -202,7 +202,7 @@ Oracle :
 Cas de test : Personnage::ramasserArgentWorking
 CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100),
 		 obj = Objet::init("piece",0,40)
-Operation : P0 =def ramasserObjet(personnage, obj)
+Operation : P0 (*$\stackrel{def}{=}$*) ramasserObjet(personnage, obj)
 Oracle :
 	objetEquipe(personnage) = obj
 	force(personnage) = 110
@@ -211,7 +211,7 @@ Cas de test : Personnage::ramasserArgentFailing1
 CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
 			personnage = retraitVie(personnage,200)
 			obj = Objet::init("soussou",0,40)
-Operation : P0 =def ramasserArgent(personnage, obj)
+Operation : P0 (*$\stackrel{def}{=}$*) ramasserArgent(personnage, obj)
 Oracle : 
 	estVaincu(P0) = true
 	Une exception est levee
@@ -219,7 +219,7 @@ Oracle :
 Cas de test : Personnage::ramasserArgentFailing2
 CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
 			obj = Objet::init("soussou",30,0)
-Operation : P0 =def ramasserArgent(personnage, obj);
+Operation : P0 (*$\stackrel{def}{=}$*) ramasserArgent(personnage, obj);
 Oracle : 
 	Objet:est_DeValeur(obj) = false
 	Une exception est levee
@@ -227,7 +227,7 @@ Oracle :
 Cas de test : Personnage::ramasserPersoWorking
 CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
 			perso2 = init("Ryan", 10, 10, 10, 10, 100, 100)
-Operation : P0 =def ramasserPerso(personnage, perso2)
+Operation : P0 (*$\stackrel{def}{=}$*) ramasserPerso(personnage, perso2)
 Oracle :
 	persoEquipe(P0) = perso2
 
@@ -235,7 +235,7 @@ Cas de test : Personnage::ramasserPersoFailing1
 CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
 			perso2 = init("Ryan", 10, 10, 10, 10, 100, 100)
 			personnage = personnage.retraitPdV(10000);
-Operation : P0 =def ramasserPerso(personnage, perso2 )
+Operation : P0 (*$\stackrel{def}{=}$*) ramasserPerso(personnage, perso2 )
 Oracle : 
 	estVaincu(P0) = true
 	Une exception est levee
@@ -245,7 +245,7 @@ Cas de test : Personnage::jeterWorking
 CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
 			obj = Objet::init("arme",10,0)
 			personnage = ramasserObjet(personnage,obj)
-Operation : P0 =def jeter(personnage)
+Operation : P0 (*$\stackrel{def}{=}$*) jeter(personnage)
 Oracle :
 	persoEquipe(P0) = null
 	force(P0) = 100
@@ -253,7 +253,7 @@ Oracle :
 
 Cas de test : Personnage::jeterFailing1
 CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
-Operation : P0 =def jeter(personnage)
+Operation : P0 (*$\stackrel{def}{=}$*) jeter(personnage)
 Oracle : 
 	estEquipeObjet(personnage) = false
 	estEquipePerso(personnage) = false
@@ -264,18 +264,252 @@ Oracle :
 \section{Gangster}
 \begin{Test}
 
+Cas de test  : Gangster::testInitWorking
+CI : nom = "Slick" (*$\land$*) l = 10 (*$\land$*) h = 10 (*$\land$*) p = 10 (*$\land$*) f = 10 (*$\land$*) v = 10
+Operation : G0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v)
+Oracle :
+	nom(P0) = "Slick"
+	largeur(P0) = 10
+	hauteur(P0) = 10
+	profondeur(P0) = 10
+	pointsDeVie(P0) = 10
+	force(P0) = 10
+	argent(P0) = 0
+
+Cas de test  : Gangster::testInitFailing1
+CI : nom = "" (*$\land$*) l = 10 (*$\land$*) h = 10 (*$\land$*) p = 10 (*$\land$*) f = 10 (*$\land$*) v = 10
+Operation : G0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v)
+Oracle :
+	nom(P0) == ""
+	Une exception est levee
+	
+Cas de test  : Gangster::testInitFailing2
+CI : nom = "Slick" (*$\land$*) l = -1 (*$\land$*) h = 10 (*$\land$*) p = 10 (*$\land$*) f = 10 (*$\land$*) v = 10
+Operation : G0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v)
+Oracle :
+	l(*$\le$*)0
+	Une exception est levee
+
+Cas de test  : Gangster::testInitFailing3
+CI : nom = "Slick" (*$\land$*) l = 10 (*$\land$*) h = -1 (*$\land$*) p = 10 (*$\land$*) f = 10 (*$\land$*) v = 10
+Operation : G0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v)
+Oracle :
+	h (*$\le$*) 0
+	Une exception est levee
+	
+Cas de test  : Gangster::testInitFailing4
+CI : nom = "Slick" (*$\land$*) l = 10 (*$\land$*) h = 10 (*$\land$*) p = -1 (*$\land$*) f = 10 (*$\land$*) v = 10
+Operation : G0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v)
+Oracle :
+	p (*$\le$*) 0
+	Une exception est levee
+
+Cas de test  : Gangster::testInitFailing5
+CI : nom = "Slick" (*$\land$*) l = 10 (*$\land$*) h = 10 (*$\land$*) p = 10 (*$\land$*) f = -1 (*$\land$*) v = 10
+Operation : G0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v)
+Oracle :
+	f (*$\le$*) 0
+	Une exception est levee
+
+Cas de test  : Gangster::testInitFailing6
+CI : nom =  "Slick" (*$\land$*) l = 10 (*$\land$*) h = 10 (*$\land$*) p = 10 (*$\land$*) f = 10 (*$\land$*) v = -1
+Operation : G0 (*$\stackrel{def}{=}$*) init(nom,l,h,p,f,v)
+Oracle :
+	v (*$\le$*) 0
+	Une exception est levee
+
+
      
+\end{Test}
+
+\section{Bloc}
+\begin{Test}
+
+Cas de test  : Bloc::testInitWorking
+CI : type = TYPE.VIDE (*$\land$*) o = null
+Operation : B0 (*$\stackrel{def}{=}$*) init(type,o)
+Oracle :
+	type(B0) = TYPE.VIDE
+	objet(B0) = 0
+
+Cas de test  : Bloc::testInitFailing1
+CI :  type = TYPE.VIDE (*$\land$*) o = Objet::init("machin",100,0)
+Operation : B0 (*$\stackrel{def}{=}$*) init(type,o)
+Oracle :
+	type== TYPE.VIDE (*$\land$*) o (*$\ne$*) null
+	Une exception est levee
+
+Cas de test  : Bloc::testInitFailing2
+CI :  type = TYPE.OBJET (*$\land$*) o = null
+Operation : B0 (*$\stackrel{def}{=}$*) init(type,o)
+Oracle :
+	type== TYPE.OBJET (*$\land$*) o == null
+	Une exception est levee
+
+Cas de test : Bloc::RetirerObjetWorking
+CI : b = init(TYPE.OBJET,Objet::init("machin,100,0))
+Operation : B0 (*$\stackrel{def}{=}$*) retirerObjet(b)
+Oracle :
+	type(B0) = TYPE.VIDE
+	objet(B0) = null
+
+Cas de test : Bloc::RetirerObjetFailing
+CI : b = init(TYPE.VIDE,null)
+Operation : B0 (*$\stackrel{def}{=}$*) retirerObjet(b)
+Oracle :
+	type(b) (*$\ne$*) TYPE.OBJET
+	Une exception est levee 
+
+Cas de test : Bloc::PoserObjetWorking
+CI : b = init(TYPE.VIDE,null) (*$\land$*) o = Objet::init("machin",100,0)
+Operation : B0 (*$\stackrel{def}{=}$*) poserObjet(b,o)
+Oracle :
+	type(B0) = TYPE.OBJET
+	objet(B0) = o
+
+Cas de test : Bloc::PoserObjetFailing
+CI : b = init(TYPE.OBJET,Objet::init("machin,100,0)) (*$\land$*) o = Objet::init("truc",10,0)
+Operation : B0 (*$\stackrel{def}{=}$*) poserObjet(b,o)
+Oracle :
+	type(b) (*$\ne$*) TYPE.VIDE
+	Une exception est levee 
 \end{Test}
  
 \section{Objet}
 \begin{Test}
 
+Cas de test  : Objet::testInitWorking1
+CI : n = "machin" (*$\land$*) bonus = 10 (*$\land$*) valeur = 0
+Operation : O0 (*$\stackrel{def}{=}$*) init(n,bonus,valeur)
+Oracle :
+	nom(O0) = "machin"
+	bonus\_force(O0) = 10
+	valeur\_marchande(O0) = 0
+	
+Cas de test  : Objet::testInitWorking2
+CI : n = "machin" (*$\land$*) bonus = 0 (*$\land$*) valeur = 10
+Operation : O0 (*$\stackrel{def}{=}$*) init(n,bonus,valeur)
+Oracle :
+	nom(O0) = "machin"
+	bonus\_force(O0) = 0
+	valeur\_marchande(O0) = 10
+	
+Cas de test  : Objet::testInitFailing1
+CI : n = "" (*$\land$*) bonus = 0 (*$\land$*) valeur = 10
+Operation : O0 (*$\stackrel{def}{=}$*) init(n,bonus,valeur)
+Oracle :
+	n == ""
+	Une exception est levee
+	
+Cas de test  : Objet::testInitFailing2
+CI : n = "truc" (*$\land$*) bonus = 10 (*$\land$*) valeur = 10
+Operation : O0 (*$\stackrel{def}{=}$*) init(n,bonus,valeur)
+Oracle :
+	bonus > 0 (*$\land$*) valeur > 0
+	Une exception est levee
+	
+Cas de test  : Objet::testInitFailing3
+CI : n = "truc" (*$\land$*) bonus = -1 (*$\land$*) valeur = 0
+Operation : O0 (*$\stackrel{def}{=}$*) init(n,bonus,valeur)
+Oracle :
+	bonus < 0
+	Une exception est levee
+	
+Cas de test  : Objet::testInitFailing4
+CI : n = "truc" (*$\land$*) bonus = 0 (*$\land$*) valeur = -1
+Operation : O0 (*$\stackrel{def}{=}$*) init(n,bonus,valeur)
+Oracle :
+	valeur < 0
+	Une exception est levee
 
 
 \end{Test}
 
 \section{Terrain}
 \begin{Test}
+Cas de test  : Terrain::testInitWorking
+CI : p = 50, h = 100, l = 50
+Operation : T0 (*$\stackrel{def}{=}$*) init(l,h,p)
+Oracle :
+	largeur(T0) = l
+	hauteur(T0) = h
+	profondeur(T0) = p
+
+Cas de test  : Terrain::testInitFailing1
+CI :  p = 0, h = 100, l = 50
+Operation : T0 (*$\stackrel{def}{=}$*) init(l,h,p)
+Oracle :
+	p<50
+	Une exception est levee
+
+Cas de test  : Terrain::testInitFailing2
+CI :  p = 50, h = 100, l = 0
+Operation : T0 (*$\stackrel{def}{=}$*) init(l,h,p)
+Oracle :
+	l<50
+	Une exception est levee
+
+Cas de test  : Terrain::testInitFailing3
+CI :  p = 50, h = 10, l = 50
+Operation : T0 (*$\stackrel{def}{=}$*) init(l,h,p)
+Oracle :
+	h<100
+	Une exception est levee
+
+Cas de test  : Terrain::testInitFailing4
+CI :  p = 60, h = 100, l = 50
+Operation : T0 (*$\stackrel{def}{=}$*) init(l,h,p)
+Oracle :
+	(p%50)(*$\ne$*)0
+	Une exception est levee
+
+Cas de test  : Terrain::testInitFailing5
+CI :  p = 50, h = 100, l = 60
+Operation : T0 (*$\stackrel{def}{=}$*) init(l,h,p)
+Oracle :
+	(l%50)(*$\ne$*)0
+	Une exception est levee
+
+Cas de test : Terrain::modifierBlocWorking
+CI : t = init(500,100,500) (*$\land$*) b = Bloc::init(TYPE.VIDE,null)
+Operation T0 (*$\stackrel{def}{=}$*) modifierBloc(t,10,10, b)
+Oracle :
+	bloc(T0,10,10) = b
+
+Cas de test : Terrain::modifierBlocFailing1
+CI : t = init(500,100,500) (*$\land$*) b = Bloc::init(TYPE.VIDE,null)
+Operation T0 (*$\stackrel{def}{=}$*) modifierBloc(t,-1,10, b)
+Oracle :
+	x < 0
+	Une exception est levee
+
+Cas de test : Terrain::modifierBlocFailing2
+CI : t = init(500,100,500) (*$\land$*) b = Bloc::init(TYPE.VIDE,null)
+Operation T0 (*$\stackrel{def}{=}$*) modifierBloc(t,1000,10, b)
+Oracle :
+	x > largeur(t)
+	Une exception est levee
+
+Cas de test : Terrain::modifierBlocFailing3
+CI : t = init(500,100,500) (*$\land$*) b = Bloc::init(TYPE.VIDE,null)
+Operation T0 (*$\stackrel{def}{=}$*) modifierBloc(t, 10,-1, b)
+Oracle :
+	y < 0
+	Une exception est levee 
+ 
+Cas de test : Terrain::modifierBlocFailing4
+CI : t = init(500,100,500) (*$\land$*) b = Bloc::init(TYPE.VIDE,null)
+Operation T0 (*$\stackrel{def}{=}$*) modifierBloc(t, 10,1000, b)
+Oracle :
+	y > profondeur(t)
+	Une exception est levee 
+
+Cas de test : Terrain::modifierBlocFailing5
+CI : t = init(500,100,500) (*$\land$*) b =null
+Operation T0 (*$\stackrel{def}{=}$*) modifierBloc(t, 10,1000, b)
+Oracle :
+	b == null
+	Une exception est levee 
 
 	    
 \end{Test}

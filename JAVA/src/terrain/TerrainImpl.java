@@ -44,7 +44,7 @@ public class TerrainImpl implements TerrainService {
 	@Override
 	public void init(int l, int h, int p) throws PreconditionError,
 	PostConditionError {
-		if(l>0 && (l%50 == 0) && h>0 && p>0 && (p%50==0)){
+		if(l>=50 && (l%50 == 0) && h>=50 && p>=50 && (p%50==0)){
 			largeur = l;
 			hauteur = h;
 			profondeur = p; 

@@ -14,7 +14,7 @@ public class TerrainContract extends TerrainDecorator {
 	// \pre init(l,h,p) require l > 0 && h > 0 && p > 0 && l%50 = 0 && p%50  = 0
 	// \post init(l,h,p) : largeur() == l  && hauteur() == h && profondeur() == p && bloc(x,y,z) != null
 	public void init(int l, int h, int p) throws PreconditionError, PostConditionError{
-		if(!(l>0 && (l%50 == 0) && h>0 && p>0 && (p%50==0))) throw new PreconditionError("init() : Terrain");
+		if(!(l>=50 && (l%50 == 0) && h>=100 && p>=50 && (p%50==0))) throw new PreconditionError("init() : Terrain");
 		super.init(l, h, p);
 		if(!(largeur() == l && hauteur() == h && profondeur() == p)) 
 			throw new PostConditionError("init(): Terrain");
