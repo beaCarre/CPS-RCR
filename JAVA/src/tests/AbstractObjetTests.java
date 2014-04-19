@@ -22,10 +22,10 @@ public abstract class AbstractObjetTests {
 	}
 	
 	@Test
-	public final void initWorking(){
+	public final void initWorking1(){
 		try{
 		
-			objet.init("fusil", 10, 0);
+			objet.init("machin", 10, 0);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -33,10 +33,21 @@ public abstract class AbstractObjetTests {
 		}
 	}
 	@Test
-	public final void initFailing(){
+	public final void initWorking2(){
 		try{
 		
-			objet.init("fusil", 10, 10);
+			objet.init("machin", 0, 10);
+			assertTrue(true);
+		}catch(ContractError ce){
+			ce.printStackTrace();
+			fail();
+		}
+	}
+	@Test
+	public final void initFailing1(){
+		try{
+		
+			objet.init("", 0, 10);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -46,7 +57,7 @@ public abstract class AbstractObjetTests {
 	public final void initFailing2(){
 		try{
 		
-			objet.init("fusil", 0, 0);
+			objet.init("machin", 10, 10);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -56,7 +67,17 @@ public abstract class AbstractObjetTests {
 	public final void initFailing3(){
 		try{
 		
-			objet.init("", 10, 0);
+			objet.init("machin", -1, 0);
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	@Test
+	public final void initFailing4(){
+		try{
+		
+			objet.init("", 0, -1);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);

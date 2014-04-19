@@ -35,10 +35,20 @@ public abstract class AbstractBlocTests {
 		}
 	}
 	@Test
-	public final void initFailing(){
+	public final void initFailing1(){
 		try{
 		
 			bloc.init(TypeBloc.VIDE, new ObjetImpl());
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	@Test
+	public final void initFailing2(){
+		try{
+		
+			bloc.init(TypeBloc.OBJET, null);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -59,6 +69,18 @@ public abstract class AbstractBlocTests {
 	}
 	
 	@Test
+	public final void retirerObjetFailing(){
+		try{
+			
+			bloc.init(TypeBloc.VIDE, null);
+			bloc.retirerObjet();
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	
+	@Test
 	public final void poserObjetWorking(){
 		try{
 			
@@ -68,6 +90,18 @@ public abstract class AbstractBlocTests {
 		}catch(ContractError ce){
 			ce.printStackTrace();
 			fail();
+		}
+	}
+	
+	@Test
+	public final void poserObjetFailing(){
+		try{
+			
+			bloc.init(TypeBloc.OBJET, new ObjetImpl());
+			bloc.retirerObjet();
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
 		}
 	}
 	

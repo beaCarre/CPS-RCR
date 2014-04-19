@@ -35,10 +35,50 @@ public abstract class AbstractTerrainTests {
 		}
 	}
 	@Test
-	public final void initFailing(){
+	public final void initFailing1(){
 		try{
 	
-			terrain.init(0, 0, 0);
+			terrain.init(0, 100, 50);
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	@Test
+	public final void initFailing2(){
+		try{
+	
+			terrain.init(50, 100, 0);
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	@Test
+	public final void initFailing3(){
+		try{
+	
+			terrain.init(50, 10, 50);
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	@Test
+	public final void initFailing4(){
+		try{
+	
+			terrain.init(60, 100, 50);
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	@Test
+	public final void initFailing5(){
+		try{
+	
+			terrain.init(50, 100, 60);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
@@ -49,9 +89,9 @@ public abstract class AbstractTerrainTests {
 	public final void modifierBlocWorking(){
 		try{
 	
-			terrain.init(50, 100, 50);
+			terrain.init(500, 100, 500);
 			BlocService bloc = new BlocImpl();
-			terrain.modifierBloc(1, 1, bloc);
+			terrain.modifierBloc(10, 10, bloc);
 			assertTrue(true);
 		}catch(ContractError ce){
 			ce.printStackTrace();
@@ -59,12 +99,60 @@ public abstract class AbstractTerrainTests {
 		}
 	}
 	@Test
-	public final void modifierBlocFailing(){
+	public final void modifierBlocFailing1(){
 		try{
 	
-			terrain.init(50, 100, 50);
+			terrain.init(500, 100, 500);
 			BlocService bloc = new BlocImpl();
-			terrain.modifierBloc(1, 100, bloc);
+			terrain.modifierBloc(-1, 10, bloc);
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	@Test
+	public final void modifierBlocFailing2(){
+		try{
+	
+			terrain.init(500, 100, 500);
+			BlocService bloc = new BlocImpl();
+			terrain.modifierBloc(1000, 10, bloc);
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	@Test
+	public final void modifierBlocFailing3(){
+		try{
+	
+			terrain.init(500, 100, 500);
+			BlocService bloc = new BlocImpl();
+			terrain.modifierBloc(10, -1, bloc);
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	@Test
+	public final void modifierBlocFailing4(){
+		try{
+	
+			terrain.init(500, 100, 500);
+			BlocService bloc = new BlocImpl();
+			terrain.modifierBloc(10, 1000, bloc);
+			fail();
+		}catch(ContractError ce){
+			assertTrue(true);
+		}
+	}
+	@Test
+	public final void modifierBlocFailing5(){
+		try{
+	
+			terrain.init(500, 100, 500);
+			BlocService bloc = null;
+			terrain.modifierBloc(10, 10, bloc);
 			fail();
 		}catch(ContractError ce){
 			assertTrue(true);
