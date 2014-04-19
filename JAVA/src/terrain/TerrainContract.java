@@ -27,8 +27,8 @@ public class TerrainContract extends TerrainDecorator {
 
 		}
 		super.modifierBloc(i, j, b);
-		// \post modifierBloc(i,j,k,b) : bloc(i,j,k) == b 
-		if( bloc(i,j) == b )
+		// \post modifierBloc(i,j,b) : bloc(i,j) == b 
+		if( bloc(i,j) != b )
 			throw new PostConditionError("modifierBloc");
 	}
 

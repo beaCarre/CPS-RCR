@@ -6,7 +6,7 @@ import exceptions.PreconditionError;
 
 public class ObjetContract extends ObjetDecorator {
 
-	protected ObjetContract(ObjetService delegates) {
+	public ObjetContract(ObjetService delegates) {
 		super(delegates);
 		// TODO Auto-generated constructor stub
 	}

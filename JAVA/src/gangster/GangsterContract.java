@@ -8,7 +8,7 @@ import exceptions.PreconditionError;
 
 public class GangsterContract extends GangsterDecorator {
 
-	protected GangsterContract(GangsterService delegates) {
+	public GangsterContract(GangsterService delegates) {
 		super(delegates);
 		// TODO Auto-generated constructor stub
 	}

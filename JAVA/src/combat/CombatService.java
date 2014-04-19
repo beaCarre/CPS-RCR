@@ -50,6 +50,8 @@ public interface CombatService {
 	// pre (p1 = alex || p1 =  ryan) && (p2 = slick || p2 \in gangsters)
 	public boolean collision(PersonnageService p1, GangsterService p2) throws PreconditionError;
 	
+	
+	
 	public void gerer(Commande c1, Commande c2) throws PreconditionError, InvariantError, PostConditionError;
 	
 	

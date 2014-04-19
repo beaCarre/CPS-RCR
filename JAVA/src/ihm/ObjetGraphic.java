@@ -5,10 +5,9 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import exceptions.InvariantError;
+import objet.ObjetService;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
-import objet.ObjetService;
 
 public class ObjetGraphic extends JPanel implements ObjetService{
 

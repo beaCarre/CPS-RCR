@@ -46,7 +46,7 @@ public class TerrainImpl implements TerrainService {
 	PostConditionError {
 		if(l>0 && (l%50 == 0) && h>0 && p>0 && (p%50==0)){
 			largeur = l;
-			hauteur = 0;
+			hauteur = h;
 			profondeur = p; 
 			blocs = new BlocService[l/50][h/50];
 			int nbFosseMax = 10;

@@ -146,7 +146,7 @@ public class GestionCombatGraphic extends JPanel implements CombatService{
 						alex.ramasserPerso(g);
 						((Component)g).setVisible(false);
 
-						System.out.println("bye");
+						//System.out.println("bye");
 					}
 				} catch (PreconditionError e) {
 					// TODO Auto-generated catch block

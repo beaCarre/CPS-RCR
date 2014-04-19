@@ -213,7 +213,7 @@ public class CombatImpl implements CombatService {
 			case RAMASSER:
 				if(terrain.bloc(posX(alex), posY(alex)).type() == TypeBloc.OBJET){
 					ObjetService o = terrain.bloc(posX(alex), posY(alex)).objet();
-					if(o.estEquipable() && !alex.estEquipeObjet()){
+					if(o.estEquipable() && !alex.estEquipeObjet() && !alex.estEquipePerso()){
 						alex.ramasserObjet(o);
 						terrain.bloc(posX(alex), posY(alex)).retirerObjet();
 

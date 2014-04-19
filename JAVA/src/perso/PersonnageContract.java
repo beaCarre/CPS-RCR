@@ -7,7 +7,7 @@ import exceptions.PreconditionError;
 
 public class PersonnageContract extends PersonnageDecorator {
 
-	protected PersonnageContract(PersonnageService delegates) {
+	public PersonnageContract(PersonnageService delegates) {
 		super(delegates);
 		// TODO Auto-generated constructor stub
 	}

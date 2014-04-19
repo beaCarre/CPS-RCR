@@ -8,6 +8,7 @@ import java.util.TimerTask;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 import combat.CombatImpl;
 import moteur.Commande;
@@ -52,6 +53,7 @@ public class RiverCityGraphic extends JFrame implements KeyListener {
 		//combat.init();
 		moteur.init();
 		moteur.setSize(800,600);
+		game.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		Thread t = new Thread(){
 			public void run() {
 				while(!moteur.estFini()) {

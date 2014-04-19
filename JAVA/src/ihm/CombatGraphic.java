@@ -211,7 +211,7 @@ public class CombatGraphic extends JPanel implements CombatService{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		System.out.println("hey");
+		
 		combat.init();
 		terrain = new TerrainGraphic(combat.terrain());
 		alex = new PersonnageGraphic(combat.alex());
@@ -247,7 +247,7 @@ public class CombatGraphic extends JPanel implements CombatService{
 			alex.setLocation(posX(combat.alex())-alex.largeur()/2,posY(combat.alex())-alex.profondeur()/2);
 
 			ryan.setLocation(posX(combat.ryan())-ryan.largeur()/2,posY(combat.ryan())-ryan.profondeur()/2);
-			System.out.println(posX(combat.slick()));
+		
 			slick.setLocation(posX(combat.slick())-slick.largeur()/2,posY(combat.slick())-slick.profondeur()/2);
 			this.repaint();
 

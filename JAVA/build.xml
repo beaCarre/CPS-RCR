@@ -1,0 +1,120 @@
+<project name="CPS-RCR" default="run" basedir=".">
+    <description>
+        simple example build file
+    </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+ 
+	
+	<property name="lib.dir" value="webcontent\WEB-INF\lib" />
+
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+  	<mkdir dir="${build}"/>
+  
+  	
+  </target>
+	
+	
+
+  <target name="compile" depends="init"
+        description="compile the source " >
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}">
+  	<classpath refid="junit.class.path" />
+    	</javac>
+  </target>
+	
+	<!-- Define the classpath which includes the junit.jar and the classes after compiling-->
+		<path id="junit.class.path">
+			<pathelement location="./build" />
+			<pathelement location="./tests/lib/junit-4.11.jar" />
+			<pathelement location="./tests/lib/hamcrest-core-1.3.jar" />
+			
+		</path>
+	
+	<!-- Run the JUnit Tests -->
+		
+		<target name="test" depends="compile">
+		
+			  <junit haltonfailure="no" printsummary="true">
+			  	<classpath refid="junit.class.path" />
+			   
+			  	<formatter type="plain" usefile="false"/>
+			  	<batchtest>
+			  						<fileset dir="${build}">
+			  							<include name="**/*TestSansContrat.class" />
+			  						</fileset>
+			  					</batchtest>
+			  </junit>
+			
+		</target>
+	
+	<target name="jar">
+	        <mkdir dir="build/jar"/>
+	        <jar destfile="./jar/RCR.jar" basedir="${build}">
+	            <manifest>
+	                <attribute name="Main-Class" value="ihm.RiverCityGraphic"/>
+	            </manifest>
+	        </jar>
+	    </target>
+
+	    <target name="run" depends="jar">
+	        <java jar="./jar/RCR.jar" fork="true"/>
+	    </target>
+	
+	
+	
+	<target name="testc" depends="compile">
+			
+				  <junit haltonfailure="no" printsummary="true">
+				  	<classpath refid="junit.class.path" />
+				  	
+				  	<formatter type="plain" usefile="false"/>
+				  	<batchtest>
+				  						<fileset dir="${build}">
+				  							<include name="**/*WorkingTest.class" />
+				  						</fileset>
+				  					</batchtest>
+				  </junit>
+				
+			</target>
+	
+	<target name="testcfail" depends="compile">
+			
+				  <junit haltonfailure="no" printsummary="true">
+				  	<classpath refid="junit.class.path" />
+				  	
+				  	<formatter type="plain" usefile="false"/>
+				  	<batchtest>
+				  						<fileset dir="${build}">
+				  							<include name="**/*FailingTest.class" />
+				  						</fileset>
+				  					</batchtest>
+				  </junit>
+				
+			</target>
+	
+
+  <target name="dist" depends="compile"
+        description="generate the distribution" >
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}/lib"/>
+
+    <!-- Put everything in ${build} into the CPS-RCR-${DSTAMP}.jar file -->
+    <jar jarfile="${dist}/lib/CPS-RCR-CARRE-VAROUMAS.jar" basedir="${build}"/>
+  </target>
+
+  <target name="clean"
+        description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  	<delete dir="./jar"/>
+  </target>
+</project>
