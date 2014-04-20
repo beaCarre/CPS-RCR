@@ -250,7 +250,7 @@ Pour chaque service (ici nommé "\emph{foo}"), nous avons créé les fichiers su
 
 \begin{itemize}
 \item \emph{fooService.java}  une interface déclarant chaque méthode associée aux constructeurs, aux observateurs et aux opérateurs du service en question.  \\
-\item \emph{fooDecorator.java}  une classe abstraite d'enrobage réalisant l'interface \emph{fooService} en utilisant le design dattern décorateur.\\
+\item \emph{fooDecorator.java}  une classe abstraite d'enrobage réalisant l'interface \emph{fooService} en utilisant le design pattern décorateur.\\
 \item \emph{fooContract.java}  une classe héritant de \emph{fooDecorator} et réalisant l'action voulue pour le service en question sur une implémentation de \emph{fooService}, tout en permettant la vérification de la justesse des pré-conditions, post-conditions, et invariants.  \\
 \item \emph{fooImpl.java}  une classe "concrete" qui implémente l'interface \emph{fooService} et réalise les actions liées à la logique du jeu. \\
 \item \emph{fooFailImpl.java}  une seconde classe qui implémente le jeu, mais qui ne respecte pas les diverses conditions établies par la spécification ( = une implémentation buguée ) \\
