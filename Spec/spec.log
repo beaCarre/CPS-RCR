@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.28)  6 APR 2014 01:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.29)  19 APR 2014 04:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -480,6 +480,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip49
 )
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count115
 \lst@gtempboxa=\box28
@@ -516,23 +519,23 @@ Package color Info: Driver file: pdftex.def on input line 130.
 (./spec.aux)
 \openout1 = `spec.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Info: Redefining \degres on input line 48.
-LaTeX Info: Redefining \dots on input line 48.
-LaTeX Info: Redefining \up on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Info: Redefining \degres on input line 55.
+LaTeX Info: Redefining \dots on input line 55.
+LaTeX Info: Redefining \up on input line 55.
  (/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count123
@@ -562,7 +565,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring OFF on input line 48.
+Package hyperref Info: Link coloring OFF on input line 55.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -572,80 +575,88 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count129
 )
-LaTeX Info: Redefining \ref on input line 48.
-LaTeX Info: Redefining \pageref on input line 48.
-LaTeX Info: Redefining \nameref on input line 48.
+LaTeX Info: Redefining \ref on input line 55.
+LaTeX Info: Redefining \pageref on input line 55.
+LaTeX Info: Redefining \nameref on input line 55.
 
 (./spec.out) (./spec.out)
 \@outlinefile=\write3
 \openout3 = `spec.out'.
 
 \c@lstlisting=\count130
+ [1
 
-Chapitre 1.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 60.
-(/usr/local/texlive/2013/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-) [1
+{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+ [4] [5] [6
 
-
-{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 104.
- [2] [3] [4] [5]
-[6] [7]
-Overfull \hbox (22.89815pt too wide) in paragraph at lines 390--398
+] [7] [8]
+Overfull \hbox (28.35593pt too wide) in paragraph at lines 512--520
 [][][][]$[]$  
  []
 
-
-Overfull \hbox (22.89815pt too wide) in paragraph at lines 418--427
-[][][][]$[]$  
- []
-
-
-Overfull \hbox (58.77747pt too wide) in paragraph at lines 428--437
-[][][][]$[]$  
- []
-
-[8]
-Overfull \hbox (58.77747pt too wide) in paragraph at lines 448--456
-[][][][]$[]$  
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 482.
 [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 482.
+Overfull \hbox (33.8024pt too wide) in paragraph at lines 539--547
+[][][][]$[]$  
+ []
+
+
+Overfull \hbox (4.81067pt too wide) in paragraph at lines 557--565
+[][][][]$[]$  
+ []
+
+[10]
+Overfull \hbox (73.74582pt too wide) in paragraph at lines 595--602
+[][][][]$[]$  
+ []
+
+
+Overfull \hbox (2.88193pt too wide) in paragraph at lines 606--613
+[][][][]$[]$  
+ []
+
+
+Overfull \hbox (8.71178pt too wide) in paragraph at lines 619--633
+[][][][]$[]$  
+ []
+
+[11]
+Overfull \hbox (15.84601pt too wide) in paragraph at lines 634--646
+[][][][]$[]$  
+ []
+
+[12] [13] [14]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 813.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 813.
  (./spec.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 482.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 482.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 813.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 813.
 Package rerunfilecheck Info: File `spec.out' has not changed.
-(rerunfilecheck)             Checksum: BD1EA1A6F544B042E4E6A7BECEE259D8;479.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 482.
+(rerunfilecheck)             Checksum: 03928C6AD25F12C88ED5EF0251A0C2D4;330.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 813.
  ) 
 Here is how much of TeX's memory you used:
- 9038 strings out of 493315
- 126495 string characters out of 6137903
- 384428 words of memory out of 5000000
- 12064 multiletter control sequences out of 15000+600000
- 12629 words of font info for 35 fonts, out of 8000000 for 9000
+ 9228 strings out of 493315
+ 129171 string characters out of 6137903
+ 385670 words of memory out of 5000000
+ 12068 multiletter control sequences out of 15000+600000
+ 17963 words of font info for 44 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 29i,8n,40p,280b,1901s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,8n,40p,445b,1967s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
-r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/loc
-al/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local
-/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/t
-exlive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/tex
-live/2013/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on spec.pdf (9 pages, 163646 bytes).
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.p
+fb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><
+/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></us
+r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/lo
+cal/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/loca
+l/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb>
+Output written on spec.pdf (14 pages, 171153 bytes).
 PDF statistics:
- 511 PDF objects out of 1000 (max. 8388607)
- 485 compressed objects within 5 object streams
- 336 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 738 PDF objects out of 1000 (max. 8388607)
+ 704 compressed objects within 8 object streams
+ 511 named destinations out of 1000 (max. 500000)
+ 57 words of extra memory for PDF output out of 10000 (max. 10000000)
 

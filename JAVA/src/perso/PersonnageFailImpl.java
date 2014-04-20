@@ -32,25 +32,25 @@ public class PersonnageFailImpl implements PersonnageService {
 
 	@Override
 	public int profondeur() {
-		
+
 		return profondeur;
 	}
 
 	@Override
 	public int force() {
-		
+
 		return force;
 	}
 
 	@Override
 	public int pointsDeVie() {
-		
+
 		return vie;
 	}
 
 	@Override
 	public int argent() {
-		
+
 		return argent;
 	}
 
@@ -68,19 +68,19 @@ public class PersonnageFailImpl implements PersonnageService {
 
 	@Override
 	public boolean estEquipePerso() {
-		
+
 		return (persoEquipe()!=null);
 	}
 
 	@Override
 	public ObjetService objetEquipe() {
-		
+
 		return objet;
 	}
 
 	@Override
 	public PersonnageService persoEquipe() {
-		
+
 		return perso;
 	}
 
@@ -88,9 +88,9 @@ public class PersonnageFailImpl implements PersonnageService {
 	public void init(String n, int l, int h, int p, int f, int v, int a)
 			throws PreconditionError, InvariantError, PostConditionError {
 		nom = n;
-		largeur = 0;
-		hauteur = 0;
-		profondeur = 0;
+		largeur = l;
+		hauteur = h;
+		profondeur = p;
 		force = f;
 		vie = v; 
 		argent = a;
@@ -100,52 +100,53 @@ public class PersonnageFailImpl implements PersonnageService {
 	@Override
 	public void retraitPdV(int s) throws PreconditionError, InvariantError,
 	PostConditionError {
-		if(!estVaincu() && s>0)
-			vie-=s;
+
+		vie-=s;
 	}
 
-	@Override
-	public void depotPdV(int s) throws PreconditionError, InvariantError,
-	PostConditionError {
-		if(!estVaincu() && s > 0)
-			vie+=s;
-	}
+	
 
 	@Override
 	public void retraitArgent(int s) throws PreconditionError, InvariantError,
 	PostConditionError {
-		if(!estVaincu() && s>0)
-			argent-=s;
+
+		argent-=s;
 	}
 
 	@Override
 	public void depotArgent(int s) throws PreconditionError, InvariantError,
 	PostConditionError {
-		if(!estVaincu())
-			argent+=s;
+
+		argent+=s;
 	}
 
 	@Override
 	public void ramasserObjet(ObjetService o) throws PreconditionError,
 	InvariantError, PostConditionError {
-		if(!estVaincu() && !estEquipeObjet() && !estEquipePerso())
-			objet = o;
+
+		objet = o;
 	}
 
 	@Override
 	public void ramasserPerso(PersonnageService p) throws PreconditionError,
 	InvariantError, PostConditionError {
-		if(!estVaincu() && !estEquipeObjet() && !estEquipePerso())
-			perso = p;
+
+		perso = p;
 	}
 
 	@Override
 	public void jeter() throws PreconditionError, InvariantError,
 	PostConditionError {
-		if(!estVaincu() && (estEquipeObjet() || estEquipePerso())){
-			objet = null;
-			perso = null;
-		}
+
+		objet = null;
+		perso = null;
+
+	}
+
+	@Override
+	public void ramasserArgent(ObjetService o) throws PreconditionError,
+			InvariantError, PostConditionError {
+		argent += o.valeurMarchande();
 	}
 
 }

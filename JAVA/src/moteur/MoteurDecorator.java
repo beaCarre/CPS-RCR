@@ -2,8 +2,10 @@ package moteur;
 
 import combat.CombatService;
 import exceptions.InvariantError;
+import exceptions.PostConditionError;
+import exceptions.PreconditionError;
 
-public class MoteurDecorator implements MoteurService {
+public abstract class MoteurDecorator implements MoteurService {
 	protected MoteurService delegates;
 	
 	public MoteurDecorator(MoteurService moteur){
@@ -16,8 +18,8 @@ public class MoteurDecorator implements MoteurService {
 	}
 
 	@Override
-	public Resultat resultatFinal() {
-		return delegates.resultatFinal();
+	public Resultat resultat() {
+		return delegates.resultat();
 	}
 
 	@Override
@@ -31,7 +33,13 @@ public class MoteurDecorator implements MoteurService {
 	}
 
 	@Override
-	public void pasJeu(Commande cR, Commande cA) throws InvariantError {
+	public void pasJeu(Commande cR, Commande cA) throws InvariantError, PostConditionError, PreconditionError {
 		delegates.pasJeu(cR, cA);
+	}
+
+	@Override
+	public int pasCourant() {
+		// TODO Auto-generated method stub
+		return delegates.pasCourant();
 	}
 }

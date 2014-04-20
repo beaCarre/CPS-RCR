@@ -1,0 +1,199 @@
+Cas de test : Personnage::testInitWorking
+CI : nom = "Ryan" && l = 30 && h = 30 && p = 30 && a = 10 && v = 100 && f = 100
+Op�ration : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	nom(P0) == "Ryan"
+	largeur(P0) =	30
+	profondeur(P0) = 30
+	hauteur(P0) = 30
+	pointsDeVie(P0) = 100
+	force(P0) = 100
+	argent(P0) = 10
+	
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Joe" && l = 30 && h = 30 && p = 30 && a = 10 && v = 100 && f = 100
+Opération : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	nom != "Alex" && nom != "Ryan"
+	Une exception est levée
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" && l = -5 && h = 30 && p = 30 && a = 10 && v = 100 && f = 100
+Opération : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	l <= 0
+	Une exception est levée
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" && l = 30 && h = -5 && p = 30 && a = 10 && v = 100 && f = 100
+Opération : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	h <= 0
+	Une exception est levée
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" && l = 30 && h = 30 && p = -5 && a = 10 && v = 100 && f = 100
+Opération : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	p <= 0
+	Une exception est levée
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" && l = 30 && h = 30 && p = 30 && a = -10 && v = 100 && f = 100
+Opération : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	a < 0
+	Une exception est levée
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" && l = 30 && h = 30 && p = 30 && a = 10 && v = 0 && f = 100
+Opération : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	v <= 0
+	Une exception est levée
+	
+Cas de test : Personnage::testInitFailing 
+CI : nom = "Alex" && l = 30 && h = 30 && p = 30 && a = 10 && v = 100 && f = -8
+Opération : P0 =def init(nom,l,h,p,f,v,a)
+Oracle : 
+	f <= 0
+	Une exception est levée
+
+Cas de test : Personnage::RetraitVieWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Opération : P0 =def retraitPdV(personnage, 3)
+Oracle :
+	argent(P0) = 7 = (10-3)
+
+Cas de test : Personnage::RetraitVieFailing
+CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Opération : P0 =def retraitPdV(personnage, -5);
+Oracle : 
+	-5 < 0
+	Une exception est levée
+	
+	
+	Cas de test : Personnage::RetraitArgentWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Opération : P0 =def retraitArgent(personnage, 3)
+Oracle :
+	pointsDeVie(P0) = 7 = (10-3)
+
+Cas de test : Personnage::RetraitArgentFailing
+CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Opération : P0 =def retraitArgent(personnage, -5);
+Oracle : 
+	-5 < 0
+	Une exception est levée
+	
+Cas de test : Personnage::RetraitArgentFailing
+CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Opération : P0 =def retraitArgent(personnage, 108);
+Oracle : 
+	108 > 100
+	Une exception est levée
+	
+Cas de test : Personnage::DepotAgentWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Opération : P0 =def depotArgent(personnage, 3)
+Oracle :
+	pointsDeVie(P0) = 7 = (10-3)
+
+Cas de test : Personnage::DepotArgentFailing
+CI :personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Opération : P0 =def depotArgent(personnage, -5);
+Oracle : 
+	-5 < 0
+	Une exception est levée
+	
+Cas de test : Personnage::ramasserObjetWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100),
+		 obj = Objet::init("arme",10,0)
+Opération : P0 =def ramasserObjet(personnage, obj)
+Oracle :
+	objetEquipe(personnage) = obj
+	force(personnage) = 110
+
+Cas de test : Personnage::ramasserObjetFailing1
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			obj = Objet::init("sous",0,40)
+Opération : P0 =def ramasserObjet(personnage, obj);
+Oracle : 
+	Objet:est_equipable(obj) = false
+	Une exception est levée
+
+Cas de test : Personnage::ramasserObjetFailing2
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			p = Personnage::init("Ryan",10,10,10,100,100)
+			personnage = ramasser_perso(p)
+			obj = Objet::init("arme",10,0)
+Opération : P0 =def ramasserObjet(personnage, obj);
+Oracle : 
+	est_equipe_perso(personnage) = true
+	Une exception est levée
+	
+	
+Cas de test : Personnage::ramasserArgentWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100),
+		 obj = Objet::init("pîece",0,40)
+Opération : P0 =def ramasserObjet(personnage, obj)
+Oracle :
+	objetEquipe(personnage) = obj
+	force(personnage) = 110
+
+Cas de test : Personnage::ramasserArgentFailing1
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			personnage = retraitVie(personnage,200)
+			obj = Objet::init("soussou",0,40)
+Opération : P0 =def ramasserArgent(personnage, obj)
+Oracle : 
+	estVaincu(P0) = true
+	Une exception est levée
+	
+Cas de test : Personnage::ramasserArgentFailing2
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			obj = Objet::init("soussou",30,0)
+Opération : P0 =def ramasserArgent(personnage, obj);
+Oracle : 
+	Objet:est_DeValeur(obj) = false
+	Une exception est levée
+	
+Cas de test : Personnage::ramasserPersoWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			perso2 = init("Ryan", 10, 10, 10, 10, 100, 100)
+Opération : P0 =def ramasserPerso(personnage, perso2)
+Oracle :
+	persoEquipe(P0) = perso2
+
+Cas de test : Personnage::ramasserPersoFailing1
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			perso2 = init("Ryan", 10, 10, 10, 10, 100, 100)
+			personnage = personnage.retraitPdV(10000);
+Opération : P0 =def ramasserPerso(personnage, perso2 )
+Oracle : 
+	estVaincu(P0) = true
+	Une exception est levée
+	
+	
+Cas de test : Personnage::jeterWorking
+CI : personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+			obj = Objet::init("arme",10,0)
+			personnage = ramasserObjet(personnage,obj)
+Opération : P0 =def jeter(personnage)
+Oracle :
+	persoEquipe(P0) = null
+	force(P0) = 100
+	objetEquipe(P0) = false
+
+Cas de test : Personnage::jeterFailing1
+CI :	personnage = init("Alex", 10, 10, 10, 10, 100, 100)
+Opération : P0 =def jeter(personnage)
+Oracle : 
+	estEquipeObjet(personnage) = false
+	estEquipePerso(personnage) = false
+	Une exception est levée
+	
+
+
+

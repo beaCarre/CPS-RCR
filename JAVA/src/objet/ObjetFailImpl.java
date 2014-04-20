@@ -1,6 +1,5 @@
 package objet;
 
-import exceptions.InvariantError;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
 
@@ -16,7 +15,7 @@ public class ObjetFailImpl implements ObjetService {
 	@Override
 	public boolean estEquipable() {
 		
-		return (bonus<0);
+		return (bonus>0);
 	}
 
 	@Override
@@ -39,7 +38,7 @@ public class ObjetFailImpl implements ObjetService {
 
 	@Override
 	public void init(String nom, int bonus, int valeur)
-			throws PreconditionError, InvariantError, PostConditionError {
+			throws PreconditionError, PostConditionError {
 		this.nom = nom;
 		this.bonus = bonus;
 		this.valeur = valeur;
