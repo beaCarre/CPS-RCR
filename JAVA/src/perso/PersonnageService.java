@@ -22,19 +22,15 @@ public interface PersonnageService {
 	public PersonnageService persoEquipe();
 
 	/* constructor */
-	// \pre n !=""  && l>0 && h>0 && p>0 && f >0 && a > 0 && v > 0 
+	// \pre n == "Alex" || n =="Ryan" && l>0 && h>0 && p>0 && f >0 && a >= 0 && v > 0 
 	// \post nom.equals(n) && largeur() == l && hauteur() == h && profondeur() == p && force() == f && pointsDeVie() ==v && argent() == a
 	public void init(String n, int l, int h, int p, int f, int v, int a) throws PreconditionError, InvariantError, PostConditionError;
 
 	// \pre retraitPdV(s) require !estVaincu() && s > 0
-	// \post pointsDeVie() ==  pointsDeVie@pre - s
+	// \post pointsDeVie() ==  max(0,pointsDeVie@pre - s)
 	public void retraitPdV(int s) throws PreconditionError, InvariantError, PostConditionError;
 
-	// \pre depotPdV(s) require !estVaincu() && s > 0
-	// \post pointsDeVie() ==  pointsDeVie@pre + s
-	public void depotPdV(int s) throws PreconditionError, InvariantError, PostConditionError;
-
-	// \pre retraitArgent(s) require !estVaincu() && s > 0
+	// \pre retraitArgent(s) require !estVaincu() && s > 0 && argent()>=s
 	// \post argent() == argent@pre - s
 	public void retraitArgent(int s) throws PreconditionError, InvariantError, PostConditionError;
 
@@ -42,17 +38,25 @@ public interface PersonnageService {
 	// \post argent() == argent@pre + s
 	public void depotArgent(int s) throws PreconditionError, InvariantError, PostConditionError;
 
-	// \pre ramasserObjet(obj) require !est_vaincu() && !estEuipeObjet() && !estEquipePerso()
-	// \post objetEquipe() == objet
+	// \pre ramasserObjet(obj) require !est_vaincu() && !estEquipeObjet() && !estEquipePerso() && obj.estEquipable()
+	// \post objetEquipe() == obj
+	// \post force() == force()@pre + obj.bonusForce()
+	
 	public void ramasserObjet(ObjetService o) throws PreconditionError, InvariantError, PostConditionError;
 
+	// \pre ramasserArgent(obj) require !estVaincu() && o.estDeValeur()
+	// \post argent() == argent()@pre + obj.valeurMarchande()
+	public void ramasserArgent(ObjetService o) throws PreconditionError, InvariantError,PostConditionError;
+	
 	// \pre ramasserPerso(perso) require !est_vaincu() && !estEuipeObjet() && !estEquipePerso()
-	// \post persoEquipe() == objet
+	// \post persoEquipe() == perso
 	public void ramasserPerso(PersonnageService p) throws PreconditionError, InvariantError, PostConditionError;
 
 
 	// \pre jeter() require !est_vaincu() && (estEquipeObjet() || estEquipePerso())
 	// \post persoEquipe() == null && objetEquipe() == null 
+	// \post force() == force()@pre - objetEquipe()@pre.bonusForce() si estEquipeObjet()@pre = true
+	// \post force() == force()@pre sinon
 	public void jeter() throws PreconditionError, InvariantError, PostConditionError;
 
 

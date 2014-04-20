@@ -8,7 +8,7 @@ import exceptions.PreconditionError;
 
 public class GangsterContract extends GangsterDecorator {
 
-	protected GangsterContract(GangsterService delegates) {
+	public GangsterContract(GangsterService delegates) {
 		super(delegates);
 		// TODO Auto-generated constructor stub
 	}
@@ -31,18 +31,18 @@ public class GangsterContract extends GangsterDecorator {
 	}
 
 
-
-	public void depotPdV(int s) throws PreconditionError, InvariantError, PostConditionError{
-		// \pre depotPdV(s) require !estVaincu() && s > 0
-		if(estVaincu() || s <= 0) 
-			throw new PreconditionError("depotPdV");
-		checkInvariants();
-		int pointsDeVie_at_pre = pointsDeVie();
-		super.depotPdV(s);
-		checkInvariants();
-		// \post pointsDeVie() ==  pointsDeVie@pre + s
-		if(!(pointsDeVie() == pointsDeVie_at_pre + s)) throw new PostConditionError("depotPdV");
-	}
+		// \pre n != "" && l>0 && h>0 && p>0 && f >0 && && v > 0 
+		// \post nom.equals(n) && largeur() == l && hauteur() == h && profondeur() == p && force() == f && pointsDeVie() ==v && argent() == 0
+		public void init(String n, int l, int h, int p, int f, int v) throws PreconditionError, InvariantError, PostConditionError{
+			if( ! (!n.equals("") && l>0 && h>0 && p>0 && f>0 && v>0 ))
+				throw new PreconditionError("init(): Personnage");
+			checkInvariants();
+			super.init(n, l, h, p, f, v);
+			checkInvariants();
+			
+			if(!(nom().equals(n) && largeur() == l && hauteur() ==h && profondeur() == p && force()==f && pointsDeVie() == v && argent()==0)) throw new PostConditionError("init(): Gangster");
+			
+		}
 
 	public void retraitPdV(int s) throws PreconditionError, InvariantError, PostConditionError{
 		// \pre retraitPdV(s) require !estVaincu() && s > 0
@@ -50,45 +50,69 @@ public class GangsterContract extends GangsterDecorator {
 			throw new PreconditionError("retraitPdV");
 		checkInvariants();
 		int pointsDeVie_at_pre = pointsDeVie();
-		super.depotPdV(s);
+		super.retraitPdV(s);
 		checkInvariants();
-		// \post pointsDeVie() ==  pointsDeVie@pre - s
-		if(!(pointsDeVie() == pointsDeVie_at_pre - s)) throw new PostConditionError("retraitPdV");
+		//\post pointsDeVie() ==  max(0,pointsDeVie@pre - s)
+		if(!(pointsDeVie() == Math.max(0, pointsDeVie_at_pre - s))) throw new PostConditionError("retraitPdV");
 	}
 
 
 
 	public void retraitArgent(int s) throws PreconditionError, InvariantError, PostConditionError{
-		// \pre retraitArgent(s) require !estVaincu() && s > 0
+		// \pre retraitArgent(s) require !estVaincu() && s > 0 && argent() > s 
 		if(estVaincu() || s <=0) throw new PreconditionError("retraitArgent");
 		checkInvariants();
 		int argent_at_pre = argent();
 		super.retraitArgent(s);
 		checkInvariants();
-		// \post argent() == argent@pre - s
-		if(!(argent() == argent_at_pre - s)) throw new PostConditionError("retraitArgent");
+		// \post argent() == argent@pre
+		if(!(argent() == argent_at_pre)) throw new PostConditionError("retraitArgent");
 	}
 
 	public void depotArgent(int s) throws PreconditionError, InvariantError, PostConditionError{
-		// \pre depotArgent(s) require !estVaincu() && s > 0 && argent() >= s
-		if(estVaincu() || s <=0 || argent() < s ) throw new PreconditionError("depotArgent");
+		// \pre depotArgent(s) require !estVaincu() && s > 0 
+		if(estVaincu() || s <=0) throw new PreconditionError("depotArgent");
 		checkInvariants();
 		int argent_at_pre = argent();
 		super.retraitArgent(s);
 		checkInvariants();
-		// \post argent() == argent@pre + s
-		if(!(argent() == argent_at_pre + s)) throw new PostConditionError("depotArgent");
+		// \post argent() == argent@pre
+		if(!(argent() == argent_at_pre)) throw new PostConditionError("depotArgent");
 	}
 
 
+
+
 	public void ramasserObjet(ObjetService o) throws PreconditionError, InvariantError, PostConditionError {
-		// \pre ramasserObjet(obj) require !est_vaincu() && !est_equipeObjet()
-		if(! ( !estVaincu() && !estEquipeObjet() && !estEquipePerso())) throw new PreconditionError("ramasserObjet");
+		// \pre ramasserObjet(obj) require !est_vaincu() && !estEquipeObjet() && !estEquipePerso() && obj.estEquipable()
+
+		if(! (!estVaincu() && !estEquipeObjet() && !estEquipePerso() && o.estEquipable() )) 
+			throw new PreconditionError("ramasserObjet");
 		checkInvariants();
+		int force_at_pre = force();
 		super.ramasserObjet(o);
 		checkInvariants();
-		// \post objetEquipe() == objet
-		if( !( objetEquipe() == o )) throw new PostConditionError("ramasserObjet()");
+
+		// \post objetEquipe() == obj
+		// \post force() == force()@pre + obj.bonusForce()
+				
+		if(!(objetEquipe() == o)) throw new PreconditionError("ramasserObjet");
+		if(!(force() == force_at_pre + o.bonusForce())) throw new PreconditionError("ramasserObjet");
+	}
+
+	
+	// \pre ramasserArgent(obj) require !estVaincu() && o.estDeValeur()
+	// \post argent() == argent()@pre
+	public void ramasserArgent(ObjetService o) throws PreconditionError, InvariantError,PostConditionError{
+		if(!(!estVaincu() && o.estDeValeur())){
+			throw new PreconditionError("ramasserArgent");
+		}
+		checkInvariants();
+		int argent_at_pre = argent();
+		super.ramasserArgent(o);
+		checkInvariants();
+		if(argent() != argent_at_pre)
+			throw new PostConditionError("ramasserArgent");
 	}
 
 
@@ -113,6 +137,7 @@ public class GangsterContract extends GangsterDecorator {
 		// \post persoEquipe() == null && objetEquipe() == null 
 		if(!(persoEquipe()== null && objetEquipe() == null)) throw new PostConditionError("jeter");
 	}
+
 
 	
 

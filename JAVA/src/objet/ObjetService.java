@@ -1,6 +1,5 @@
 package objet;
 
-import exceptions.InvariantError;
 import exceptions.PostConditionError;
 import exceptions.PreconditionError;
 
@@ -15,7 +14,7 @@ public interface ObjetService {
 	/* Constructor */
 	// \pre init(nom,bonus,valeur) require n!= "" && ( (bonus > 0 && valeur == 0) || ( bonus == 0 && valeur > 0)
 	// \post nom.equals(nom) && bonusForce() == bonus && valeurMarchande() == valeur
-	public void init(String nom, int bonus, int valeur) throws PreconditionError, InvariantError, PostConditionError;
+	public void init(String nom, int bonus, int valeur) throws PreconditionError, PostConditionError;
 	
 	/* Invariants */
 	// \inv estEquipable() == (bonusForce() > 0)
