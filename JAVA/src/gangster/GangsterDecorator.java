@@ -14,7 +14,6 @@ public abstract class GangsterDecorator implements GangsterService {
 		this.delegates = delegates;
 	}
 	
-
 	/* Observators */
 	public String nom(){
 		return delegates.nom();
@@ -69,6 +68,9 @@ public abstract class GangsterDecorator implements GangsterService {
 	}
 
 
+	public void depotPdV(int s) throws PreconditionError, InvariantError, PostConditionError{
+		delegates.depotPdV(s);
+	}
 
 	
 	public void retraitArgent(int s) throws PreconditionError, InvariantError, PostConditionError{
@@ -83,10 +85,6 @@ public abstract class GangsterDecorator implements GangsterService {
 		delegates.ramasserObjet(o);
 	}
 	
-	public void ramasserArgent(ObjetService o) throws PreconditionError, InvariantError, PostConditionError{
-		delegates.ramasserArgent(o);
-	}
-	
 	public void ramasserPerso(PersonnageService p) throws PreconditionError, InvariantError, PostConditionError{
 		delegates.ramasserPerso(p);
 	}
@@ -94,14 +92,11 @@ public abstract class GangsterDecorator implements GangsterService {
 	public void jeter() throws PreconditionError, InvariantError, PostConditionError{
 		delegates.jeter();
 	}
+	
+	
 	public void init(String n, int l, int h, int p, int f, int v, int a) throws PreconditionError, InvariantError, PostConditionError{
-		delegates.init(n, l, h, p, f, v);
-		
+		delegates.init(n, l, h, p, f, v, a);
 	}
 	
-	public void init(String n, int l, int h, int p, int f, int v) throws PreconditionError, InvariantError, PostConditionError{
-		delegates.init(n, l, h, p, f, v);
-		
-	}
 
 }
