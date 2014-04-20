@@ -70,7 +70,7 @@
 	
 	
 	
-	<target name="testc" depends="compile">
+	<target name="ctest" depends="compile">
 			
 				  <junit haltonfailure="no" printsummary="true">
 				  	<classpath refid="junit.class.path" />
@@ -85,7 +85,7 @@
 				
 			</target>
 	
-	<target name="testcfail" depends="compile">
+	<target name="ctestfail" depends="compile">
 			
 				  <junit haltonfailure="no" printsummary="true">
 				  	<classpath refid="junit.class.path" />
