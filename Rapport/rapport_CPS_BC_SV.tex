@@ -9,6 +9,7 @@
 \usepackage{listings}
 \usepackage{pdfpages}
 \usepackage{hyperref}
+\usepackage{graphicx}
 
 \usepackage{color}
 \definecolor{lightgray}{rgb}{.9,.9,.9}
@@ -53,12 +54,11 @@
 \section*{Introduction}
 
 
-Le projet de cette année pour l'UE CPS  consistait à développer un jeu : \emph{River City Ransom}
-TODO explication projet
+Le projet de cette année pour l'UE CPS  consistait à concevoir un jeu : \emph{River City Ransom}.
 
-Pour cela, nous avons suivi la méthodologie apprise en cours blablablablbala
+Pour cela, nous avons suivi la méthodologie apprise en cours dite de \emph{conception par contrat}.
 
-La méthodologie pour la \emph{conception par contrat}  se compose de trois phases :
+Cette méthodologie se compose de trois phases :
 \begin{enumerate}
 \item Analyse : spécifications algébriques 
 \item Conception : par contrat à partir des spécifications
@@ -79,14 +79,13 @@ et les solutions apportées au problème posé vous seront détaillées.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%   Problème   %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Problème posé}
+\section{Analyse du problème}
 
-INTRO = problème posé non ?? 
 Le problème est de rester cohérents tout au long des phases d'analyse,
 de conception et d'implémentation, tout en respectant la méthodologie de la \emph{conception par contrat},
 pour ainsi obtenir un programme tout aussi cohérent et fiable.
 
-\subsection{Analyse : la specification}
+\subsection{La specification}
 Le but de la spécification est de reconnaître les éléments logiques
 d’un programme à partir d’une définition du jeu River City Ransom.
 Pour chaque service décrit, il faut en sortir une spécification la
@@ -111,22 +110,23 @@ Nous avons rencontré plusieurs difficultés :
   comme pour une liste ou encore la notion de temps.
 \end{itemize}
 
-\subsection{Tests}
+\subsection{Les tests}
 La seconde phase est de décrire et d'implémenter les tests pour préparer
 le respect du contrat lors de la dernière phase.
 
 Celle-ci est importante dans la mesure où elle représente le liens
 entre la spécification et l'implémentation pure, tant au niveau des
-conditions, qu'au niveau de TODO.
+conditions, qu'au niveau des opérateurs, constructeurs, observateurs, définis par le service. \\
 
-Pour n conditions sur chaque opération $\Rightarrow$ (2 à $\sim 6)^n$ tests!
-Pour chaque argument de méthode, il faut trouver les valeurs à tester.
-Si booléen, il suffit de tester avec true et false.
-Mais si entier float string etc, il est impossible de tester toutes
+Pour n conditions sur chaque opération on a plus de $2^n$ tests à réaliser.
+Le nombre de valeurs à tester dépend du type de la condition : 
+\begin{itemize}
+\item Si c'est un booléen, il suffit de créer un cas où la condition est \emph{true} et un cas où elle est \emph{false}.
+\item Si elle de type entier, float, string, etc., il est impossible de tester toutes
 les valeurs. Il faut donc sélectionner les valeurs les plus
-pertinentes à tester, qui sont en général les valeurs juste avant et
-après les limites d'intervales de tests ainsi qu'une valeur centrale. \\
-
+pertinentes à tester, qui sont par exemple pour un encadrement les valeurs juste avant et
+après les limites d'intervalles de tests ainsi qu'une valeur centrale. \\
+\end{itemize}
 
 Par exemple, l'observateur \emph{bloc(T,x,y)} du service \emph{Terrain} possède ce qui semble être deux préconditions simples :  0 $\le$ x $\le$ largeur(T) et 0 $\le$ y $\le$ profondeur(T) \\
 
@@ -172,22 +172,7 @@ Ce qui se traduit en réalité par 4 conditions :
 
 Soient 16($=2^4$) tests à réaliser.  \\
 
-Certains opérateurs (ou constructeurs) possèdent jusqu'à 8 préconditions, ce qui reviendrait à effectuer au moins $2^8=256$ tests. \\
-
-
-Théorie : tous les tests réussissent signifierait que nous avons une application sans erreurs À VÉRIFIER
-
-Réalité : il faut aussi que l’implémentation respecte ce qui est
-demandé, et toutes les valeurs ne sont pas testées, il est donc
-impossible d'être sûrs. A DÉVELOPPER 
-
-
-\subsection{Implémentation par contrat}
-développer les services et conditions soulevés, en respectant le
-squelette étudié.
-
-
-
+Certains opérateurs (ou constructeurs) possèdent jusqu'à 8 pré-conditions, ce qui reviendrait à effectuer au moins $2^8=256$ tests. \\
 
 
 
@@ -195,7 +180,8 @@ squelette étudié.
 
 
 \section{Solution}
-petite intro ?
+
+
 
 \subsection{Specification}
 
@@ -236,11 +222,15 @@ Ces services décrivent de nombreux comportements, tous précisés en annexe. No
 \end{itemize}
 
 \subsection{Tests}
-Nous n'avons malheureusement pas fait tout les tests.
 
-1 exemple ... 
+Comme vu précédemment, nous n'avons pas pu faire toute l'étendue des cas de tests à cause du nombre trop important de pré-conditions dans certains opérateurs. Nous avons cependant cherché à couvrir le maximum de cas critiques pour permettre à l'implémentation de rester cohérente.
 
-Idéalement : pour chaque méthodes, pour chaque valeur : 
+Ces cas de tests sont décrits en annexe. \\
+
+Voici un exemple d'exécution des différents tests concernant Personnage implémentés en JUnit et lancés dans Eclipse : \\
+
+\noindent
+\includegraphics[scale=0.8]{testPersonnage.png}
 
 \subsection{Implémentation par contrat}
 
@@ -285,17 +275,46 @@ Le fichier build.xml fourni permet : \\
 
 \subsection{Manuel d'utilisateur}
 
-TODO
+\noindent
+\includegraphics[scale=0.55]{capture.png}
+
+Le terrain de River City Ransom est représenté dans notre implémentation par une vue du dessus.
+
+Chaque objet est représenté par un rectangle jaune, dont le label indique quel est le bonus de force qu'il possède. 
+
+L'argent est représenté par des carrés blancs ayant pour label la valeur qui lui est associé. 
+
+Les cases sur lesquelles ont peut marcher sont représentées par des cases de couleur verte.
+
+Les cases "fossé" sont représentées par des cases grises. Elles sont mortelles pour les personnages.
+
+Les adversaires (gangsters) sont représentés par des carrés bleus ayant pour label la valeur de leurs points de vie restants.  
+
+Le but du jeu est de vaincre Slick (le carré bleu nommé "Slick").
+
+Pour cela, les deux héros (Alex et Ryan) peuvent effectuer les actions suivantes : 
+
+\begin{itemize}
+\item Se déplacer avec les touches \emph{flèche droite}, \emph{flèche gauche}, \emph{flèche bas}, \emph{flèche haut} pour Alex et les touches \emph{Q}, \emph{S}, \emph{D} et \emph{Z} pour Ryan.
+\item Frapper un adversaire avec la touche \emph{espace} pour Alex et la touche \emph{shift} pour Ryan.
+\item Ramasser un objet (ou de l'argent, ou un adversaire) avec la touche \emph{R} pour Alex et \emph{A} pour Ryan.
+\item Jeter un objet (ou un adversaire) avec la touche \emph{J} pour Alex et \emph{E} pour Ryan
+\end{itemize}
+
+Les gangsters n'étant pas très intelligents, ils se contentent de lancer au hasard des actions telles que ramasser, jeter, frapper, gauche, droite, etc. quel que soit la situation dans laquelle ils se trouvent, menant parfois à des suicides impromptus.
+
+Nous n'avons pas pu gérer le saut et le fait d'être gelé dans notre implémentation ... 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%   CCL  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{CCL}
+\section*{Conclusion}
 
+La méthodologie de conception par contrat permet de développer un projet en assurant une certaine cohérence et le fait d'être sûr 
 
+La conception par contrat permet de penser l'application en terme de composants indépendants et de définir des règles afin d'en faciliter l'implémentation et la vérification. Cette méthodologie est avantageuse lors des phases de débogage qui s'en trouvent fortement simplifiées. 
 
-
-
+Néanmoins, il faudrait théoriquement réaliser une infinité d'exécutions pour vérifier tous les cas de tests possibles. De fait, il est impossible d'avoir une étendue de tests exhaustive et d'assurer l'absence d'erreurs dans l'application réalisée. 
 
 
 
@@ -318,6 +337,7 @@ TODO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%   ANNEXE   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
+
 \pagestyle{empty}
 \includepdf[pages={-},pagecommand={},offset=2.cm 1cm]{../Spec/spec.pdf}
 

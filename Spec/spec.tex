@@ -55,11 +55,11 @@
 \begin{document}
 \maketitle
 
-%% \section*{Introduction}
+%% \section**{Introduction}
 %% Lien vers l'énoncé du projet : 
 %% \href{http://www-master.ufr-info-p6.jussieu.fr/2013/spip.php?action=acceder_document&arg=2148&cle=11624d21d0734169986d403a88c3f6e4e1755b65&file=pdf\%2Fsujet_projet_2014.pdf}{lien}.
 
-\section{Le service Personnage}
+\section*{Personnage}
 
 \begin{Spe}
 service: Personnage
@@ -159,7 +159,7 @@ Observations :
 
 \end{Spe}
 \newpage
-\section{Gangster}
+\section*{Gangster}
 \begin{Spe}
 service: Gangster
 Refine : Personnage
@@ -192,7 +192,7 @@ Observations :
 					
 \end{Spe}
 
-\section{Bloc}
+\section*{Bloc}
 \begin{Spe}
 service : Bloc
 use : Objet
@@ -223,7 +223,7 @@ Observations :
      
 \end{Spe}
  
-\section{Objet}
+\section*{Objet}
 \begin{Spe}
 
 
@@ -256,7 +256,7 @@ Observations :
 
 \end{Spe}
 
-\section{Terrain}
+\section*{Terrain}
 \begin{Spe}
 service : Terrain
 use : Bloc
@@ -294,7 +294,7 @@ Observations :
 \end{Spe}
 
 
-\section{Moteur de jeu}
+\section*{Moteur de jeu}
 \begin{Spe}
 service : MoteurJeu
 use : GestionCombat
@@ -347,7 +347,7 @@ $NULLE$ & $sinon$ \\
 	    
 \end{Spe}
 \begin{landscape}
-\section{GestionCombat}
+\section*{GestionCombat}
 \begin{Spe}
 service : GestionCombat
 use : Terrain, Personnage, Gangster  
@@ -594,11 +594,11 @@ Observations :
 	 posY(G,gerer(G,cA,cR),gangsters(G)) = { g = 
 	 	(*$ \left\{
 \begin{array}{ll}
-	 	$min(posY(G,g) + 10,Terrain:profondeur(terrain(G))-Personnage::profondeur(g)) $\\ $si actionGangster(G,g) = HAUT $\lor$ actionGangster(G,g) = SAUTHAUT $\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)  $\land$ $\lnot$collisionDerriere(g,p) $\forall$ p $\in$ gangster $\lor$ p = g$  \\
+	 	$min(posY(G,g) + 10,Terrain:profondeur(terrain(G))-Personnage::profondeur(g)) $\\ $si actionGangster(G,g) = HAUT $\lor$ actionGangster(G,g) = SAUTHAUT $\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)  $\land \\ $  $\lnot$collisionDerriere(g,p) $\forall$ p $\in$ gangster $\lor$ p = g$  \\
 	 	$max(posY(G,g) - 10,0) $\\$si actionGangster(G,g) = BAS $\lor$ actionGangster(G,g) = SAUTBAS $\land$ $\lnot$Personnage::est\_vaincu(g) $\land$ $\lnot$estGele(G,g)  $\land$ $\lnot$collisionDevant(g,p) $\forall$ p $\in$ gangster $\lor$ p = g$  \\
 	 	$posY(G,g) sinon $
 	 	\end{array} 
-\right\}$ *)
+\right.$ *)
 }  (*$\forall$*) g (*$\in$*) gangsters(G)
 
 
